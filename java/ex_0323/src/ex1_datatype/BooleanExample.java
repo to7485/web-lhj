@@ -19,13 +19,5 @@ public class BooleanExample {
 		//boolean은 true/false값만 올 수 있다.
 		isOn = false;
 		System.out.println("전등 상태 바뀜 : " + isOn);
-		
-		
-		
-		
-		
-		
-		
-		
 	}
 }
