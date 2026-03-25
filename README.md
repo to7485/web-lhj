@@ -10,6 +10,11 @@
   - 하위 목록
     - 하위의 하위 목록
 
-```
+\``` : 코드 작성가능
+```java
 System.out.println("Hello Java");
+```
+
+```c
+printf("%d",100);
 ```
