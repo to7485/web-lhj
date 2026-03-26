@@ -72,7 +72,7 @@ public class StringExample {
 		//split("기준값");
 		String board = "번호, 제목, 내용, 성명";
 		//분리한 문자열을 배열로 반환
-		String[] arr = board.split(",");
+		String[] arr = board.split("번호");
 		System.out.println(Arrays.toString(arr));
 		
 		//특정 문자열을 포함하고 있는지에 대한 여부(true, false)
