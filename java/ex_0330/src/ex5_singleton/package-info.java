@@ -1,0 +1,1 @@
+package ex5_singleton;

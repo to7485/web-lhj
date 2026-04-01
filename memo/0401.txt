@@ -1,0 +1,215 @@
+생성자 : 객체를 메모리에 올리는 역할, 필드를 초기화 하는 역할
+
+메서드 : 만들고 싶은 기능, 자주사용하는 기능을 만드는것
+
+this : 호출한 객체 자신
+this.필드명
+this()
+
+super : 부모클래스
+super.필드명
+super()
+super.메서드명()
+
+오버라이딩(메서드 재정의)
+상속관계에서만 사용할 수 있음
+
+부모클래스에 있는 메서드 이름으로 사용하고 싶지만
+자식클래스의 상황에 맞지 않아서 자식클래스에서 재정의할 때
+
+접근제한자, 반환형, 메서드명, 매개변수는 그대로 사용
+내용만 수정
+@Override -> 어노테이션
+컴파일러한테 오버라이드된 메서드에요 라고 알려주는것
+
+클래스 타입변환
+자동타입변환
+자식타입 -> 부모타입
+
+강제타입변환
+부모타입 -> 자식타입
+(자식클래스)부모객체
+
+다형성 : 상속 + 오버라이딩 + 타입변환
+부모타입으로 자식 객체를 다룰 수 있는 것.
+코드를 수정하지 않고 기능을 확장할 수 있다.
+
+class Animal{
+    void sound(){println("동물소리")};
+}
+
+class Dog extends Animal{
+    void sound(){println("멍멍")};
+
+}
+
+class Cat extends Animal{
+    void sound(){println("야옹")};
+}
+
+class Zoo{
+   Animal animal; -> 부모타입의 변수가 있다.
+
+  public void printSound(){
+	animal.sound(); //변수에 들어오는 객체에 따라서 오버라이딩
+  }
+}
+
+부모타입의 변수에 넣어도 자식클래스에 오버라이딩된 메서드가 실행이 된다.
+
+추상화
+중요한 공통점만 뽑아내고, 불필요한 세부부분은 감추는것
+추상클래스
+공통된 특징은 가지고 있지만, 그 자체로 완전한 객체가 되기 어려운 클래스
+- 공통적인 필드
+- 공통적인 메서드
+
+자식클래스들이 추상클래스를 상속해서 구체적인 내용을 작성
+
+Delivery 추상클래스가 있다.
+메서드
+- printInvoice() : "송장을 출력합니다."
+- 추상메서드 void ship();
+- complete() : "배송 처리가 완료되었습니다."
+
+RoketDelivery, StorePickup클래스를 만든다.
+추상클래스를 상속받는다.
+로켓배송은 "로켓배송을 시작합니다."
+매장수령은 "매장에서 직접 수령합니다."
+Main에서 Delivery타입의 배열에 자식 객체들을 넣고 모든 메서드 호출하기
+
+Transport 추상클래스
+필드
+(생성자를 통해 값을 전달받는다.)
+- String name 
+- int baseFare
+메서드
+- void showName() : "교통수단: 버스"
+- void printFare(int distance)
+ㄴ showName()을 호출
+ㄴ 거리를 출력
+ㄴ 요금 계산 : "총 요금 xx원" 형식으로 출력
+추상메서드
+- int calculatorFare();
+
+Bus클래스를 만들고 TransPort클래스를 상속받는다.
+Taxi클래스를 만들고 TransPort클래스를 상속받는다.
+필드
+(생성자를 통해서 값을 전달)
+- int distance : 거리
+- int farePerKm : 거리당 요금
+
+main 메서드에서 반드시 부모 타입 배열을 사용하시오.
+배열에는 다음 객체를 저장하시오.
+new Bus("버스", 1200)
+new Taxi("택시", 3000, 10, 100)
+반복문을 사용하여 모든 객체의 printFare()를 호출하시오.
+각 교통수단의 결과 출력 뒤에는 한 줄을 띄우시오.
+
+교통수단: 버스
+기본요금: 1200원
+총 요금: 1200원
+
+교통수단: 택시
+기본요금: 3000원
+총 요금: 4000원
+
+HankookTire 클래스
+한국타이어가 굴러갑니다.
+
+KumhoTire 클래스
+금호타이어가 굴러갑니다.
+
+Car클래스 만들기
+Tire타입의 필드 두개 만들고 객체 넣기
+
+알림 발송 시스템 구현하기
+Notification 인터페이스 작성하기
+void send(String message);
+
+SmsNotification 클래스를 작성하고 인터페이스 구현하기
+[SMS] "인증번호"를 전송합니다.
+EmailNotification 클래스를 작성하고 인터페이스 구현하기
+[EMAIL] "회원가입을 환영합니다"를 전송합니다.
+
+Main에서 인터페이스 타입 배열을 사용하세요.
+각 구현클래스의 객체를 저장하세요
+반복문을 사용하여 각 객체의 send()를 호출하세요
+
+
+
+1. ClickListener 인터페이스 만들기
+void onClick();
+
+2. Button 클래스 만들기
+필드
+ClickListener listener;
+
+setter를 통해서 필드에 객체를 주입한다.
+
+void click() : 호출시 등록된 listener의 onClick(); 실행하기
+
+3. 구현클래스
+LoginListener
+"로그인 처리 실행" 출력
+LogoutListener
+"로그아웃 처리 실행" 출력
+
+main
+Button 객체를 생성하시오
+LoginListener를 등록 후 클릭 실행
+LogoutListener를 등록 후 클릭 실행
+
+쇼핑몰에서 하나의 주문안에 여러 주문 상품 정보를 저장하려고 한다.
+이때 주문 상품은 주문에 소속된 정보이므로 인스턴스 멤버 클래스로 작성한다.
+Order클래스
+필드
+- orderNumber : 주문번호
+생성자를 통해 필드를 초기화
+메서드
+printOrderInfo(Item item)
+- 주문번호
+- 상품정보
+Item 인스턴스 내부 클래스
+필드
+- name : 상품명
+- price : 가격
+- count : 수량
+생성자를 통해 필드를 초기화
+메서드
+printInfo()
+ㄴ "상품명: xx, 가격: xx, 수량 : x개"형식으로 출력하기
+
+main메서드에서 다음과 같이 객체를 생성하고 출력하세요
+주문번호 : 2026003
+상품명 : 키보드
+가격 : 50000
+수량 : 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
