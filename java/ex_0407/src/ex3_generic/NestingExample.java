@@ -1,5 +1,7 @@
 package ex3_generic;
 
+import ex3_generic.exam.Box;
+
 class Pair<T,U>{
 	private T first;
 	private U second;
