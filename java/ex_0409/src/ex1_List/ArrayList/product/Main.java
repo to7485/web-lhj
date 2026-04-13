@@ -32,6 +32,14 @@ public class Main {
 				
 				cart.addProduct(name, price, quantity);
 				
+			}  else if(choice == 2) {
+				cart.printCart();
+			} else if(choice == 3) {
+				cart.printTotalPrice();
+			} else if(choice == 4) {
+				System.out.print("삭제할 상품명 : ");
+				String name = sc.nextLine();
+				cart.removeProduct(name);
 			} else if(choice == 0) {
 				System.out.println("프로그램 종료");
 				break;
