@@ -1,0 +1,48 @@
+저녁 7시부터 수업이 있음
+자습하시려면 다른 공간에서!
+
+프로그래밍 언어 활용 점수가 조정될 수 있음
+
+람다식을 쓰기 위해서는 함수형 인터페이스가 필요하다.
+매번 만들기에는 좀 부담스럽다
+
+자주 사용되는 메서드의 형태는 경우의수가 적기 때문에 java에서 인터페이스를 제공하고 있다.
+
+람다식을 만드는 것 : 추상메서드를 오버라이딩 하는것
+
+
+Function<T,R>
+- R apply(T t) : 매개변수가 1개고 반환값이 있는 메서드
+
+Consumer
+- void accept(T t) : 매개변수가 1개, 반환값이 없는 메서드
+
+Supplier
+- T get() : 매개변수가 없고, 반환값이 있는 메서드
+
+Predicate
+- boolean test(T t) : 매개변수가 1개, 반환값이 논리형인 메서드
+
+매개변수가 2개일 때
+BiConsumer<T,U>
+BiPredicate<T,U>
+BiFunction<T,U,R>
+
+람다식의 합성과 결합
+Function
+f.andThen(g) : f를 실행하고 g를 실행함
+
+f.compose(g) : g를 실행하고 f를 실행함
+
+Predicate
+f.and(g) : f와 g의 결과가 참이어야 true를 반환
+f.or(g) : f 또는 g의 결과가 참이어야 true를 반환
+f.negate() : true -> false, false -> true로 바꾼다.
+
+
+
+
+
+
+
+
