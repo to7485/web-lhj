@@ -40,6 +40,35 @@ f.or(g) : f 또는 g의 결과가 참이어야 true를 반환
 f.negate() : true -> false, false -> true로 바꾼다.
 
 
+Printer클래스
+메서드
+print(String message)
+- "출력내용 : XXX"라고 출력하기
+Main클래스
+static executePrint(Consumer<String> action, String message)
+- 전달받은 action을 사용하여 mesage출력하기
+
+Printer객체를 생성한 뒤, 메서드 참조를 이용하여 "람다식 전달 연습"라고 출력하기
+
+1. 현재 프로젝트를 기준으로 uploads 폴더를 나타내는 File 객체 생성
+2. uploads폴더가 존재하지 않으면 폴더를 생성한다.
+3. 해당 경로가 폴더인지 확인한다.
+4. 폴더 안에 들어있는 파일과 폴더 목록을 출력한다.
+5. 각 항목에 대해 다음 형식으로 출력한다.
+- 폴더면 [DIR] 폴더명
+- 파일이면 [FILE] 파일명
+6. 마지막에 전체 개수도 출력한다.
+
+회원 정보가 member.txt에 저장되어 있다.
+apple
+1234
+첫번째 줄은 id이고, 두번째 줄은 비밀번호이다.
+
+사용자로부터 아이디와 비밀번호를 입력받아
+파일에 저장된 값과 비교한 뒤 로그인 성공 여부를 출력하는 프로그램 작성하기
+
+
+
 
 
 

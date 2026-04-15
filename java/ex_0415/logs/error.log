@@ -1,0 +1,5 @@
+2026-04-15 09:01:12 [ERROR] Database connection failed
+2026-04-15 09:01:12 [ERROR] Cause: Timeout while connecting to DB server
+2026-04-15 09:02:45 [ERROR] NullPointerException at UserService.java:42
+2026-04-15 09:03:10 [ERROR] Failed to process request /api/login
+2026-04-15 09:03:10 [ERROR] Invalid user credentials
