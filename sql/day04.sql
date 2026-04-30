@@ -218,6 +218,38 @@ select *
 from  film_practice fp 
 where LEFT(TITLE,1) = 'A';
 
+-- 문자열 + NULL -> NULL
+select CONCAT('안녕',null,'하세요'); 
+-- CONCAT_WS('구분자','값1','값2'...) : 여러 값을 하나의 문자열로 합칠 때 구분자를 자동으로 넣어주는 함수
+select CONCAT_WS('-','A',null,'B');
+
+-- SQL의 NULL 전파 규칙
+-- NULL이 포함된 연산은 결과도 NULL
+select 10+null; -- NULL
+select 'A'+NULL; -- NULL
+
+select * from member;
+
+-- IFNULL() : NULL을 다른 문자열로 치환
+select CONCAT(
+		NAME, 
+		' -> ', 
+		CHAR_LENGTH(NAME), 
+		IFNULL(NICKNAME,' 없음'), 
+		' -> ', 
+		IFNULL(CHAR_LENGTH(NICKNAME),'0'))
+from MEMBER;
+
+select CHAR_LENGTH(NICKNAME) from member;
+
+select SUBSTRING_INDEX('A-B-C-D','-',1);
+
+
+
+
+
+
+
 
 
 
