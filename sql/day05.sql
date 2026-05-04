@@ -447,13 +447,38 @@ group by DEPARTMENT_ID,JOB_ID;
 
 -- 사원테이블에서 입사년도별 사원수를 조회
 -- 년도 이름순으로 조회하기
+select * from employees;
+
+select YEAR(hire_date),count(*)
+from employees
+group by YEAR(hire_date);
 
 -- 부서별로 급여가 5000 이상인 사원들의 평균 급여 구하기
+select department_id,avg(salary)
+from employees
+where salary >= 5000
+group by department_id;
 
 -- 부서별 최고 급여과 최저 급여의 차이를 구하세요.
+select department_id,max(salary) - min(salary)
+from employees
+group by department_id;
 
 -- 이름에 'a'가 포함된 사원들만 대상으로,
 -- 이름 길이별 사원수를 구하세요
+select char_length(first_name), count(*)
+from employees
+where lower(first_name) like '%a%'
+group by char_length(first_name);
 
 -- 입사일 기준으로 요일별 사원 수 구하기
+select
+	dayname(hire_date),
+	count(*)
+from employees
+group by dayname(hire_date);
+
+
+
+
 
