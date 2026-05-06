@@ -244,7 +244,10 @@ select CHAR_LENGTH(NICKNAME) from member;
 
 select SUBSTRING_INDEX('A-B-C-D','-',1);
 
-
+-- 여러가지 속성으로 그룹지을 수 있다.
+select department_id, count(*)
+from employees
+group by department_id;
 
 
 

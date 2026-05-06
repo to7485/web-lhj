@@ -144,7 +144,7 @@ from SALES
 group by CATEGORY;
 
 -- ROLLUP을 사용하여 카테고리별 합계와 전체합계를 같이 조회
-select IFNULL(CATEGORY,'전체'), SUM(AMOUNT)
+select CATEGORY, SUM(AMOUNT)
 from SALES
 group by CATEGORY with ROLLUP;
 
