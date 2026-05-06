@@ -4,7 +4,8 @@
 ㄴ 각 운영체제별 경로 이동하는 방법
 ㄴ Ubuntu에서 파일 권한 변경, 확인하는법
 ㄴ 파일, 폴더 삭제하는 방법
-ㄴ sudo apt update, upgrade
+ㄴ sudo apt upgrade
+
 응용 SW 기초 기술 활용 : 아영,동현,하린님,의상,용민
 1. OSI 7계층 1문제
 2. 미들웨어 개념, WAS의 역할, 웹 서버와 WAS의 차이
@@ -22,8 +23,6 @@
 ㄴ create database ...
 8.9.10 DML
 ㄴ 조회, 수정, 삭제, 추가
-
-
 
 
 
