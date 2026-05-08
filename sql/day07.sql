@@ -348,8 +348,7 @@ INSERT INTO product VALUES
 select CUSTOMER_NAME
 from CUSTOMER C
 left outer join ORDERS O
-on O.CUSTOMER_ID = C.CUSTOMER_ID
-where ORDER_ID is NULL;
+on O.CUSTOMER_ID = C.CUSTOMER_ID;
 
 
 
@@ -534,6 +533,18 @@ where rental_count >= 30;
 -- 1. 복잡한 join과 조건이 반복될 때
 -- 2. 비즈니스 규칙을 숨겨둘 때
 -- 3. 보안,권한 제어용으로 사용한다.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

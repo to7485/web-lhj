@@ -1,0 +1,273 @@
+Index
+- 조회를 빠르게 하기 위한 목적으로 사용
+- where, order by,  group by 에 많이 사용되는 속성에 대해 미리 접근 위치를 기록해놓는다.
+- 실제 조회를 할 때 해당 컬럼이 사용되면 index가 자동으로 사용
+- insert, update,delete에 대해서는 좀 불리하다.
+
+index 생성
+create index 인덱스명
+on 테이블(컬럼)
+
+테이블에 어떤 인덱스가 존재하는지 확인
+SHOW INDEX FROM 테이블명;
+
+인덱스 삭제
+DROP INDEX 인덱스명 ON 테이블명;
+
+-----------------------------------------------
+Sub Query
+- sql문 안에 sql문이 있는것
+- 특정 조건을 다른 테이블 조회 결과로 판단할 때
+- 평균값, 최대값 같은 계산 결과를 기준으로 조회할 때
+- join없이 단계적으로 데이터를 조회하고 싶을 때
+
+종류
+- 단일 행 서브쿼리 : 결과가 1개
+- 다중 행 서브쿼리 : 결과가 여러개
+
+select emp_name
+from employee
+where department = (
+    select department
+    from employee
+    where salary >= 6000
+)
+사용하는 기호
+IN : 여러 값 중 하나
+ANY : 하나라도 만족
+ALL : 모두 만족
+
+- 다중 컬럼 서브쿼리 : 컬럼이 여러개
+- 상관 서브쿼리 : 바깥 쿼리와 연결됨
+- from절 서브쿼리 : 가상 테이블처럼 사용
+
+Join
+- 정규화를 통해서 분리된 테이블에서 공통된 컬럼을 기준으로 연결해서
+조회하는 기능
+
+PK와 FK로 연결된 컬럼이 있어야 한다.
+
+INNER JOIN
+- 두 테이블에서 조건이 일치하는 데이터만 조회
+
+LEFT OUTER JOIN
+- 왼쪽 테이블(FROM절에 작성된 테이블)의 데이터는 전부 조회하고, 오른쪽 테이블(JOIN된 테이블)의 데이터는 조건이 맞는 데이터만 조회
+- 없는 데이터 쪽은 NULL로 표시한다.
+
+RIGHT OUTER JOIN
+- 오른쪽 테이블은 전부 조회하고, 왼쪽 테이블은 조건이 맞는 데이터만 조회
+- LEFT와 RIGHT는 방향만 바뀐것이기 때문에 테이블 순서를 바꿔서 LEFT를 많이 사용한다.
+
+CROSS JOIN
+- 두 테이블에 들어있는 데이터의 모든 조합을 만든다.
+
+핵심문법
+SELECT 조회하고싶은 컬럼
+FROM 기준 테이블 별칭
+JOIN 연결 테이블 별칭
+ON 기준테이블.컬럼 = 연결테이블.컬럼;
+
+ON절이 두 테이블을 연결하는 기준
+
+외래키가 없어도 조인은 가능하나 무결성을 해칠 수 있기 때문에 권장하지 않는다.
+
+컬럼명 충돌
+두 테이블에 같은 이름의 컬럼이 있으면 어느 테이블에서 조회하려는 것인지 명확하게 작성을 한다.
+employee.emp_id, enroll.emp_id
+
+LEFT OUTER JOIN
+ON VS WHERE
+
+select customer_name, product_name
+from customer c
+left outer join orders o
+on c.customer_id = o.customer_id
+left outer join product p
+on o.product_id = p.product_id
+where product_name = '노트북';
+-> 조건이 일치하지 않는 데이터는 조회가 안됨
+
+select customer_name, product_name
+from customer c
+left outer join orders o
+on c.customer_id = o.customer_id
+left outer join product p
+on o.product_id = p.product_id and product_name='노트북';
+-> JOIN은 유지하면서 조건맞춰서 조회
+
+INNER JOIN은 어차피 매칭된 데이터만 남기기 때문에 결과가 비슷한 경우가 많다.
+
+
+View
+- SELECT문의 결과를 가상의 테이블처럼 저장해놓은 객체
+
+복잡한 SELECT문을 간단하게 저장할 수 있는 효과
+
+VIEW를 만든다고 해서 실제로 데이터가 저장되는것은 아님
+원본데이터가 바뀌면 VIEW에 들어있는 데이터도 바뀐다.
+
+VIEW안에서 VIEW를 사용하는것이 가능하기는 하나 성능저하가 일어날 수 있다.
+
+본인이 만들어보고 싶은 서비스가 있을 때
+ㄴ 모델링을 잘 하고, 테이블잘 만들고, 어떤 데이터를 조회해서 보여줘야할지를 고민해서 결정
+
+AUTO_INCREMENT
+- 숫자 값을 자동으로 1씩 증가시켜서 입력해주는 속성
+- 데이터를 추가할 때마다 직접 번호를 입력하면 번거롭기 때문에 사용을한다.
+- 반드시 숫자 타입의 컬럼에만 붙여야한다.
+- 인덱스가 있어야 하기 때문에 PK와 함께 사용한다.
+- 한 테이블에 하나만 사용할 수 있다.
+- 직접 값을 넣을 수도 있다.
+INSERT INTO board(board_id, title, content)
+values (100, '관리자 공지', '직접 번호 입력');
+그 다음 자동 증가 값은 보통 101부터 시작한다.
+- 중간 번호는 재사용하지 않는다.
+1	첫번째글
+2	두번째글
+3	세번째글
+
+delete from board
+where board_id = 3;
+
+새 글을 추가하게 되면 board_id가 4로 추가된다.
+- AUTO_INCREMENT는 연속 번호 보장용이 아니라 고유 식별자 생성용이다.
+
+- INSERT 했다가 ROLLBACK 해도 다음 번호로 건너뛴다.
+- 테이블 생성 후 다음 자동 증가값을 바꿀 수 있다.
+ALTER TABLE 테이블명 AUTO_INCREMENT = 1000;
+이후 새 데이터는 1000부터 들어갈 수 있다.
+
+- 현재 AUTO_INCREMENT 값 확인하기
+SHW TABLE status LIKE '테이블명';
+
+- 마지막으로 생성된 번호 확인하기
+select LAST_INSERT_ID();
+
+LIMIT
+- 조회 결과를 제한하는 절
+- 몇개까지만 보여줘
+
+SELECT *
+FROM 테이블
+LIMIT 5;
+
+ORDER BY와 함께 많이 사용된다.
+내림차순으로 정렬해서 상위 5개만 조회해라
+
+데이터가 몇백만건 들어있는 테이블에서 LIMIT이 없으면 위험할 수 있다.
+
+LIMIT 시작위치,개수
+LIMIT 개수 OFFSET 시작위치
+
+페이징처리할 때 사용
+SELECT *
+FROM BOARD
+ORDER BY BOARD_ID DESC
+LIMIT 0, 10; 0개 건너뛰고 10개 조회
+
+SELECT *
+FROM BOARD
+ORDER BY BOARD_ID DESC
+LIMIT 10, 10; 10개 건너뛰고 10개 조회
+
+Sorted Program문법
+- 절차형 SQL 문법
+- MySQL안에서 프로그래밍처럼 SQL을 실행하기 위한 문법
+
+일반 SQL문은 한문장씩 실행이 된다.
+Sorted Program에서는 SQL에 프로그래밍적인 요소를 집어넣을 수 있다.
+변수
+조건문
+반복문
+예외처리
+
+Sorted Program
+- MySQL 서버 안에 저장해두고 실행하는 프로그램의 단위
+Stored Procedure	여러SQL 작업을 묶어서 실행하는 프로시저
+Stored Function 값을 계산해서 변환하는 함수
+Trigger INSERT, UPDATE, DELETE시 자동 실행
+Event 정해진 시간마다 자동 실행
+
+상품 주문 로직
+1. 상품 재고 조회
+2. 재고가 충분한지 조회
+3. 재고 차감
+4. 주문 데이터 저장
+5. 결과 반환
+
+Stored Program의 핵심 구조
+DELIMITER //
+CREATE PROCEDURE hello()
+BEGIN
+    SELECT 'Hello MySQL Stored Program' AS message;
+END //
+DELIMITER ;
+
+
+※DELIMITER
+MySQL에서 기본적으로 세미콜론을 만나면 SQL문장이 끝났다고 판단한다.
+프로시저 전체가 끝날 때까지 ;로 끝난 것으로 보지말고, //만났을 때 
+끝난것으로 판단해라
+
+BEGIN ~ END는 여러 SQL문장을 하나의 블록으로 묶는 문법
+BEGIN
+	문장1;
+	문장2;
+	문장3;
+END
+
+변수를 선언하는 DECLARE
+DECLARE 변수명 자료형 DEFAULT 기본값;
+
+DECLARE v_count int default 0
+DECLARE v_name varchar(50) default '홍길동'
+
+BEGIN ~ END 블록의 가장 앞부분에 작성해 한다.
+일반 SQL문 뒤에 선언하면 오류가 난다.
+
+BEGIN
+DECLARE v_num int default 0;
+
+select '시작';
+END;
+
+변수에 값을 넣는 SET
+SET 변수명 = 값;
+
+BEGIN
+DECLARE v_num int default 0;
+SET v_num = 100;
+
+select '시작';
+END;
+
+매개변수 IN, OUT, INOUT
+
+IN은 외부에서 값을 받아오는 매개변수
+CREATE PROCEDURE 프로시저명(IN 매개변수명 타입)
+
+OUT은 프로시저 내부에서 만든 값을 외부로 내보내는 매개변수
+CREATE PROCEDURE 프로시저명(out 매개변수명 타입)
+
+INOUT은 값을 받아오고, 수정한뒤 다시 내보내는 역할
+CREATE PROCEDURE 프로시저명(INOUT 매개변수명 타입)
+
+IF문
+IF 조건 THEN
+	실행문;
+ELSEIF 조건 THEN
+	실행문;
+ELSE
+	실행문;
+END IF;
+
+
+
+
+
+
+
+
+
+
+
