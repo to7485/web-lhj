@@ -1,0 +1,168 @@
+Stored Program
+- MySQL 서버 안에 저장해두고 실행하는 프로그램의 단위
+프로그램의 종류
+- 프로시저 : 여러 SQL 작업을 묶어서 실행하는 프로시저
+- Function : 값을 계산해서 반환하는 함수
+- Trigger : INSERT, UPDATE, DELETE 발생할 때 자동 실행
+- Event : 정해진 시간마다 자동 실행
+Stored Program 문법
+- MySQL 안에서 프로그래밍 언어처럼 SQL을 실행하기위한 문법
+문법의 종류
+- 변수
+- 조건문
+- 반복문
+- 예외처리
+- 커서
+- BEGIN ~ END 블록
+
+프로시저(procedure)
+- 여러개의 SQL문을 하나의 이름으로 저장하고, 필요할 때 호출해서 실행하는 기능
+
+- 자주 사용하는 SQL을 간단하게 사용할 수 있다.
+
+기본 구조
+DELIMITER //
+CREATE PROCEDURE 프로시저명(매개변수)
+BEGIN
+	SQL문;
+END //
+DELIMITER ;
+
+프로시저 호출 방법
+CALL 프로시저();
+
+프로시저의 삭제방법
+DROP PROCEDURE IF EXISTS 프로시저명;
+
+매개변수
+IN : 외부에서 값을 받아서 프로시저 내부로 전달
+OUT : 프로시저 안에서 만든 값을 외부로 전달
+INOUT : 값을 받아서 수정한 뒤 다시 외부로 전달
+
+키워드 변수명 자료형,
+키워드 변수명 자료형
+
+세션변수
+- 전역변수 (static 변수 느낌)
+- 현재 MySQL 접속에서 사용할 수 있는 변수
+@변수명
+
+inout은 값을 받아서 변경한 뒤 다시 반환할 때
+delimiter //
+create procedure add_ten(
+	inout p_number int
+)
+begin
+	set p_number = p_number+10;
+end //
+delimiter ;
+
+set @num = 5;
+
+call add_ten(@num)
+
+declare로 선언하는 지역변수
+declare 변수명 자료형 default 기본값;
+선언위치는 begin바로 아래여야 한다.
+
+set 변수명 = 값;
+
+set 변수명 = (sql문)
+
+select 컬럼 into 변수명  from 테이블
+
+IF문
+
+IF 조건 THEN 실행문;
+ELSEIF 조건 THEN 실행문;
+ELSEIF 조건 THEN 실행문;
+ELSEIF 조건 THEN 실행문;
+ELSE 실행문;
+END IF;
+
+
+CASE문
+- 조건에 따라 다른 값을 반환하거나, 다른 처리 흐름을 만들 때 사용하는 조건문
+
+IF문과의 차이점
+사용 위치
+IF문 : 프로시저 내부에서만 사용 가능
+CASE문 : SELECT 절, 프로시저 내부 모두 사용 가능
+주 용도
+IF문 : 실행 흐름을 제어
+CASE문 : 조건별 처리
+
+기본 문법
+CASE
+	WHEN 조건식1 THEN 결과1
+	WHEN 조건식2 THEN 결과2
+	WHEN 조건식3 THEN 결과3
+	ELSE 기본결과
+END
+
+MySQL의 반복문은 일반 SQL에서는 사용할 수 없고
+주로 프로시저 안에서 사용을 한다.
+
+반복문의 종류
+LOOP : 무한 반복 기반
+WHILE : 조건이 참인동안 반복
+REPEAT : 최소 1번 실행 후 조건 검사
+
+반복문을 사용하는 구조
+변수 : 반복횟수를 저장
+조건식 : 반복 종료를 판단
+SET : 변수 증가
+LEAVE : 반복 종료
+ITERATE : 다음 반복으로 이동
+
+DDL 테이블 만들기
+
+DML
+SELECT
+INSERT
+UPDATE
+DELETE
+
+집계함수( SUM, COUNT ,MIN, AVG ,MAX)
+ㄴ GROUP BY, HAIVNG
+
+INDEX
+SUBQUERY
+JOIN
+VIEW
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
