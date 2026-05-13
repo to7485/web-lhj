@@ -745,13 +745,11 @@ begin
 end //
 delimiter ;
 
-
-
-
-
 update board
 set content = '내용이 수정되었습니다.'
 where board_id = 1;
+
+select * from board;
 
 
 
