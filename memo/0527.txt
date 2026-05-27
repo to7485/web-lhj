@@ -1,0 +1,264 @@
+DDL
+- CREATE
+- DROP
+- ALTER
+DML
+- SELECT
+- INSERT
+- DELETE
+- UPDATE
+DCL
+- GRANT
+- REVOKE
+TCL
+- COMMIT
+- ROLLBACK
+
+데이터타입
+문자
+CHAR(N) : 고정길이 문자타입
+VARCHAR2(N) : 가변길이 문자
+
+숫자
+NUMBER(P,S) : P가 전체 자리수, S소수점 이하 자릿수
+NUMBER(5,2) : -999.99 ~ 999.99
+FLOAT(P) : NUMBER의 하위 타입
+
+날짜
+DATE : 날짜 시간
+TIMESTAMP : 날짜 + 시간 + 초 단위
+
+현재시각
+MYSQL : NOW()
+ORACLE : SYSDATE
+
+NULL 처리
+MYSQL : SELECT IFNULL(name,'이름 없음') from member;
+ORACLE : SELECT NVL(name,'이름 없음') from member;
+
+숫자 자동증가
+MYSQL : AUTO_INCREMENT
+ORACLE : CREATE SEQUENCE 시퀀스명;
+
+MYSQL : Sorted Program
+ORACLE : PL/SQL
+
+조건문
+둘다 IF, ELSE, END IF 존재
+
+반복문
+FOR i IN 1..5
+LOOP
+	DBMS_OUTPUT.PUT_LINE(i);
+END LOOP;
+
+MYSQL은 WHILE문을 자주 사용
+
+데이터 입출력 구현 능력단위
+논리 데이터저장소 확인하기
+- 엔티티, 속성, 관계가 잘 설정 됐는지
+- E-R 다이어그램 잘 그렸는지
+- 정규화 잘 됐는지(1~5차, 함수적 종속성, 이상현상)
+논리 데이터모델 검증하기
+- 필요한 데이터가 빠지지 않았는지(입력, 출력, 연계 데이터)
+- 현재 시스템의 데이터구조를 파악했는지(기본 DB구조, 백업, 공통코드, 외부 연계 데이터)
+- 사용자 요구사항이 반영되었는가
+- 데이터 흐름이 명확한가
+- 데이터 모델이 적절한가
+- 접근권한과 통제가 명확한가
+
+물리 데이터저장소 설계하기
+- 논리 데이터저장소 설계를 바탕으로 목표 시스템의 데이터 특성을 반영하여 최적화된 물리 데이터저장소 설계
+
+반정규화
+- 정규화를 조금 포기하고, SELECT 성능을 높이기 위해 데이터의 중복을 감수하고, 테이블 구조를 바꾸는 설계 방법
+
+반정규화를 하는 이유
+- 테이블이 너무 잘게 쪼개져있어서 JOIN을 너무 많이해야해서 
+- 데이터가 적을때는 괜찮은데 데이터가 많아지면 SELECT 속도가 느려진다.
+- 자주 조회하는 데이터를 일부러 합치거나 중복해서 저장한다.
+
+핵심개념
+- JOIN을 줄여 빠르게 조회속도 향상
+- 합계, 평균을 미리 저장하여 계산 비용 감소
+- 자주쓰는 속성은 테이블로 따로 만들어 분리
+- 항상 같이 쓰는 테이블을 하나로 합친다.
+
+반정규화 유형
+1. 중복테이블 추가
+- 기존 테이블과 비슷한 데이터를 가진 테이블을 추가로 만드는 것
+- 주로 조회속도를 높이기 위해 사용
+
+customer
+customer_id		ustomer_name
+1			철수
+2			영희
+
+product
+product_id	product_name	price
+10		노트북		1200000
+20		마우스		30000
+
+orders
+order_id	customer_id		roduct_id	order_date
+1001		1			10		26-05-01
+1002		2			20		26-05-02
+
+세 개의 테이블을 join해야한다.
+주문번호	고객명	상품명	가격		주문일
+1001		철수		노트북	1200000	26-05-01
+1002		영희		마우스	30000		26-05-02
+
+- 관리자 페이지에서 최근 주문 내역을 매우 자주 조회한다
+- 매번 orders 테이블을 전체 조회하면 데이터가 많아질수록 느려질 수 있다.
+- 그래서 중복 테이블을 하나 추가한다.
+
+create table order_summary(
+	order_id INT primary key,
+	customer_name varchar(50),
+	product_name varchar(100),
+	price int,
+	order_date date
+)
+
+INSERT INTO order_summary 
+SELECT
+    o.order_id,
+    c.customer_name,
+    p.product_name,
+    p.price,
+    o.order_date
+FROM orders o
+JOIN customers c
+ON o.customer_id = c.customer_id
+JOIN products p
+ON o.product_id = p.product_id;
+
+원본 데이터에 추가나 수정이 발생하면 트리거(Trigger)를 이용해서 원본 변경시 자동실행이 되도록한다
+
+집계 테이블의 추가
+- 합계 평균, 개수같은 계산 결과를 미리 저장해두는 테이블
+- 날짜별 주문 건수
+- 날짜별 매출 합계
+- 날짤별 평균 주문금액
+
+집계를 해주는 테이블을 만들어서 select문을 추가해준다.
+
+진행테이블 추가
+- 현재 처리 중인 업무 상태를 빠르게 확인하기 위해 만드는 테이블
+
+order_id	customer_id	product_id	status
+1001		1		10		배송완료
+1002		2		20		결제완료
+1003		3		15		배송중
+1004		4		30		주문접수
+
+진행중인 데이터만 저장하는 테이블을 생성
+
+특정 부분만 포함하는 테이블 추가
+- 큰 테이블에서 자주 사용하는 일부 컬럼만 따로 빼서 테이블을 만드는 방법
+
+테이블 조합
+- 항상 같이 사용되는 두 개 이상의 테이블을 하나로 합치는 것
+
+테이블 분할
+- 하나의 테이블을 여러개로 나누는 것
+
+수직 분할
+- 컬럼별로 사용 빈도의 차이가 많이 나는 경우 자주 사용되는 컬럼들과 그렇지 않은 컬럼으로 분류하여 테이블을 분할하는 방법
+- 자주 쓰는 컬럼만 빠르게 조회
+- 이미지, 긴 글 같은 무거운 데이터가 있을 때
+- 개인정보 접근 권한을 분리해야 할 때
+
+수평 분할
+- 특정 범위별 사용 빈도의 차이가 많은 경우 해당 범위별로 테이블을 분할하는 방법
+- 행을 기준으로 테이블을 나누는 것
+
+order_id	customer_name	price		order_date
+1001		김철수		50000	2024-01-15
+1002		이영희		70000	2024-03-22
+1003		박민수		30000	2025-02-11
+1004		최지은		90000	2025-05-01
+1005		정수현		40000	2026-04-10
+
+실제로는 최근 1년 데이터를 자주 조회한다.
+
+년도별로 테이블을 새로 만듦
+
+CREATE TABLE ORDERS_2024(
+	order_id INT PRIMARY KEY,
+	customer_name	VARCHAR(100),
+	price	INT,
+	order_date DATE
+)
+
+INSERT INTO ORDERS_2024
+SELECT *
+FROM orders
+WHERE order_date  BETWEEN '2024-01-01' AND '2024-12-31';
+
+사용상황
+- 날짜별 조회가 많음
+- 지역별 데이터가 많음
+- 상태별 조회가 많다
+
+테이블 제거
+- 테이블 재정의나 컬럼의 중복화로 더 이상 사용되지 않는 테이블이 발생할 경우, 해당 테이블을 삭제한다.
+CUSTOMER
+customer_id		customer_name
+1			김철수
+2			이영희
+
+customer_address
+customer_id		address
+1			서울시 강남구
+2			인천시 연수구
+
+- 전체 내용을 조회할때마다 join을 해야 한다.
+- 조회속도를 개선하기 위해 주소를 customer 테이블에 합쳤다.
+customer
+customer_id		customer_name	address
+1			김철수		서울시 강남구
+2			이영희		인천시 연수구
+
+1단계 : customer 테이블에 address 컬럼 추가하기
+ALTER TABLE customer
+ADD address VARCHAR(100);
+
+2단계 : 기존 주소 데이터 복사
+UPDATE customer c
+JOIN customer_address a
+on c.customer_id = a.customer_id
+SET c.address = a.address;
+
+3단계 : 정상 이동 확인
+
+4단계 : 더 이상 사용하지 않는 테이블 제거
+- 실제로는 백업을 해두고 삭제하는 경우가 많음
+
+컬럼 중복
+- 필요한 해당 테이블이나 컬럼을 중복하여 추가한다.
+- 다른 테이블에 있는 컬럼을 현재 테이블에도 추가로 저장하는 것이다.
+
+member_id	member_name
+1		김철수
+ 
+- 주문테이블에서 이름을 자주 보여줘야 한다면 주문테이블에도 이름을 중복 저장하는것
+order_id	member_id	member_name	order_date
+101		1		김철수		2026-05-26
+
+장점
+- join 없이도 바로 조회할 수 있다.
+
+단점
+- 회원 이름이 변경되면 주문 테이블의 회원 이름도 같이 수정해야 한다.
+
+
+
+
+
+
+
+
+
+
