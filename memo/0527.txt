@@ -253,6 +253,213 @@ order_id	member_id	member_name	order_date
 단점
 - 회원 이름이 변경되면 주문 테이블의 회원 이름도 같이 수정해야 한다.
 
+실제로 인덱스는 별도의 정렬된 자료구조로 저장이 된다.
+
+검색시 동작
+
+데이터가 수정되면 인덱스도 같이 수정을 해야 한다
+
+지나치게 많은 인덱스는 오버헤드가 된다.
+오버헤드 : 추가 부담
+- 인덱스가 많으면 조회는 빨라질 수 있지만, 변경작업은 느리다.
+
+예를 들어 회원 1명을 추가할 때 테이블에만 저장하는 것이 아니라 여러 인덱스도 함께 갱신해야 한다.
+EX) 인덱스가 5개라면, 회원 데이터 1건을 넣을 때 인덱스 5개도 함께 관리해야 한다.
+
+인덱스는 추가 저장공간이 필요하다
+- 테이블과 별도로 저장되는 검색 구조이다.
+- 인덱스를 만들면 저장 공간을 추가로 사용한다.
+- 그래서 무조건 많이 만드는것은 좋지 않다.
+
+넓은 범위를 인덱스로 처리하면 오히려 느릴 수 있다.
+- 인덱스는 적은 데이터를 빠르게 찾을 때 효과적이다.
+- 하지만 전체 데이터의 많은 부분을 조회하면 오히려 전체 테이블을 읽는 것이 더 빠를 수 있다.
+
+SELECT *
+FROM orders
+where order_date BETWEEN '2020-01-01' AND '2026-12-31';
+
+이 조건이 주문의 90%를 조회한다면 인덱스 효과가 낮아진다.
+이런 경우 DB는 인덱스보다 테이블 스캔을 선택할 수 있다.
+
+인덱스와 테이블 데이터의 저장 공간을 적절히 분리한다.
+- 대규모 DB에서는 테이블 데이터와 인덱스 데이터를 물리적으로 분리해서 저장하기도 한다.
+- 이렇게 하면 디스크 입출력 성능이나 관리측면에서 유리할 수 있다.
+
+뷰(View)
+- 실제 데이터를 저장하는 테이블이 아니라, SELECT문을 저장해 둔 가상의 테이블
+- 자주 사용하는 조회 SQL에 이름을 붙여 둔 것
+
+뷰가 필요한 이유
+- 복잡한 SQL을 단순하게 사용할 수 있다.
+ㄴ 여러 테이블을 JOIN하는 SQL은 길고 복잡하다.
+
+- 특정 컬럼만 보여줄 수 있다.
+ㄴ 개인정보, 급여와 같은 민감한 정보는 제외하여 뷰를 만들면 필요한 컬럼만 공개할 수 있다.
+
+- 조건에 맞는 데이터만 보여줄 수 있다.
+ㄴEX) 활성 회원만 보여주는 뷰
+
+뷰 속성
+REPLACE
+- 뷰가 이미 존재하는 경우 기존 뷰를 새 내용으로 다시 생성하는 속성
+CREATE OR REPLACE VIEW active_member_view as
+select member_id, name, email
+from member
+where status = 'ACTIVE';
+FORCE
+- 기본테이블이 존재하지 않아도 뷰를 생성하는 속성
+member테이블이 없다고 가정
+
+CREATE FORCE VIEW member_view as
+select member_id, name from member;
+
+이 경우 Oracle에서는 테이블이 없어도 View 정의 자체는 만들 수 있다.
+다만 실제로 조회하려고 하면 오류가 발생할 수 있다.
+
+왜냐하면 실제 테이블은 없기 대문이다.
+
+NOFORCE
+- 기본 테이블이 존재할 때만 뷰를 생성하는 속성
+CREATE NOFORCE VIEW member_view as
+select member_id, name from member;
+- Oracle에서 기본값은 보통 NOFORCE이다.
+- 일반적으로는 참조할 테이블이 있어야 뷰를 만들 수 있다.
+
+WITH CHECK OPTION
+- 뷰의 조건을 만족하는 행만 INSERT 또는 UPDATE 할 수 있도록 제한하는 속성
+
+-활성 회원만 저장하는 VIEW
+CREATE VIEW active_member_view as
+select member_id, name, status
+from member
+where status = 'active'
+WITH CHECK OPTION
+
+가능한 수정
+UPDATE active_member_view
+set name = '김영희'
+where member_id = 1;
+
+상태를 건드리는 수정은 할 수 없다.
+UPDATE active_member_view
+set status = 'INACTIVE'
+where member_id = 1;
+
+- 이 뷰의 조건을 벗어나는 수정은 허용하지 않는다
+
+WITH READ ONLY
+- 뷰를 조회 전용으로 만드는 속성
+CREATE VIEW active_member_view as
+select member_id, name, status
+from member
+where status = 'active'
+WITH READ ONLY;
+
+뷰 설계시 고려사항
+뷰는 결국 테이블을 조회한다
+- 실제 데이터를 저장하지 않는다.
+- 실제로는 내부에서 원본 테이블의 SELECT가 실행되는 것과 같다.
+- 그래서 뷰를 사용한다고 해서 무조건 빨라지는것은 아니다
+- 오히려 뷰 안의 SQL이 복잡하면 성능 문제가 생길 수 있다.
+
+복잡한 뷰는 성능이 느려질 수 있다.
+- member,orders테이블을 조인하는 쿼리문을 view로 만든다.
+- 뷰를 조회하게 되면 실제로는 member와 orders테이블을 조인하고 집계한다.
+- 데이터가 많으면 이 작업은 느려질 수 있다.
+
+뷰 안의 select 조건도 인덱스를 고려해야 한다.
+- 뷰 안에 조건이 있다면, 해당 조건 컬럼에 인덱스가 있는지 확인해야 한다.
+CREATE VIEW active_member_view as
+select member_id, name, email
+from member
+where status = 'active';
+- 이 뷰는 status 조건을 사용한다.
+- 따라서 status 컬럼이 자주 조회되고 분포도가 적절하다면 인덱스를 고려할 수 있다.
+- 다만 status같이 ACTIVE와 INACTIVE처럼 종류가 적고 대부분이 ACTIVE라면 인덱스 효과가 낮을 수 있다.
+
+뷰를 사용하는 SQL의 WHERE절도 중요하다
+- 뷰 안의 조건이 부족하더라도, 뷰를 조회하는 SQL에서 좋은 조건을 줄 수 있다.
+CREATE VIEW order_view as
+SELECT order_id, member_id, order_date, total_price
+from orders;
+- 모든 주문을 보여주는 뷰
+- 그런데 실제 조회할 때는 다음처럼 조건을 준다.
+SELECT *
+FROM order_viewe
+WHERE member_id = 10;
+- 이 경우 실제로는 orders.member_id를 조건으로 조회하게 된다.
+- 따라서 orders.member_id에 인덱스가 있으면 성능이 좋아질 수 있다.
+
+파티션
+- 큰 테이블을 여러 개의 작은 영역으로 나누어 저장하는 방법
+
+파티션 설계
+- 큰 테이블을 여러 개의 작은 영역으로 나누어 저장하는 방법
+- 주문 데이터가 1억 건 있다고 가정을 하면
+orders테이블
+주문버호
+회원번호
+주문일자
+상품명
+가격
+
+만약 모든 데이터를 하나의 테이블에 저장하면 검색할 때 DB가 엄청난 데이터를 확인해야 한다.
+- 시간이 오래걸리 때문에 데이터를 나눈다.
+
+orders_2024
+orders_2025
+orders_2026
+
+파티션이 필요한 이유
+- 대용량 시스템에서는 데이터가 계속 증가한다.
+- 데이터가 많아지면
+조회 속도 저하
+백업 시간 증가
+복구 시간 증가
+디스크 사용량 증가
+
+파티션 종류
+1. 범위 분할
+- 지정한 컬럼 값의 범위를 기준으로 데이터를 나누는 방법
+주문테이블의 데티러를 주문일자를 기준으로 나눈다
+주문테이블
+주문번호		주문일
+101			2024-01-10
+102			2025-03-01
+103			2026-06-12
+
+반정규화 분할 -> 테이블을 진짜로 여러개로 만듦
+파티션 -> 하나의 테이블 내부에서 저장영역을 나눈다.
+
+CREATE TABLE orders(
+	order_id INT,
+	order_date DATE
+)
+PARTITION BY RANGE(YEAR(order_date))
+(
+	PARTITION p2024 VALUES LESS THEN (2025),
+	PARTITION p2025 VALUES LESS THEN (2026),
+	PARTITION p2026 VALUES LESS THEN (2027)
+);
+
+- 파티션을 만들어도 사용자는 일반 테이블 처럼 사용한다.
+- 원래 하던것처럼 CRUD작업을 한다.
+
+주문데이터
+로그데이터
+게시글데이터
+이력 데이터
+- 시간 기준 데이터에 많이 사용한다.
+
+
+
+
+
+
+
+
+
 
 
 
