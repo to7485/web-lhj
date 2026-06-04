@@ -12,7 +12,20 @@ values
 
 select * from member;
 
-SELECT VERSION();
+SELECT VERSION(); 
+
+
+EXPLAIN
+select * from BOOK;
+
+
+
+
+
+
+
+
+
 
 
 
