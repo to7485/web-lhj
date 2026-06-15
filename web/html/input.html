@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- input태그
+     사용자가 데이터를 입력하는 HTML 태그이다. -->
+    이름 : <input type="text">
+
+    <!-- input태그는 type이라는 속성을 가진다.
+     속성값들에 따라 모양과 기능이 달라진다. -->
+
+    <!-- 라디오 버튼
+     여러 선택지 중 하나만 선택할 때 사용
+     예를 들어 성별, 결제 방식, 회원 등급 처럼 하나만 고르는 경우 -->
+     <br>
+
+     <!-- name 속성을 통해 각각의 라디오버튼을 그룹으로 묶는다. -->
+     <input type="radio" name="gender" checked> 남성
+     <input type="radio" name="gender"> 여성
+    <br>
+    <!-- 체크박스
+     여러 개를 동시에 선택할 때 사용
+     예를 들어 관심 분야, 취미, 약관 동의 -->
+    
+     <input type="checkbox" name="hobby" checked>음악
+     <input type="checkbox" name="hobby">영화
+     <input type="checkbox" name="hobby">게임
+    <br>
+    <!-- 콤보박스
+     펼쳐서 하나를 선택하는 목록 -->
+     <select name="city">
+        <option value="seoul">서울</option>
+        <option value="busan">부산</option>
+        <option value="incheon" selected>인천</option>
+     </select>
+     <br>
+     <!-- 비밀번호 입력
+      비밀번호를 입력했을 때 마스킹되어 나오도록 한다. -->
+      비밀번호 : <input type="password">
+     <br>
+     <!-- 이메일 입력 -->
+      이메일 : <input type="email">
+     <br>
+    <!-- 숫자 입력 -->
+     나이 : <input type="number">
+     <br>
+     <!-- 날짜 입력 -->
+      날짜 : <input type="date">
+
+    <!-- 파일 업로드 -->
+     업로드 : <input type="file">
+
+     <input type="color">
+    
+
+</body>
+</html>

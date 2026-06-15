@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <table> ~ </table> 테이블을 만들어주는 태그
+     <tr> : 행을 만들어주는 태그
+     <td> : 열을 만들어주는 태그
+     <th> : 테이블 헤더로 테이블 각 열을 대표하는 셀-->
+
+    <table border="1">
+        <tr> 
+            <td>1행 1열</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <table border="1">
+        <tr> 
+            <td>1행 1열</td>
+            <td>1행 2열</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <table border="1">
+        <tr> 
+            <td>1행 1열</td>
+        </tr>
+        <tr> 
+            <td>2행 1열</td>
+        </tr>
+    </table>
+
+    <hr>
+
+    <!-- 2행 2열짜리 테이블 만들기 -->
+    <table border = "1">
+        <caption> 테이블 제목 </caption>
+        <tr>
+            <td>1행 1열</td>
+            <td>1행 2열</td>
+        </tr>
+        <tr>
+            <td>2행 1열</td>
+            <td>2행 2열</td>
+        </tr>
+    </table>
+    <hr>
+    <!-- 열 합치기 -->
+    <table border="1">
+        <tr>
+            <td colspan="3" align="center">메뉴판</td>
+        </tr>
+        <tr>
+            <td>짜장면</td>
+            <td>짬뽕</td>
+            <td>탕수육</td>
+        </tr>
+    </table>
+    <hr>
+    <!-- 행 합치기 -->
+    <table border="1">
+        <tr>
+            <td rowspan="2">메뉴판</td>
+            <td>짜장</td>
+        </tr>
+        <tr>
+            <td>짬뽕</td>
+        </tr>
+    </table>
+    <hr>
+    <table border="1">
+        <caption>주요 SNS 서비스별 이용률(%)</caption>
+        <tr>
+            <th></th>
+            <th>페이스북</th>
+            <th>카카오스토리</th>
+            <th>밴드</th>
+            <th>인스타그램</th>
+            <th>트위터</th>
+        </tr>
+        <tr>
+            <th>2015</th>
+            <td>77.1</td>
+            <td>58.3</td>
+            <td>32.4</td>
+            <td>16.7</td>
+            <td>22.1</td>
+        </tr>
+        <tr>
+            <th>2016</th>
+            <td>73.8</td>
+            <td>51.3</td>
+            <td>40.1</td>
+            <td>28.1</td>
+            <td>14.6</td>
+        </tr>
+    </table>
+</body>
+</html>
