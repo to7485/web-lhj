@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color : #eee;
+        }
+
+        /* .no-container-area{
+            background-color : #fff;
+            border-bottom : 2px solid #999;
+            padding : 16px;
+        } */
+
+        .container{
+            max-width: 1200px; /* 최대 너비 제한 */
+            width : 100%; /* 작은 화면에서는 꽉차게 */
+            margin : 10px auto; /* 가운데 정렬 */
+            background-color : #fff;
+            border : 1px solid #ccc;
+            border-radius : 12px;
+            padding : 24px;
+        }
+
+        .section-title{
+            font-size : 20px;
+            font-weight : bold;
+            margin-bottom : 12px;
+        }
+
+        .text-block{
+            font-size : 16px;
+            color : #444;
+            margin-bottom : 12px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 1단계 컨테이너 없이 꽉찬 레이아웃 -->
+     <!-- <div class="no-container-area">
+        <div class="section-title">컨테이너 없이 만든 영역</div>
+        <div class="text-block">
+            이 영역은 화면 전체 너비를 그대로 사용한다.
+            큰 모니터에서 보면 줄 길이가 너무 길어져 읽기 불편한다.
+            또한 본문이 왼쪽 위에만 붙어 있어서 디자인적으로 답답해보인다.
+        </div>
+     </div> -->
+
+     <!-- 컨테이너의 사용 -->
+    <div class="container">
+        <div class="section-title">컨테이너를 사용한 영역</div>
+        <div class="text-block">
+            이 영역은 max-width로 너비가 제한돼서 본문 줄 길이가 적당하다.
+            margin:0 auto 덕분에 화면 가운데 배치되어 훨씬 안정적으로 보인다.
+            padding으로 내부 여백을 줬기 때문에 텍스트가 박스 테두리에 붙지 않는다
+            border-radius와 box-shadow로 카드처럼 보이는 것도 요즘 트렌드 디자인이다.
+        </div>
+        <div class="text-block">
+            모바일에서 보면 width:100%로 꽉차고, 데스크탑에서 보면 가운데 정렬된 박스처럼
+            보인다. 이것이 반응형 레이아웃의 기본구조이다.
+        </div>
+    </div>
+</body>
+</html>

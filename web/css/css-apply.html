@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 외부 스타일 시트 추가하기 -->
+    <link rel="stylesheet" href="apply.css">
+
+    <!-- 내부 스타일 시트 방식 -->
+    <style>
+        /* 현재 웹 페이지에 있는 모든 h1 태그에게 스타일을 적용 */
+        h1 {color : blue;}
+        p {color : yellowgreen;}
+    </style>
+
+    
+
+</head>
+<body>
+
+    <h1> 내부 스타일 시트 적용</h1>
+    <h1> 내부 스타일 시트 적용2</h1>
+
+    <!-- 인라인 방식이 우선순위가 더 높다.-->
+    <p style="color:red"> 인라인 방식을 적용 </p>
+    <p> 여기에는 반영되지 않는다.</p>
+
+    <span> 외부 스타일 시트 적용 </span>
+
+    <!-- 스타일 적용 우선 순위
+     1. 인라인
+     2. 외부 / 내부 스타일 시트
+     ㄴ 가장 최근 스타일을 적용을 시킨다. -->
+</body>
+</html>

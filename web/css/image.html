@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* p태그에 두께 : 1px 스타일 : solid 색깔 : black */
+        p{
+            border : 1px solid black;
+            width : 500px;
+            height : 500px;
+        }
+
+        /* 배경스타일 주기
+        background-color : 색상지정, 헥스값, rgb값 가능하다 */
+        .b1{background-color : cornflowerblue}
+
+        /* 배경이미지
+        background-image :url(경로)
+        background-repeat : repeat 배경 이미지 반복*/
+        .b2{
+            background-image : url("dog.jpg");
+            background-repeat : repeat;
+        }
+
+        /* 배경 이미지 위치
+        background-position : center, right, left, top, bottom */
+        .b3{
+            background-image : url("dog.jpg");
+            background-repeat : no-repeat;
+            background-position: right top;
+        }
+
+        /* 배경 축약 속성
+        색상, 이미지, 반복, 위치를 한번에 지정할 수 있다. */
+        .b4{
+            background:skyblue url("dog.jpg") no-repeat center;
+        }
+
+        /* 그라데이션 주는법
+        background : linear-gradient(색1,색2)
+        기본 방향이 위에서 아래 */
+        .d1{
+            width: 400px;
+            height:400px;
+            background:linear-gradient(pink,#fff);
+        }
+
+        .d2{
+            width: 400px;
+            height:400px;
+            background:linear-gradient(45deg,pink,#fff);
+        }
+
+        .d3{
+            width: 400px;
+            height:400px;
+            background:linear-gradient(to left,pink,#fff,deeppink,magenta);
+        }
+
+
+
+
+    </style>
+
+</head>
+<body>
+    <p class="b1">안녕하세요 반갑습니다 css 공부중입니다.</p>
+    <p class="b2">안녕하세요 반갑습니다 css 공부중입니다.</p>
+    <p class="b3">안녕하세요 반갑습니다 css 공부중입니다.</p>
+    <p class="b4">안녕하세요 반갑습니다 css 공부중입니다.</p>
+
+    <div class="d1"></div>
+    <div class="d2"></div>
+    <div class="d3"></div>
+</body>
+</html>

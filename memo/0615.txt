@@ -1,3 +1,19 @@
 화면 설계 능력평가
 HTML -> 간단한 프로토타입
 
+정적페이지 만들어보기
+
+- 시맨틱 태그와 기본 요소를 활용해 개인 소개 페이지를 만들어보자.
+- 필수: header, nav, main, section×2, aside, footer다
+- 요소: 이미지 1개, 링크 3개 이상, 의미 있는 alt다
+- 규칙: 파일명 index.html, 하위 폴더 images/ 포함이다
+- 주석: 코드 상단에 2줄 이상 의도를 남긴다
+
+구조
+my-site/
+ ├─ index.html
+ └─ images/
+     └─ profile.jpg
+
+
+
