@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* body
+        폰트 : Pretendard, sans-serif
+        배경색 : #f8f9fa
+        글자 정렬 : center
+        글자 높이 : 1.6 */
+        body{
+            font-family : "Pretendard", sans-serif;
+            background-color : #f8f9fa;
+            text-align : center;
+            line-height : 1.6
+        }
+
+        /* 박스 스타일
+        너비 200px
+        높이 80px
+        배경색 #0984e3
+        글자색 흰색
+        테두리 둥글게 8px */
+        .base-box{
+            width:200px;
+            height: 80px;
+            background-color:#0984e3;
+            color:white;
+            border-radius : 8px;
+            margin:40px auto;
+        }
+
+        /* margin 속성
+        margin : 네 방향의 여백을 한 번에 지정할 수 있다.
+        margin : 10px 상,하,좌,우
+        marign : 10px 20px 상하/좌우
+        margin : 10px 20px 30px 상/ 좌우/ 하
+        margin : 10px 20px 30px 40px 상 우 하 좌
+        margin-top, margin-right, margin-left, margin-bottom
+        방향별 개별 지정이 가능하다. */
+
+        .box-top{
+            margin-top : 60px;
+            background: #74b9ff;
+        }
+
+        .box-right{
+            margin-right : 100px;
+            background: #00cec9;
+        }
+
+        .box-left{
+            margin-left : 100px;
+            background: #6c5ce7;
+        }
+
+        .box-bottom{
+            margin-bottom : 60px;
+            background: #fd79a7;
+        }
+    </style>
+</head>
+<body>
+    <h2>모든 방향에 대한 margin 값 실습</h2>
+    <div class="base-box box-top">margin-top</div>
+    <div class="base-box box-right">margin-right</div>
+    <div class="base-box box-left">margin-left</div>
+    <div class="base-box box-bottom">margin-bottom</div>
+</body>
+</html>

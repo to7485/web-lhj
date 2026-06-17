@@ -1,0 +1,32 @@
+/* 모든 요소에 대해 기본 바깥 여백과 안쪽 여백을 제거한다. */
+*{
+    margin :0; /*바깥쪽 여백*/
+    padding : 0; /*안쪽 여백*/
+    box-sizing : border-box; 
+    /*CSS에서 요소의 실제 크기를 계산하는 방식
+    border-box : 박스 크기를 딱 정한 크기대로 유지해주는 옵션*/
+}
+
+/* body의 기본 글꼴을 설정한다. */
+body{
+    font-family : Arial, sans-serif;
+    line-height : 1.5; /*줄 간격*/
+}
+
+/* 목록의 점 제거 */
+ul,ol{
+    list-style : none;
+}
+
+/* 링크의 밑줄을 제거 */
+a{
+    text-decoration : none;
+    color:inherit; /*부모 요소의 글씨 색을 따라간다.*/
+}
+
+/* 버튼 기본 스타일 제거 */
+button{
+    border:none;
+    background:none;
+    cursor:pointer;
+}
