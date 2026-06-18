@@ -1,0 +1,41 @@
+section{
+    border : 1px dashed black;
+    margin-bottom : 10px;
+}
+
+.box{
+    width: 100px;
+    height : 100px;
+    color : white;
+    border : 2px solid black;
+    margin : 10px;
+    text-align: center;
+}
+
+.a{
+    background : yellowgreen;
+}
+
+.b{
+    background : violet;
+}
+
+.c{
+    background : cornflowerblue;
+}
+
+.d{
+    background : tomato;
+}
+
+.e{
+    background : tan;
+}
+
+.f{
+    background : orange;
+}
+
+.flex-demo{
+    min-height: 200px;
+}

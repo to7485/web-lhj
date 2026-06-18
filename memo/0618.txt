@@ -1,0 +1,90 @@
+HTML : 화면을 구성하는 뼈대
+제목, 문단, 링크, 이미지, 테이블, 리스트
+
+CSS : 
+폰트
+font-size
+font-weight
+font-family
+font
+
+테두리
+border-color
+border-style
+border-weight
+border
+
+배경
+background-color
+background-image
+background-repeat
+background-size
+background-position
+background : linear-gradient()
+
+길이
+width
+height
+
+길이에 쓸 수 있는 단위
+px -> 고정단위
+em -> 부모요소 기준
+rem -> html태그 기준
+% -> 부모 기준 %
+
+간격
+외부간격
+margin
+margin-top
+margin-right
+margin-left
+margin-bottom
+
+
+내부간격
+padding
+padding-top
+padding-right
+padding-left
+padding-bottom
+
+높이
+height
+min-height : 최소 높이를 지정(내용이 많으면 자동 확장)
+max-height : 최대 높이를 지정(내용이 많아지면 스크롤 생성)
+
+
+Reset CSS
+브라우저가 자동으로 넣어주는 기본 여백, 목록, 점, 링크 밑줄, 버튼 모양 등을 제거해서 모든 브라우저에서 비슷한 출발점으로 디자인하기위한 CSS
+
+Normalize CSS
+브라우저의 기본 스타일을 완전히 제거하는 것이 아니라, 브라우저마다 다르게 적용되는 부분을 통일해주는 CSS
+
+사용방법
+1. 태그에 직접 지정하는 방법
+2. CDN 사용
+
+중앙정렬
+- 화면이나 부모 요소 기준으로 콘텐츠를 가운데 배치하는 기술
+- 웹페이지의 레이아웃에서 가장 많이 사용하는 정렬방식 중 하나이다.
+- 버튼, 팝업, 로그인 폼 등 주요 요소를 강조할 때 많이 사용한다.
+
+flexbox : 자식 요소를 내가 원하는데로 정렬할 수 있는 속성
+flex를 설정하는 주체를 부모요소 또는 컨테이너
+속성에 영향을 받는 요소를 item이라고 한다.
+
+컨테이너 관련 속성
+flex-direction : 주 축을 결정
+flex-wrap : 가로 너비가 좁아지면 밑으로 내릴거냐
+justify-content : 주 축에서 요소들의 정렬방법을 설정
+align-items : 교차 축에서 요소들의 정렬방법을 선택
+
+
+
+
+
+
+
+
+
+

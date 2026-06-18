@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="box.css">
+    <style>
+        section{
+            display:flex;
+        }
+
+        .o1{
+            order : 1;
+        }
+
+        .o2{
+            order : 2;
+        }
+
+        .o3{
+            order: 3;
+        }
+
+        .o4{
+            order : 4;
+        }
+
+        /* flex-grow
+        남는 여유 공간을 각 flex 아이템이 얼마나 더
+        차지할지 비율로 설정하는 속성
+        (기본값은 0이고, 숫자가 클수록 공간을 더 많이 가져간다)*/
+
+        .box{
+            flex-grow : 0;
+        }
+
+        .f1{
+            flex-grow : 1;
+        }
+
+        .f2{
+            flex-grow : 2;
+        }
+
+        .f3{
+            flex-grow : 3;
+        }
+
+        .f4{
+            flex-grow : 4;
+        }
+
+        /* flex-shrink
+        item이 줄어들 때 축소비율을 결정하는것
+        숫자가 클수록 많이 줄어든다.
+        기본값은 1이고 음수는 무효 */
+
+        .box{
+            width: 400px;
+        }
+
+        .s2{
+            flex-shrink: 1;
+        }
+
+        .s3{
+            flex-shrink: 2;
+        }
+
+        .s4{flex-shrink: 3;}
+
+        /* flex-basis
+        item의 각 너비 기본값을 지정한다. */
+
+        .b1{
+            flex-basis: 50px;
+        }
+
+        .b2{
+            flex-basis : 100px;
+        }
+
+        .b3{
+            flex-basis : 200px;
+        }
+
+        .b3{flex-basis : 300px;}
+
+        /* align-self
+        item을 교차축 방향으로 정렬한다.
+        align-item 속성보다 우선하여 개별 item을 정렬할 수 있다. */
+
+        section{
+            height : 300px;
+            align-items : center;
+        }
+
+        .a1{
+            align-self : flex-start;
+        }
+
+        .a2{
+            align-self : flex-end;
+        }
+
+        /* stretch는 높이를 지정하지 않아야 적용이 된다. */
+        .a3{align-self: stretch;}
+
+        
+    </style>
+</head>
+<body>
+    <h2>기본 순서</h2>
+    <section>
+        <div class="box a">A</div>
+        <div class="box b">B</div>
+        <div class="box c">C</div>
+        <div class="box d">D</div>
+    </section>
+
+    <h2>order를 통한 재배치</h2>
+    <section>
+        <div class="box a o2">A</div>
+        <div class="box b o4">B</div>
+        <div class="box c o1">C</div>
+        <div class="box d o3">D</div>
+    </section>
+
+    <h2>flex-grow</h2>
+    <section>
+        <div class="box a f1">A</div>
+        <div class="box b f2">B</div>
+        <div class="box c f3">C</div>
+        <div class="box d f4">D</div>
+    </section>
+
+    <h2>flex-shink</h2>
+    <section>
+        <div class="box a s1">A</div>
+        <div class="box b s2">B</div>
+        <div class="box c s3">C</div>
+        <div class="box d s4">D</div>
+    </section>
+
+    <h2>flex-basis</h2>
+    <section>
+        <div class="box a b1">A</div>
+        <div class="box b b2">B</div>
+        <div class="box c b3">C</div>
+        <div class="box d b4">D</div>
+    </section>
+
+    <h2>align-self</h2>
+    <section>
+        <div class="box a a1">A</div>
+        <div class="box b a2">B</div>
+        <div class="box c a3">C</div>
+        <div class="box d a4">D</div>
+    </section>
+</body>
+</html>
