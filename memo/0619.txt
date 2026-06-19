@@ -1,0 +1,61 @@
+길이 단위
+px : 고정
+em : 부모요소의 크기를 따라간다.
+rem : html 태그의 크기를 따라간다.
+% : 부모요소 기준으로 비율이 결정
+
+display
+- 요소를 화면에 어떻게 배치할 것인가
+block : 한 줄 전체 차지한다. width,height 설정 가능
+inline : 콘텐츠 만금만 너비를 차지한다. width,height 설정 안됨, 위아래 margin적용이 안됨
+inlin-block : inline처럼 배치가능하고 block처럼 width, height 설정 가능하다
+none : 화면에서 완전히 사라지고 공간도 차지하지 않는다.
+flex : 자식 요소를 쉽게 정렬할 수 있게 해준다.
+
+flex 속성을 적용하는 요소를 컨테이너(부모요소)라고 한다.
+flex 속성에 영향을 받는 요소를 item이라고 한다.
+
+컨테이너 속성
+flex-direction : 배치하려는 item의 주 축을 결정
+- row : 좌 -> 우
+- row-reverse : 우 -> 좌
+- column : 위 -> 아래
+- column-reverse : 아래 -> 위
+flex-wrap : 브라우저의 길이가 줄어들 때 item을 다음줄로 넘길지 결정
+- no-wrap : 무조건 줄 안바꿈 1행에 전부 표시
+- wrap : 길이가 좁아지면 요소를 아래에 배치
+- wrap-reverse : wrap과 같은데 아래에서 위로 배치
+flex-flow : direction과 wrap의 단축 속성
+- flex-flow : direction속성 wrap속성
+justify-content : 주 축에서 정렬방법을 결정
+- flex-start : 좌측 기준으로 정렬
+- flex-end : 우측 기준으로 정렬
+- center : 중앙에 정렬
+- space-between : 첫번째와 마지막item은 끝에 정렬, 나머지는 균등하게
+- space-around : 모든 item은 균등한 간격으로 정렬
+align-items : 교차 축에서 items의 정렬 방법을 설정
+- stretch :  모든 item은 컨테이너의 높이에 꽉찬 높이를 갖는다.
+- flex-start : 모든 item은 컨테이너의 cross start 기준으로 정렬
+- flex-end : 모든 item은 컨테이너의 cross end 기준으로 정렬
+- center : 모든 item은 컨테이너의 교차축 기준 중앙에 정렬이 된다.
+- baseline : 모든 item은 컨테이너의 텍스트 밑줄을 기준으로 정렬된다.
+ㄴ item 박스의 크기가 제각각이더라도, 텍스트를 기준으로 맞춘다.
+
+item 관련 속성
+order : item의 순서를 결정
+flex-grow : item의 증가 비율을 결정
+flex-shrink : item의 감소 비율을 결정
+flex-basis : item의 기본 크기를 설정
+flex :grow, shrink, basis의 단축 속성이다
+align-self : 교차축에서의 item 정렬 방법을 설정
+
+
+
+
+
+
+
+
+
+
+

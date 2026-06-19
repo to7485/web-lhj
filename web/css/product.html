@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin :0;
+            padding : 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            background-color : #f4f1ea;
+            min-height : 100vh;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .product-container{
+            width:800px;
+            display:flex;
+            background-color:#fff;
+            border : 1px solid #ddd;
+            border-radius : 8px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .product-image{
+            width: 250px;
+            height : 250px;
+            object-fit: cover;
+        }
+
+        .product-info{
+            padding : 30px;
+            display:flex;
+            flex-direction: column;
+            gap : 12px;
+        }
+
+        .product-info h1{
+            font-size : 24px;
+            color : #222;
+        }
+
+        .price{
+            font-size : 28px;
+            font-weight : 700;
+            color : #e0654b;
+        }
+
+        .description{
+            font-size : 14px;
+            color: #555;
+            line-height : 1.5;
+        }
+
+        .features{
+            list-style: none;
+            color : #4a8b6f;
+            font-weight: 700;
+        }
+
+        .buy-btn{
+            padding : 12px 28px;
+            background-color: #2d6a4f;
+            color:#fff;
+            border : #2d6a4f;
+            border-radius : 4px;
+            font-size : 15px;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="product-container">
+        <img src="../img/dog.jpg" alt="무선 키보드" class="product-image">
+
+        <div class="product-info">
+            <h1>무선 키보드</h1>
+            <p class="price">39,000원</p>
+            <p class="description">가볍고 조용한 사무용 무선 키보드</p>
+            <ul class="features">
+                <li>✓ 무선 연결</li>
+                <li>✓ 조용한 키감</li>
+                <li>✓ 긴 배터리</li>
+            </ul>
+
+            <button class="buy-btn">구매하기</button>
+        </div>
+    </div>
+</body>
+</html>
