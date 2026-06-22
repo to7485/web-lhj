@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display : grid;
+            /* 열(column)만들기
+            grid-template-columns : 1열의 크기 2열의 크기 3열의 크기 ... 
+            크기에 올 수 있는 단위 px, %, fr, auto...*/
+            grid-template-columns: 100px 100px 100px;
+            gap : 10px;
+        }
+
+        .container div{
+            border : 1px solid black;
+        }
+
+        .menu-container{
+            display : grid;
+            /* fraction(fr)
+            남은 공간을 비율로 나누는 단위 */
+            grid-template-columns: 240px 1fr;
+            gap : 16px;
+            padding : 16px;
+            background : #ecf0f1;
+        }
+
+        .sidebar{
+            background : #3498db;
+            color : white;
+            padding : 20px;
+            border-radius : 8px;
+        }
+
+        .content{
+            background : #fff;
+            padding : 20px;
+            border-radius : 8px;
+        }
+
+        /* 웹 페이지는 가로크기가 제한적이기 때문에
+        행 지정은 행의 높이를 설정하는 것 외에는
+        잘 사용하지 않는다. */
+        .row-container{
+            display : grid;
+            /*행의 높이 지정 */
+            grid-template-rows: 100px 200px 100px 100px;
+            gap : 12px;
+            padding : 20px;
+        }
+
+        .item{
+            background-color : #3498db;
+            color : #fff;
+            text-align : center;
+            font-size : 1.2rem;
+            border-radius : 8px;
+        }
+
+        .repeat-container{
+            display : grid;
+            /* repeat(반복횟수, 크기) */
+            grid-template-columns: repeat(4,1fr);
+            /* grid-template-columns: 1fr 1fr 1fr 1fr; */
+            gap : 10px;
+        }
+
+        .minmax-container{
+            display :  grid;
+            grid-template-columns: minmax(200px, 900px);
+        }
+
+        .auto-container{
+            display : grid;
+            /* 들어갈 수 있는 열을 모두 만들자
+            아이템이 부족해도 열은 유지가 된다. */
+            grid-template-columns: repeat(auto-fill, minmax(100px,1fr));
+            gap : 10px;
+            background : lightgray;
+        }
+
+        /* auto-fit
+        화면에 나타날 요소의 개수에 맞게 행과 열을 가득 채운다. */
+        .autofit-container{
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(100px,1fr));
+            gap : 10px;
+        }
+
+        .area-container{
+            display : grid;
+            gap : 10px;
+            padding : 10px;
+
+            /* 1. 칸 개수를 만든다.
+            몇개의 행과 열을 만들지 결정 */
+            grid-template-columns : 200px 1fr;
+            grid-template-rows: 80px 300px 80px;
+
+            /* 2. 영역에 이름을 붙인다.
+            - 각 줄의 칸 개수는 같아야 한다.
+            - 영역은 대각선으로 배치할 수 없다. */
+            grid-template-areas:
+                "header main"
+                "header aside"
+                "footer footer"
+        }
+
+        /* 3. 각 요소를 영역에 연결 */
+        .header{
+            grid-area : header;
+            background: lightblue;
+        }
+
+        .aside{
+            grid-area : aside;
+            background: lightgreen;
+        }
+
+        .main{
+            grid-area : main;
+            background: lightcoral;
+        }
+
+        .footer{
+            grid-area : footer;
+            background:lightyellow;
+        }
+
+
+        .area-container2{
+            display:grid;
+
+            grid-template-rows: repeat(4,100px);
+            grid-template-columns: repeat(3,1fr);
+
+            gap : 10px;
+            padding : 10px;
+            /* 마침표를 사용하거나 명시적으로 none을 입력해
+            빈 영역을 정의할 수 있다. */
+            grid-template-areas:
+                "header header  header"
+                "main   .       .   "
+                "main   .       aside"
+                "footer footer  footer"
+        }
+        
+        .template-container{
+            display : grid;
+
+            /* grid-temlate:
+                "영역   영역" 행높이
+                "영역   영역" 행높이
+                / 열너비 열 너비;
+                
+            열 개수와 / 뒤의 크기 개수가 맞아야 한다.*/
+            grid-template: 
+                "header header header" 80px
+                "main main aside" 350px
+                "footer footer footer" 130px
+                / 2fr 100px 1fr;
+
+            /* grid-template: 
+                80px 350px 130px / 2fr 100px 1fr; 
+            */
+
+            gap : 10px;
+            padding : 10px;
+        }
+
+        /* row-gap : 20px;
+           column-gap : 10px; */
+    </style>
+</head>
+<body>
+    <h2> 열 만들기 (grid-template-columns) </h2>
+    <div class="container">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+    <hr>
+
+    <h2> fraction 으로 크기 정하기</h2>
+    <div class="menu-container">
+        <aside class="sidebar">
+            <h2>side bar</h2>
+            <p>메뉴 혹은 네비게이션이 들어간다.</p>
+        </aside>
+
+        <main class="content">
+            <h2>Content</h2>
+            <p>남은 공간을 전부 차지하는 영역이다.</p>
+            <p>본문 내용이 여기에 들어간다.</p>
+        </main>
+    </div>
+    <hr>    
+    <h2>행 만들기 (grid-template-rows)</h2>
+    <div class="row-container">
+        <div class="item">1번</div>
+        <div class="item">2번</div>
+        <div class="item">3번</div>
+        <div class="item">4번</div>
+    </div>
+    <hr>
+    <h2> 반복 생성(repeat())</h2>
+    <!-- 같은 크기의 행이나 열을 반복해서 만들 때 사용 -->
+    <div class="repeat-container">
+        <div class="item"> 1번</div>
+        <div class="item"> 2번</div>
+        <div class="item"> 3번</div>
+        <div class="item"> 4번</div>
+    </div>
+
+    <hr>
+    <h2>최소값 최대값 지정(minmax())</h2>
+    <div class="minmax-container">
+        <div class="item">minmax</div>
+    </div>
+    <hr>
+    <h2>auto-fill / auto-fit</h2>
+    <!-- column의 개수를 미리 지정하지 않고 설정된 너비가 
+     허용하는 한 최대한 셀을 채운다. -->
+     <div class="auto-container">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+     </div>
+     <hr>
+     <div class="autofit-container">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+     </div>
+     <hr>
+     <h2>grid-template-area</h2>
+     <!-- grid 레이아웃에 이름을 붙여서 배치하는 방법 -->
+     <div class="area-container">
+        <header class="header">header영역</header>
+        <aside class="aside">aside 영역</aside>
+        <main class="main">main 영역</main>
+        <footer class="footer">footer 영역</footer>
+     </div>
+     <br>
+     <div class="area-container2">
+        <header class="header">header영역</header>
+        <aside class="aside">aside 영역</aside>
+        <main class="main">main 영역</main>
+        <footer class="footer">footer 영역</footer>
+     </div>
+
+     <hr>
+     <h2>grid-template</h2>
+     <!-- grid-template-rows, columns, areas의 단축 속성 -->
+     <div class="template-container">
+        <header class="header">header영역</header>
+        <aside class="aside">aside 영역</aside>
+        <main class="main">main 영역</main>
+        <footer class="footer">footer 영역</footer>
+     </div>
+</body>
+</html>

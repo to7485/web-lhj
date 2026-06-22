@@ -1,0 +1,115 @@
+<!-- 문제
+
+학원 수강생 관리 시스템의 메인 화면을 제작하시오.
+
+요구사항
+화면은 Grid로 배치한다.
+Header, Sidebar, Main, Footer 구조를 가진다.
+Header는 전체 너비를 차지한다.
+Sidebar는 왼쪽 메뉴 영역이다.
+Main 영역 안에는 업무 카드 4개를 다시 Grid로 배치한다.
+Footer는 전체 너비를 차지한다.
+전체 레이아웃 열 구조는 220px 1fr이다. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin :0;
+            background : #f4f4f4;
+        }
+
+        .layout{
+            display : grid;
+            max-width : 1000px;
+            grid-template-columns: 180px 1fr 220px;
+            gap : 15px;
+            margin : 30px auto;
+
+            grid-template-areas: 
+                "header header  header"
+                "nav    main    aside"
+                "footer footer  footer";
+        }
+
+        header{
+            background : black;
+            grid-area : header;
+            color : white;
+            padding : 20px;
+        }
+
+        nav{
+            grid-area : nav;
+            padding : 20px;
+            background : white;
+            border : 1px solid #ddd;
+        }
+
+        nav p{
+            padding : 10px;
+            background : #f1f3f5;
+            border-radius : 6px;
+        }
+
+        main{
+            grid-area : main;
+            background : white;
+            padding : 10px;
+            border : 1px solid #ddd;
+        }
+
+        aside{
+            grid-area : aside;
+            background : #fff8e1;
+            border : 1px solid #ddd;
+            padding : 10px;
+        }
+
+        footer{
+            grid-area : footer;
+            background : white;
+            text-align : center;
+            padding : 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <header>
+            <h1>ABC 소프트웨어</h1>
+            <p>기업용 웹 시스템을 개발하는 IT 회사입니다.</p>
+        </header>
+
+        <nav>
+            <p>회사소개</p>
+            <p>서비스</p>
+            <p>채용정보</p>
+            <p>문의하기</p>
+        </nav>
+
+        <main>
+            <h2>회사 소개</h2>
+            <p>
+                ABC 소프트웨어는 학원, 병원, 쇼핑몰을 위한 웹 기반 관리 시스템을 개발합니다
+                사용자가 쉽고 빠르게 업무를 처리할 수 있는 서비스를 제공한다.
+            </p>
+            <h2>주요 서비스</h2>
+            <p>예약 관리, 회원 관리, 결제 관리, 통계 대시보드 기능을 제공한다.</p>
+        </main>
+
+        <aside>
+            <h2>고객센터</h2>
+            <p>전화 : 02-1234-5678</p>
+            <p>운영시간 : 09:00 ~ 18:00</p>
+        </aside>
+
+        <footer>
+            Copyright 2026 ABC Software
+        </footer>
+    </div>
+</body>
+</html>

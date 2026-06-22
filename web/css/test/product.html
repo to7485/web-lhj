@@ -1,0 +1,114 @@
+<!-- 문제
+온라인 쇼핑몰의 상품 목록 페이지를 제작하시오.
+
+요구사항
+상단 제목은 오늘의 추천 상품
+상품 카드 6개를 Grid로 배치한다.
+한 줄에 3개씩 표시한다.
+각 카드에는 상품명, 설명, 가격, 버튼을 표시한다.
+카드 사이 간격은 20px로 한다.
+카드에는 테두리, 배경색, 둥근 모서리를 적용한다. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family : "Malgun Gothic",sans-serif;
+            background : #f5f6f8;
+            padding : 40px;
+        }
+
+        h1{
+            margin-bottom : 20px;
+        }
+
+        .wrap{
+            display : grid;
+            /* 내가 구성한 열보다 item이 많으면 자동으로
+            다음줄로 넘어간다. */
+            grid-template-columns: repeat(3,1fr);
+            gap : 20px;
+        }
+
+        .card{
+            background : white;
+            border : 1px solid #ddd;
+            border-radius : 10px;
+            padding : 20px;
+        }
+
+        .card h2{
+            font-size : 20px;
+            margin-bottom : 10px;
+        }
+
+        .card p{
+            color : #666;
+        }
+
+        .price{
+            font-weight : bold;
+            color : #222;
+            margin : 15px 0;
+        }
+
+        .card button{
+            width : 100%;
+            padding : 10px;
+            border : none;
+            background : #222;
+            color : white;
+            border-radius : 6px;
+        }
+    </style>
+</head>
+<body>
+    <h1> 오늘의 추천 상품</h1>
+    <div class="wrap">
+        <div class="card">
+            <h2>무선 마우스</h2>
+            <p> 조용한 사무용 마우스</p>
+            <p class="price">29,000</p>
+            <button>장바구니</button>
+        </div>
+
+        <div class="card">
+            <h2>무선 마우스</h2>
+            <p> 조용한 사무용 마우스</p>
+            <p class="price">29,000</p>
+            <button>장바구니</button>
+        </div>
+
+        <div class="card">
+            <h2>무선 마우스</h2>
+            <p> 조용한 사무용 마우스</p>
+            <p class="price">29,000</p>
+            <button>장바구니</button>
+        </div>
+
+        <div class="card">
+            <h2>무선 마우스</h2>
+            <p> 조용한 사무용 마우스</p>
+            <p class="price">29,000</p>
+            <button>장바구니</button>
+        </div>
+
+        <div class="card">
+            <h2>무선 마우스</h2>
+            <p> 조용한 사무용 마우스</p>
+            <p class="price">29,000</p>
+            <button>장바구니</button>
+        </div>
+
+        <div class="card">
+            <h2>무선 마우스</h2>
+            <p> 조용한 사무용 마우스</p>
+            <p class="price">29,000</p>
+            <button>장바구니</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!--
+문제
+
+학원 수강생 관리 시스템의 메인 화면을 제작하시오.
+
+요구사항
+화면은 Grid로 배치한다.
+Header, Sidebar, Main, Footer 구조를 가진다.
+Header는 전체 너비를 차지한다.
+Sidebar는 왼쪽 메뉴 영역이다.
+Main 영역 안에는 업무 카드 4개를 다시 Grid로 배치한다.
+Footer는 전체 너비를 차지한다.
+전체 레이아웃 열 구조는 220px 1fr이다. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin : 0;
+            background : #edf0f5;
+        }
+
+        .layout{
+            display : grid;
+            grid-template-columns: 220px 1fr;
+            grid-template-rows: 80px 1fr 60px;
+            grid-template-areas: 
+                "header header"
+                "aside  main"
+                "footer footer";
+            gap : 20px;
+        }
+
+        header{
+            grid-area : header;
+            background : #1f2937;
+            color : white;
+            padding : 20px 30px;
+        }
+
+        header h1{
+            margin : 0;
+        }
+
+        aside{
+            grid-area : aside;
+            background : white;
+            border-right : 1px solid #ddd;
+            padding : 20px;
+        }
+
+        aside p{
+            padding : 12px;
+            background : #f3f4f6;
+            border-radius : 6px;
+        }
+
+        main{
+            grid-area : main;
+            padding : 30px;
+        }
+
+        .cards{
+            display : grid;
+            grid-template-columns: 1fr 1fr;
+            gap : 20px;
+        }
+
+        .card{
+            background : white;
+            border : 1px solid #ddd;
+            border-radius : 12px;
+            padding : 25px;
+        }
+
+        .card h2{
+            margin-top : 0;
+        }
+
+        footer{
+            grid-area : footer;
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <header>
+            <h1>학원 관리 시스템</h1>
+        </header>
+
+        <aside>
+            <h2>메뉴</h2>
+            <p>수강생 관리</p>
+            <p>출결 관리</p>
+            <p>상담 기록</p>
+            <p>수납 관리</p>
+            <p>통계</p>
+        </aside>
+
+        <main>
+            <h1>업무 현황</h1>
+
+            <div class="cards">
+                <div class="card">
+                    <h2>수강생 관리</h2>
+                    <p>신규 수강생 등록 및 정보를 조회한다.</p>
+                </div>
+                <div class="card">
+                    <h2>수강생 관리</h2>
+                    <p>신규 수강생 등록 및 정보를 조회한다.</p>
+                </div>
+                <div class="card">
+                    <h2>수강생 관리</h2>
+                    <p>신규 수강생 등록 및 정보를 조회한다.</p>
+                </div>
+                <div class="card">
+                    <h2>수강생 관리</h2>
+                    <p>신규 수강생 등록 및 정보를 조회한다.</p>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            관리자 전용 페이지
+        </footer>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

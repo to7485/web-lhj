@@ -1,0 +1,108 @@
+화면구현 능력평가
+기간 : 6월 29일
+유형 : 포트폴리오
+
+HTML
+태그 종류
+화면에서 태그들을 작성하면 어떻게 보이는지
+속성 : 시작태그에 들어가는 내용
+href="속성값"
+src
+alt
+style
+
+시맨틱 태그
+특별한 기능이 있진 않지만 논리적으로 페이지의 구조를 나눌 때 사용
+<header>
+<main>
+<section>
+<article>
+<aside>
+<footer>
+
+CSS
+테두리, 폰트, 정렬 등 페이지를 꾸미기 위해 사용하는 것
+
+CSS 적용하는 법
+1. 스타일을 적용할 태그의 선택
+- <p style="속성값">내용</p> : 태그에 직접 스타일 주기
+- 페이지 내부에 <style> ~ </style> 안에 스타일 작성하기
+
+선택자 { 스타일속성 : 속성값; }
+
+선택자의 종류
+- 태그를 직접 선택할 수 있다 : 내가 원하지 않는것도 같이 스타일 적용
+p { color : red;}
+
+- 클래스를 부여한다 : 내가 스타일을 주고싶은 태그만 선택
+<p class="c1">내용</p>
+<h1 class="c1">내용2</p>
+
+.c1{ color : blue;}
+
+- 아이디를 부여한다 : 아이디는 고유속성이라 중복되면 안된다.
+<p id="p_id">내용</p>
+
+#p_id{ color : green;}
+
+- 속성 선택자
+<input type="text" />
+<input type="password" />
+<input type="number" />
+<input type="email" />
+
+input[type="password"] { border : ...;}
+
+스타일이 겹칠 때 적용되는 우선순위
+1. !important : 가장 우선순위가 높음
+#txt { color : red !important;}
+2. 인라인 스타일
+3. id 선택자
+4. 클래스 선택자
+5. 태그 선택자
+6. 브라우저 기본 스타일
+
+우선순위가 같으면 나중에 선언한 것이 적용이 된다.
+
+border
+
+background
+
+font
+
+길이 단위 : px , em, rem, %, vh, vw
+
+간격
+외부간격 : margin
+내부간격 : padding
+
+화면에 요소를 어떻게 보여줄 것인가 : display
+
+요소의 정렬 : flex
+컨테이너 : flex 속성을 지정하는 요소
+아이템 : flex 속성에 영향을 받는 요소
+
+grid 레이아웃
+- 화면을 가로줄과 세로줄이 잇는 표처럼 나누고, 그 안에 요소를 배치하는 레이아웃 방식이다.
+
+felx vs grid
+flex -> 한 줄 방향 배치에 강점이 있다.
+grid -> 행 과 열을 동시에 다루는 2차원 배치에 강하다.
+
+grid container : grid가 적용된 부모 요소
+grid item : 컨테이너 안에 있는 자식 요소들
+cell : 행과 열이 만나는 한 칸
+grind line : 칸을 나누는 선
+grid track : 행 또는 열 하나를 의미
+gap : 칸 사이의 간격
+grid area : 여러 칸을 합친 영역
+
+
+
+
+
+
+
+
+
+

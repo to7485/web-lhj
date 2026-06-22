@@ -1,0 +1,77 @@
+<!-- 문제
+
+학원 관리자 페이지의 대시보드 화면을 제작하시오.
+
+요구사항
+제목은 관리자 대시보드
+통계 카드 4개를 Grid로 배치한다.
+2열 2행 구조로 만든다.
+각 카드에는 항목명과 숫자를 표시한다.
+카드에는 흰색 배경, 테두리, 그림자 느낌을 적용한다. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background : #eef1f5;
+        }
+
+        .dashboard{
+            max-width : 800px;
+            margin : 0 auto;
+        }
+
+        .stats{
+            display : grid;
+            grid-template-columns: 1fr 1fr;
+            gap : 20px;
+        }
+
+        .stat-card{
+            background-color: white;
+            border : 1px solid #ddd;
+            border-radius : 12px;
+            padding : 25px;
+        }
+
+        .stat-card h2{
+            font-size : 18px;
+            color : #555;
+        }
+
+        .stat-card strong{
+            font-size : 32px;
+            margin-top : 15px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <h1>관리자 대시보드</h1>
+
+        <div class="stats">
+            <dlv class="stat-card">
+                <h2>전체 수강생</h2>
+                <strong>128명</strong>
+            </dlv>
+            <dlv class="stat-card">
+                <h2>전체 수강생</h2>
+                <strong>128명</strong>
+            </dlv>
+            <dlv class="stat-card">
+                <h2>전체 수강생</h2>
+                <strong>128명</strong>
+            </dlv>
+            <dlv class="stat-card">
+                <h2>전체 수강생</h2>
+                <strong>128명</strong>
+            </dlv>
+        </div>
+    </div>
+</body>
+</html>
