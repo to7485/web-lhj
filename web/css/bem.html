@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* block : 독립적으로 존재할 수 있는 큰 덩어리 */
+        .btn{
+            padding : 10px 16px;
+            border-radius : 6px;
+            font-size : 16px;
+            border : none;
+            cursor : pointer;
+        }
+
+        /* modifier : block이나 element의 상태 또는 변형을 의미한다. */
+        .btn--primary{
+            background-color: #3498db;
+            color : white;
+        }
+
+        .btn--danger{
+            background-color: #e74c3c;
+            color : white;
+        }
+
+        .btn--large{
+            font-size : 20px;
+            padding : 14px 20px;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn btn--primary">확인</button>
+    <button class="btn btn--danger">삭제</button>
+    <button class="btn btn--primary btn--large">확인(크게)</button>
+</body>
+</html>

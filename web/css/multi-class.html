@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .btn{
+            padding : 10px 16px;
+            border-radius : 8px;
+            font-size : 16px;
+        }
+
+        .primary{
+            background : #3498db;
+            color : #fff;
+        }
+
+        .danger{
+            background : #e74c3c;
+            color : white;
+        }
+
+        .large{
+            font-size : 18px; padding : 12px 18px;
+        }
+
+        /* 두 클래스를 모두 가진 경우에만 테두리를 두껍게 해본다. */
+        .btn.primary{
+            border : 2px solid #21618c;
+        }
+
+        .btn.danger{
+            border : 2px solid #922b21;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn primary">확인</button>
+    <button class="btn danger">삭제</button>
+    <button class="btn primary large">확인(크게)</button>
+</body>
+</html>

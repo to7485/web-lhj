@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family:"Malgun Gothic", sans-serif;
+            background-color: #f0f2f5;
+            padding : 40px;
+        }
+
+        .user-list{
+            display:flex;
+            flex-direction : column;
+            gap : 16px;
+            max-width : 400px;
+        }
+
+        /* 기본 카드 스타일 */
+        .card{
+            background-color: #f8f9fa;
+            border : 1px solid #dee2e6;
+            border-radius : 12px;
+            padding : 20px;
+        }
+
+        /* 첫번째 카드의 테두리 강조 */
+        .card:first-child{
+            border : 2px solid #3498db;
+        }
+
+        /* 두번째 카드의 배경색 변경 */
+        .card:nth-child(2){
+            background-color: #fffcf0;
+        }
+
+        /* 카드 호버 스타일 */
+        .card:hover{
+            background-color: #e9ecef;
+            cursor:pointer;
+        }
+
+        /* 유저 이름 스타일 */
+        .user-name{
+            margin : 0 0 10px 0;
+            font-size : 18px;
+            color : #333;
+        }
+
+        .role-badge{
+            display : inline-block;
+            font-size : 14px;
+            padding : 4px 8px;
+            border-radius : 4px;
+            margin-bottom : 15px;
+        }
+
+        .role-badge.admin{
+            background-color: #e74c3c;
+            color : #fff;
+        }
+
+        .role-badge.member{
+            background-color: #2ecc71;
+            color : #fff;
+        }
+
+        .status-check{
+            margin-top : 10px;
+        }
+
+        input[type="checkbox"]:checked + label{
+            color : #9b59b6;
+            font-weight : bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>유저 관리 대시보드</h2>
+
+    <!-- 유저 카드를 담는 컨테이너 -->
+    <div class="user-list">
+        <!-- first-child로 파란테두리 적용 -->
+        <div class="card">
+            <h3 class="user-name">홍길동 대리</h3>
+            <span class="role-badge admin">관리자</span>
+            <div class="status-check">
+                <input type="checkbox" id="user1">
+                <label for="user1">현재 작업 멤버로 선택</label>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3 class="user-name">이영희 사원</h3>
+            <span class="role-badge member">일반 회원</span>
+            <div class="status-check">
+                <input type="checkbox" id="user2">
+                <label for="user2">현재 작업 멤버로 선택</label>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3 class="user-name">김철수 사원</h3>
+            <span class="role-badge member">일반 회원</span>
+            <div class="status-check">
+                <input type="checkbox" id="user3">
+                <label for="user3">현재 작업 멤버로 선택</label>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

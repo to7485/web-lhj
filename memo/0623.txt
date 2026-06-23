@@ -1,0 +1,129 @@
+flex : 한 줄씩 요소를 배치할 때 유리
+grid : 여러줄에 요소를 배치할 때 유리
+
+가로줄과 세로줄로 나누어 배치하는 레이아웃 방식이다.
+
+컨테이너
+grid 속성을 가지는 요소
+
+아이템
+grid 속성에 영향을 받는 요소
+
+grid-template-columns : 200px	200px	 200px
+- 세로칸, 즉 열의 개수와 크기를 정하는 속성
+
+fraction(fr) : grid에서 자주 사용하는 단위
+- 남은 공간을 비율로 나누는 단위
+
+grid-template-rows : 100px 200px
+- 행을 만들고 행의 높이를 정할 수 있다.
+
+gap : 간격
+- grid item 사이의 간격
+
+repeat(개수,크기) 함수
+- 같은 크기의 열을 반복해서 만들 때 사용하는 함수
+
+ex) grid-template-columns : repeat(3, 1fr)
+
+minmax(최소,최대) 함수
+- 최소 크기와 최대 크기를 정하는 함수
+
+ex) grid-template-columns : repeat(3, minmax(200px,1fr));
+- 각 열은 최소 200px이고 공간이 남는다면 1fr비율로 늘어난다.
+
+auto-fit을 사용한 반응형 grid
+- 화면 크기에 따라 카드 개수를 자동으로 바꾸고 싶을 때 사용한다.
+
+ex) grid-template-columns : repeat(auto-fit, minmax(220px, 1fr));
+- 카드 하나의 최소 너비는 220px이고 화면에 들어갈 수 있는 만큼 자동 배치
+- 남는 공간은 비율로 채우겠다
+- 화면이 넓으면 4개, 좁으면 2개, 모바일에서는 1개가 될 수 있다.
+
+grid item의 위치 지정(선을 기준으로 셀을 정렬)
+- grid-colum
+- grid-row
+
+grid-template-areas
+- 화면 영역에 이름을 붙여 배치하는 방법
+
+.layout{
+	display:grid;
+	grid-template-columns : 200px 1fr;
+	grid-template-rows : 80px 1fr	60px;
+	grid-template-areas : 
+		"a	a"
+		"b	b"
+		"c	c"
+}
+
+.item{
+	grid-area : a;
+}
+
+부모 요소에 display : grid를 주고 시작한다.
+가로칸은 grid-template-columns로 만든다.
+세로칸은 grid-template-rows로 만든다
+간격은 gap으로 조정한다.
+같은 크기를 반복할 때는 repeat()을 사용한다.
+반응형 카드 목록은 repeat(auto-fit,minmax())를 많이 사용한다.
+웹페이지 전체구조는 grid-tempate-areas를 사용하면 배치하기 쉽다.
+
+BEM 방법론
+- CSS 클래스 이름을 일정한 규칙에 따라 작성하는 방법
+
+HTML/CSS를 처음 작성할 때
+<div class= "box">
+	<h2 class="title">상품명</h2>
+	<p class="text">상품 설명</p>
+	<button class="btn">구매하기</button>
+</div>
+
+.title{ ...}
+
+.text {...}
+
+.btn {...}
+
+페이지가 커지게 되면 문제가 생길 수 있다.
+- 클래스 이름이 너무 일반적이라서 다른 영역에서도 사용하면 스타일이 충동할 수 있다.
+
+block
+독립적으로 존재할 수 있는 큰 덩어리
+- header, nav, card, product-card, login-form, profile, footer ...
+
+Element
+Block 안에 포함되는 구성 요소
+혼자 존재하기보다는 Block안에서 의미가 있다.
+보통 카드 안에는 이미지, 제목, 설명, 가격, 버튼이 있다.
+card__image, card__title, card__description, card__price, card__button
+
+Modifer
+Block이나 Element의 상태 또는 변형을 의미한다.
+상품 카드 중에서 할인 상품을 강조하고 싶다면
+<article class= "product-card product-card--sale">
+
+BEM을 쓰면 좋은 상황
+- 페이지가 커질 때
+- 카드, 버튼, 폼 같은 컴포넌트가 반복될 때
+- 여러 사람이 같이 CSS를 작성할 때
+- 클래스 이름 충돌을 줄이고 싶을 때
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
