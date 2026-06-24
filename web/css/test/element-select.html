@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 문제 1번 
+        메뉴 안의 링크만 선택하는 선택자 작성하기*/
+        .menu a{}
+
+        /* 문제 2번
+        첫번째 li만 선택하는 선택자 작성하기 */
+        .list li:first-child{}
+
+        /* 문제 3번
+        짝수 번째 li만 선택하는 선택자 작성하기 */
+        .menu li:nth-child(even){}
+
+        /* 문제 4번
+        type이 text인 input만 선택하는 선택자 작성하기 */
+        input[type="text"]{}
+
+        /* 문제 5번
+        "중요 공지"만 선택하는 선택자 작성하기 */
+        .board .post.notice p:first-child{}
+
+        /* 문제 6번
+        바나나만 선택하는 선택자 작성하기 */
+        .box.active li-nth:child(2){}
+
+        /* 문제 7번
+        공지2 링크만 선택하는 선택자 작성하기 */
+        .board li:nth-child(2) a{}
+
+        /* 문제 8번
+        게시판 링크에 마우스를 올렸을 때만 적용되는 선택자 작성하기 */
+        .menu div a:hover{}
+
+        /* 문제 9번
+        김철수만 선택하는 선택자 작성하기 */
+        .member tr:nth-child(2) td{
+            color: blue;
+        }
+        
+        /* 문제 10번
+        사용자 관리에만 스타일이 적용되도록 하는 선택자 작성하기 */
+        .dashboard .card li:nth-child(3) a { 
+            color : red;
+        }
+    </style>
+</head>
+<body>
+    <h1>문제 1번</h1>
+    <nav class="menu">
+        <a href="#">홈</a>
+        <a href="#">게시판</a>
+    </nav>
+
+    <a href="#">일반 링크</a>
+    <hr>
+    <h1>문제 2번</h1>
+    <ul class="list">
+        <li>사과</li>
+        <li>바나나</li>
+        <li>포도</li>
+    </ul>
+    <hr>
+    <h1>문제 3번</h1>
+    <ul class="menu">
+        <li>홈</li>
+        <li>소개</li>
+        <li>게시판</li>
+        <li>문의</li>
+    </ul>
+    <h1>문제 4번</h1>
+    <input type="text">
+    <input type="password">
+    <input type="email">
+    <hr>
+    <h1>문제 5번</h1>
+    <div class="board">
+        <div class="post notice">
+            <p>중요 공지</p>
+            <p>내용</p>
+        </div>
+
+        <div class="post">
+            <p>일반 글</p>
+        </div>
+    </div>
+    <hr>
+    <h1>문제 6번</h1>
+    <div class="box active">
+
+        <ul>
+            <li>사과</li>
+            <li>바나나</li>
+            <li>포도</li>
+        </ul>
+    </div>
+    <hr>
+    <h1>문제 7번</h1>
+    <div class="board">
+
+        <ul>
+
+            <li>
+                <a href="#">공지1</a>
+            </li>
+
+            <li>
+                <a href="#">공지2</a>
+            </li>
+
+            <li>
+                <a href="#">공지3</a>
+            </li>
+
+        </ul>
+    </div>
+    <hr>
+    <h1>문제 8번</h1>
+    <nav class="menu">
+
+        <a href="#">홈</a>
+
+        <div>
+
+            <a href="#">게시판</a>
+
+        </div>
+
+        <a href="#">문의</a>
+
+    </nav>
+    <hr>
+    <h1>문제 9번</h1>
+    <table class="member">
+
+        <tr>
+            <td>홍길동</td>
+        </tr>
+
+        <tr class="vip">
+            <td>김철수</td>
+        </tr>
+
+        <tr>
+            <td>이영희</td>
+        </tr>
+
+    </table>
+    <hr>
+    <h1>문제 10번</h1>
+    <div class="dashboard">
+
+        <div class="card">
+
+            <ul>
+
+                <li>
+                    <a href="#">대시보드</a>
+                </li>
+
+                <li class="disabled">
+                    <a href="#">통계</a>
+                </li>
+
+                <li>
+                    <a href="#">사용자 관리</a>
+                </li>
+
+                <li>
+                    <a href="#">설정</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

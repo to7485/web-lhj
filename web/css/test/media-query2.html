@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>미디어 쿼리 레이아웃 실습</title>
+  <style>
+    *{
+        box-sizing: border-box;
+    }
+
+    body{
+        margin : 0;
+        background : #f5f6fa;
+    }
+
+    .container{
+        display : flex;
+        flex-direction: column;
+        gap : 10px;
+        padding : 20px;
+    }
+
+    .card{
+        background-color: #3498db;
+        color : white;
+        padding : 40px;
+        border-radius : 8px;
+        text-align : center;
+        font-size : 18px;
+        flex : 1;
+    }
+
+    @media(min-width:768px){
+        .container{
+            flex-direction: row;
+        }
+    }
+  </style>
+</head>
+<body>
+  <h2 style="text-align:center; margin-top:20px;">반응형 레이아웃 예제</h2>
+  <div class="container">
+    <div class="card">박스 1</div>
+    <div class="card">박스 2</div>
+  </div>
+</body>
+</html>

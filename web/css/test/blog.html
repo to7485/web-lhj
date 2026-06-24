@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 기본 리셋과 공통 스타일 */
+        *{
+            box-sizing: border-box;
+        }
+
+        body{
+            margin : 0;
+            font-family : sans-serif;
+            background : #f5f6fa;
+            color : #333;
+        }
+
+        a{
+            color : inherit;
+            text-decoration: none;
+        }
+
+        header{
+            background : #111827;
+            color : #fff;
+            padding : 16px;
+        }
+
+        .brand{
+            font-weight : 700;
+        }
+
+        nav{
+            margin-top : 8px;
+            display : none;
+        }
+
+        .nav-list{
+            display : flex;
+            gap : 12px;
+            list-style: none;
+            padding : 0;
+            margin : 0;
+        }
+
+        .container{
+            max-width : 1100px;
+            margin : 0 auto;
+            padding : 16px;
+        }
+
+        .layout{
+            display : flex;
+            flex-direction: column;
+            gap : 15px;
+        }
+
+        /* 카드 목록 & 카드 */
+        .posts{
+            display : flex;
+            flex-wrap : wrap;
+            gap : 12px;
+        }
+
+        .card{
+            background : #fff;
+            border : 1px solid #e5e7eb;
+            border-radius : 10px;
+            overflow : hidden;
+            /* 모바일: 1열 = 100% */
+            flex : 1 1 100%;
+        }
+
+        .thumb{
+            width : 100%;
+            aspect-ratio: 16 /9;
+            object-fit: cover;
+            display : block;
+        }
+
+        .content{
+            padding : 12px 14px;
+        }
+
+        .title{
+            font-size : 18px;
+            margin : 6px 0 8px;
+        }
+
+        .meta { 
+            font-size : 12px;
+            color : #6b7280;
+        }
+
+        aside{
+            background : #fff;
+            border : 1px solid #e5e7eb;
+            border-radius : 10px;
+            padding : 16px;
+        }
+
+        /* 태블릿 (768px 이상의 화면에서 스타일) */
+        @media(min-width:768px){
+            nav{
+                display:block;
+            }
+
+            /* 레이아웃 2열 : main(유동) + aside(고정 260px) */
+            .layout{
+                flex-direction: row;
+                align-items : flex-start;
+            }
+
+
+            /* flex : flex-grow, flex-shrink, flex-basis 
+            flex-grow : 증가 비율
+            flex-shrink : 감소 비율
+            flex-basis : 기본 크기*/
+            main{
+                flex : 1 1 auto;
+            }
+
+            aside{
+                flex : 0 0 260px;
+            }
+
+            /* 카드 2열 : 각 카드가 50% - gap의 일부 */
+            .card{
+                flex: 1 1 calc(50% - 12px);
+            }
+
+            .title{
+                font-size : 20px;
+            }
+        }
+
+        /* 데스크탑 화면에서의 정렬 */
+        @media(min-width : 1024px){
+            /* position:sticky
+            평소에는 일반 요소처럼 움직인다.
+            스크롤해서 특정 위체 도달하면 고정(fixed)처럼 동작한다. */
+            header{
+                position : sticky;
+                top : 0;
+                z-index: 10;
+            }
+
+            .card{
+                flex:1 1 calc(33.3% - 12px);
+            }
+
+            .title{
+                font-size : 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="brand">My Blog</div>
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="#">홈</a></li>
+                    <li><a href="#">카테고리</a></li>
+                    <li><a href="#">태그</a></li>
+                    <li><a href="#">정보</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container layout">
+        <main>
+            <section class="posts">
+                <article class="card">
+                    <img class="thumb" src="https://picsum.photos/800/450?1">
+                    <div class="content">
+                        <h3 class="title">포스트 제목 1</h3>
+                        <p class="meta">2025-11-04 카테고리</p>
+                        <p>간단한 소개 문장이다. 간단한 소개 문장이다. 간단한 소개 문장이다. 간단한 소개 문장이다.</p>
+                    </div>
+                </article>
+                <article class="card">
+                    <img class="thumb" src="https://picsum.photos/800/450?2">
+                    <div class="content">
+                        <h3 class="title">포스트 제목 2</h3>
+                        <p class="meta">2025-11-04 카테고리</p>
+                        <p>간단한 소개 문장이다. 간단한 소개 문장이다. 간단한 소개 문장이다. 간단한 소개 문장이다.</p>
+                    </div>
+                </article>
+                <article class="card">
+                    <img class="thumb" src="https://picsum.photos/800/450?3">
+                    <div class="content">
+                        <h3 class="title">포스트 제목 3</h3>
+                        <p class="meta">2025-11-04 카테고리</p>
+                        <p>간단한 소개 문장이다. 간단한 소개 문장이다. 간단한 소개 문장이다. 간단한 소개 문장이다.</p>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+        <aside>
+            <h4>사이드바</h4>
+            <ul>
+                <li>인기글</li>
+                <li>최근 댓글</li>
+                <li>카테고리</li>
+            </ul>
+        </aside>
+    </div>
+</body>
+</html>

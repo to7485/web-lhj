@@ -1,0 +1,146 @@
+다중 선택자
+클래스를 여러개 지정을 한다.
+<p class="a b c">내용</p>
+
+CSS에서 멀티클래스 선택하기
+
+EX) a,b,c 클래스를 모두 가지고 있는 태그를 선택하기
+.a.b.c { ...}
+
+자손 선택자
+<div class="a">
+	<div class="b">
+		<div class= "c">
+		</div>
+	</div>
+
+	<div class="c">
+
+	</div>
+</div>
+
+.a .c
+
+자식 선택자
+- 바로 아래 자식만 선택
+<nav>
+	<a>메뉴1</a>
+	<div>
+		<a>메뉴2</a>
+	</div>
+</nav>
+
+nav > a
+
+인접 형제 선택자
+
+<h1>제목</h1>
+<p>문단1</p>
+<p>문단2</p>
+
+h1 + p { ... }
+
+일반 형제 선택자
+뒤에있는 형제 모두를 선택
+
+<h1>제목</h1>
+<p>문단1</p>
+<p>문단2</p>
+
+h1 ~p { ... }
+
+속성 선택자
+특정 속성을 가진 요소를 선택
+
+<input type="text" placeholder="이름입력">
+
+input[type]{ ... } : input태그 중에서 type속성을 가진 태그를 선택
+
+input[type="text"] { ... }: input태그중에서 type="text"를 가진 태그를 선택
+
+의사 클래스 선택자
+- 사용자의 행동이나 상태를 선택
+
+:hover
+마우스를 올렸을 때
+
+button:hover { ... }
+
+:active
+클릭하는 순간
+
+button:active { ... }
+
+:focus
+입력창을 선택했을 때
+
+input:focus { ... }
+
+:checked
+체크박스가 선택됐을 때
+
+input:checked { ... }
+
+:disabled
+비활성화 상태일 때
+
+input:disabled { ... }
+
+:enabled
+활성화 상태일 때
+
+input:enabled { ... }
+
+구조 의사 클래스
+- 위치에 따라 선택
+
+:first-child
+첫번째 자식을 선택
+
+li:first-child { ... }
+
+:last-child
+마지막 자식을 선택
+
+li:last-child { ... }
+
+:nth-child(n)
+n번째 자식을 선택
+
+li:nth-child(3) {...}
+li:nth-child(even), li:nth-child(odd)
+
+부정선택자
+:not
+제외하기
+
+p:not(선택자)
+
+.board > .post.notice p:first-child:hover { ... }
+
+BEM 방법론
+클래스 이름을 너무 일반적으로 작성하면 겹칠 수 있으니까 역할을 구체적으로 지정해서 식별을 하자 
+
+Block : 독립적으로 존재할 수 있는 큰 덩어리
+header, nav, card, product-card, login-form, profile, footer ...
+
+Element : Block안에 포함되는 구성요소
+- Element는 혼자 존재하기 보다는 Block안에서 의미가 있다.
+
+Modifier : Block이나 Element의 상태 또는 변형을 의미한다.
+ex) product-card product-card--sale
+
+<article class=prodcut-card">
+	<div class="product-card__image> 상품 이미지</div>
+	<h2 class="product-card__title">무선 마우스</h2>
+	<p class="product-card__desc">조용한 사무용 마우스</p>
+	<p class="product-card__price">29,000</p>
+	<button class="product-card__btn">구매하기</button>
+</article>
+
+
+
+
+
+
+
