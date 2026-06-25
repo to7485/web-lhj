@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display :flex;
+            justify-content: center;
+            align-items: center;
+            height : 100vh;
+            flex-direction: column;
+            gap : 30px;
+        }
+        .box{
+            width : 200px;
+            padding : 30px;
+            background-color: skyblue;
+            border : 1px solid #ddd;
+            text-align: center;
+
+            /* box-shadow : x축 y축 흐림정도 퍼짐정도 색상 */
+            /* box-shadow : x축 y축 흐린 정도 색깔 */
+            /* rgba(R0 ~ 255,G,B,투명도0 ~ 1사이) */
+            /* inset은 그림자가 안쪽에 생긴다. */
+            box-shadow : inset 10px 10px 10px 10px rgba(0,0,0,0.15);
+        }
+
+        /* inset을 활용하여 입력창이나 눌린 버튼같은 느낌을 만들 수 있다. */
+        .input-box{
+            width : 250px;
+            padding : 20px;
+            background-color: white;
+            border : 1px solid #ccc;
+            text-align : center;
+        }
+
+        .input-box:active{
+            box-shadow : inset 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .card{
+            width : 320px;
+            padding : 24px;
+            background-color: white;
+            border-radius :16px;
+
+            box-shadow : 
+                0 2px 6px rgba(0,0,0,0.08),
+                0 12px 24px rgba(0,0,0,0.12);
+        }
+
+        .title{
+            font-size : 48px;
+            color : white;
+            padding : 30px;
+
+            text-shadow : 3px 3px 6px rgba(0,0,0,0.5);
+        }
+
+    </style>
+</head>
+<body>
+    <!-- text-sahdow : 글자에 그림자
+         box-shadow : 박스, 카드, 버튼 같은 요소에 그림자 -->
+
+    <div class="box">기본 그림자</div>
+
+    <div class="input-box">안쪽 그림자</div>
+
+    <!-- 자연스러운 카드 그림자 -->
+    <div class="card">
+        <h2>프리미엄 카드</h2>
+        <p>두 개의 그림자를 겹쳐서 더 자연스럽게 만들었다.</p>
+    </div>
+
+    <h1 class="title"> CSS TEXT SHADOW</h1>
+</body>
+</html>

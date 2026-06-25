@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width : 100px;
+            height : 100px;
+            background-color: tomato;
+
+            transition : transform 0.5s;
+        }
+
+        .box:hover{
+            /* translate(x축,y축)
+            trnaslateX(x축)
+            trnaslateY(y축) */
+            /* transform : translate(150px,200px); */
+            /* transform: rotate(-45deg); */
+            transform : scale(1.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- transform
+     요소를 움직이거나, 회전시키거나, 확대/축소하거나 기울이는 기능
+     transform:함수(값)
+     
+     transform에서 가장 많이 사용하는 함수
+     trnaslate() : 이동
+     rotate() : 회전
+     scale() : 확대/축소
+     skew() : 기울이기-->
+
+     <div class="box"></div>
+</body>
+</html>

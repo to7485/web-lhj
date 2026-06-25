@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing : border-box;
+        }
+
+        body{
+            margin : 0;
+            background : #f5f6fa;
+            color : #222;
+        }
+
+        .product-section{
+            max-width : 1100px;
+            margin : 0 auto;
+            padding : 40px 20px;
+        }
+
+        .product-section__title{
+            margin-bottom : 20px;
+            font-size : 28px;
+        }
+
+        .product-list{
+            display :flex;
+            flex-direction: column;
+            gap : 20px;
+        }
+
+        .product-item{
+            container : item / inline-size;
+        }
+
+        .product-card{
+            background : white;
+            border : 1px solid #ddd;
+            border-radius : 12px;
+            padding : 20px;
+        }
+
+        .product-card h2{
+            margin : 0 0 10px;
+            font-size : 20px;
+        }
+
+        .product-card p {
+            margin : 0 0 16px;
+            color : #555;
+            line-height : 1.5;
+        }
+
+        .product-card strong {
+            display : block;
+            margin-bottom : 16px;
+            font-size : 18px;
+        }
+
+        .product-card button{
+            padding : 10px 16px;
+            border : none;
+            border-radius : 8px;
+            background-color: #111827;
+            color : white;
+            cursor : pointer;
+        }
+
+        @media (min-width : 768px){
+            .product-list{
+                flex-direction: row;
+            }
+
+            .product-item{
+                flex : 1;
+            }
+        }
+
+        @container item (min-width : 300px){
+            .product-card{
+                background-color: cornflowerblue;
+            }
+
+            .product-card h2{
+                font-size : 28px;
+            }
+
+            .product-card button{width : 100%;}
+        }
+
+    </style>
+</head>
+<body>
+    <section class="product-section">
+        <h1 class="product-section__title">추천 상품</h1>
+        <div class="product-list">
+            <div class="product-item">
+                <article class="product-card">
+                    <h2>무선 키보드</h2>
+                    <p>조용한 타건감과 긴 배터리 시간을 제공하는 키보드</p>
+                    <strong>39,000</strong>
+                    <button>구매하기</button>
+                </article>
+            </div>
+            <div class="product-item">
+                <article class="product-card">
+                    <h2>무선 키보드</h2>
+                    <p>조용한 타건감과 긴 배터리 시간을 제공하는 키보드</p>
+                    <strong>39,000</strong>
+                    <button>구매하기</button>
+                </article>
+            </div>
+            <div class="product-item">
+                <article class="product-card">
+                    <h2>무선 키보드</h2>
+                    <p>조용한 타건감과 긴 배터리 시간을 제공하는 키보드</p>
+                    <strong>39,000</strong>
+                    <button>구매하기</button>
+                </article>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

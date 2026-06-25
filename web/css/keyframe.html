@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 박스를 화면 중앙에 배치하기 */
+        body{
+            display : flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap : 20px;
+            height : 100vh;
+        }
+
+        @keyframes bounceColor{
+            0%{transform: translateY(0); background: #60a5fa;}
+            50%{transform: translateY(-24px); background: #f59e0b;}
+            100%{transform: translateY(0); background: #8b5cf6;}
+
+        }
+
+        /* box클래스
+        너비 ; 120px
+        높이 : 120px
+        테두리 둥글게 : 16px
+        배경색 : #60a5fa */
+
+        .box{
+            width : 120px;
+            height : 120px;
+            border-radius : 16px;
+            background-color: #60a5fa;
+            animation : bounceColor 2.4s ease-in-out infinite alternate;
+        }
+
+        .spinner{
+            width : 64px;
+            height : 64px;
+            border-radius : 50%;
+            border : 6px solid #e5e7eb;
+            border-top-color : #3b82f6;
+            animation : spin 1s linear infinite;
+        }
+
+        @keyframes spin{
+            to {
+                transform:rotate(360deg);
+            }
+        }
+
+        .badge{
+            display : inline-blick;
+            padding : 10px 14px;
+            border-radius : 999px;
+            background : #8e44ad;
+            color : white;
+            font-weight : 700;
+            /* step(단계수, 위치) : 애니메이션을 일정한 단계로 끊어서
+            움직이게 만드는 타이밍 함수 */
+            animation : hop 0.8s steps(4,start) infinite alternate;
+        }
+
+        @keyframes hop{
+            from{
+                transform : trnaslateX(0);
+            }
+
+            to{
+                transform : translateX(80px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>바운스 박스</h2>
+    <div class="box"></div>
+    <h2>스피너</h2>
+    <div class="spinner"></div>
+    <hr>
+    <h2>step 애니메이션</h2>
+    <span class="badge">step</span>
+</body>
+</html>

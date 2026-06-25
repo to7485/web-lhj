@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* div 공통 스타일
+        가로 200px
+        세로 200px */
+        div{
+            width : 200px;
+            height : 200px;
+        }
+
+        /* red클래스 스타일
+        포지션을 절대위치로 배치
+        배경색을 빨간색으로
+        위치를 왼쪽으로부터 100px 위로부터 100px */
+
+        .blue{
+                position : absolute;
+                background-color: blue;
+                left : 170px;
+                top : 170px;
+                z-index: 1;
+            }
+
+        .red{
+            position:absolute;
+            background-color: red;
+            left : 100px;
+            top : 100px;
+            z-index : 2;
+        }
+
+        /* blue클래스 스타일
+        포지션을 절대위치로 배치
+        배경색을 파란색으로
+        위치를 왼쪽으로부터 170px 위쪽으로부터 170px */
+
+       
+
+
+    </style>
+</head>
+<body>
+    <!-- z-index
+     요소가 서로 겹쳤을 때 어떤 요소를 위에 표현할 것인지 정하는 CSS
+     숫자가 낮을수록 밑에 깔린다.
+     숫자가 클수록 위에 올라온다
+     position 속성이 지정된 요소에서만 동작한다.
+     z-index값을 작성하지 않으면 html에서 나중에 작성된 요소가
+     위로 올라온다. -->
+     <div class="red"></div>
+     <div class="blue"></div>
+</body>
+</html>

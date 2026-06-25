@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding : 20px;
+        }
+
+        .outer{
+            border : 2px solid black;
+            margin : 20px;
+            padding : 10px;
+        }
+
+        .inner{
+            background-color: cornflowerblue;
+            padding : 20px;
+            text-align: center;
+            font-size : 16px;
+            color : white;
+        }
+
+        /* 미디어 쿼리
+        최소 너비가 700px이상일 때
+        inner클래스 태그의 배경색을 바꾸고 폰트크기를 22px로 조정 */
+        @media(min-width : 700px){
+            .inner{
+                background-color: tomato;
+                font-size : 22px;
+            }
+        }
+        .outer{
+            /* inline-size : 가로너비를 기준으로 하겠다.
+            normal : 기본값, 크기 쿼리 불가
+            size : 가로와 세로 크기 모두를 기준으로 삼는다. */
+            container-type : inline-size;
+        }
+        /* 컨테이너 쿼리의 사용법
+         컨테이너에 container-type : inline-size 속성을 준다.*/
+
+         @container(min-width : 500px){
+            .inner{
+                background-color: tan;
+                font-size : 20px;
+            }
+         }
+
+         .layout {
+            display :flex;
+            gap : 20px;
+         }
+
+         .area{
+            padding : 20px;
+            background : #eee;
+            border : 1px solid #ddd;
+         }
+
+         .narrow{
+            width : 300px;
+         }
+
+         .wide{
+            width : 700px;
+         }
+
+         /* 부모를 컨테이너로 지정 */
+         .card-wrap{
+            container-type : inline-size;
+         }
+
+         .card{
+            border : 1px solid #ccc;
+            border-radius : 12px;
+            overflow : hidden;
+            background : white;
+         }
+
+         /* 이미지를 부모요소의 가로너비의 100% 차지
+         block 요소로 바꾸기 */
+         .card-content img{
+            width : 100%;
+            display : block;
+         }
+
+         .card-content{
+            padding : 16px;
+         }
+
+         .card-content h2{
+            margin : 0 0 8px;
+            font-size : 20px;
+         }
+
+         .card-content p{
+            margin : 0 0 16px;
+            color : #555;
+         }
+
+         button{
+            /* 
+            상하 패딩 10px 
+            좌우 패딩 14px;
+            테두리 둥글게 6px
+            배경색 #333
+            글씨색 흰색 */
+            padding : 10px 14px;
+            border-radius : 6px;
+            background-color: #333;
+            color : white;
+         }
+
+         @container(min-width : 500px){
+            .card{
+                display : flex;
+                align-items: center;
+            }
+
+            .card-content h2{
+                font-size : 28px;
+            }
+
+            .card-content img{
+                width : 220px;
+                height : 180px;
+                object-fit : cover;
+            }
+         }
+
+
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner">컨테이너 쿼리 vs 미디어 쿼리</div>
+    </div>
+
+    <!-- 미디어 쿼리 vs 컨테이너 쿼리
+     미디어 쿼리
+     - 브라우저의 화면크기를 기반으로 스타일
+     - 화면 전체의 레이아웃을 바꿀 때
+     컨테이너 쿼리
+     - 부모 요소의 크기를 기반으로 스타일
+     - 컴포넌트 내부의 스타일을 변경
+     - 카드, 위젯, 사이드바, 대시보드 -->
+    <hr>
+    <div class="layout">
+        <section class="area narrow">
+            <div class="card-wrap">
+                <article class="card">
+                    <img src="../img/dog.jpg">
+                    <div class="card-content">
+                        <h2>무선 키보드</h2>
+                        <p>조용한 타건감과 긴 배터리 시간을 제공하는 키보드</p>
+                        <button>구매하기</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="area wide">
+            <div class="card-wrap">
+                <article class="card">
+                    <image src="../img/dog.jpg">
+                    <div class="card-content">
+                        <h2>무선 키보드</h2>
+                        <p>조용한 타건감과 긴 배터리 시간을 제공하는 키보드</p>
+                        <button>구매하기</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
