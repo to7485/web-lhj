@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width : 200px;
+            height : 200px;
+            background-color: seagreen;
+            margin-bottom : 20px;
+            color : white;
+            text-align : center;
+        }
+        /* 공간은 그대로 차지한다.
+        클릭이 되지 않는다
+        transition이 제한적이다. */
+        .hidden{
+            visibility: hidden;
+        }
+
+        /* 클릭 불가능
+            자리를 차지하지 않는다. */
+        .none{
+            display :none;
+        }
+
+        .card{
+            width : 400px;
+            padding : 24px;
+            border-radius : 16px;
+            border :1px solid #333;
+            box-shadow : 0px 4px 12px rgba(0,0,0,0.12);
+        }
+
+        .card h2{
+            margin : 0;
+        }
+
+        .card p{
+            color : #555;
+        }
+
+        .notice{
+            margin-top : 20px;
+            padding : 16px;
+            background-color: #111827;
+            color : white;
+            border-radius : 10px;
+
+            /* 애니메이션은 중간값이 있어야 자연스럽게 나온다.
+            opacity만 쓰면 안보여도 클릭이 되버린다. 그렇기 때문에
+            안보일 때 클릭하지 못하도록 visibility :hidden도 같이 사용한다. */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.7s;
+        }
+
+        .card:hover .notice{
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <!-- visibility
+     요소를 보이게 할지 숨길지 정하는 속성
+     visible
+     hidden -->
+     <div class="box">1</div>
+     <div class="box hidden">2</div>
+     <div class="box">3</div>
+     <div class="box none">4</div>
+     <div class="box">5</div>
+     <hr>
+     <div class="card">
+        <h2>수강 신청</h2>
+        <p>마우스를 카드 위에 올리면 안내 문구가 나타납니다.</p>
+
+        <div class="notice">
+            현재 조기 등록 할인 기간입니다.
+        </div>
+     </div>
+</body>
+</html>

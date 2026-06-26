@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* box 스타일
+        너비 150px
+        높이 100px
+        배경색 tomato
+        글씨색 흰색
+        폰트크기 24px
+        글씨정렬 가운데
+        줄간격 100px
+        아래 바깥 여백 20px */
+
+        .box{
+            width : 150px;
+            height : 100px;
+            background-color: tomato;
+            color : white;
+            font-size : 24px;
+            text-align: center;
+            line-height : 100px;
+            margin-bottom : 20px;
+        }
+
+        .box1{
+            opacity: 1;
+        }
+
+        .box2{
+            opacity: 0.5;
+        }
+
+        /* 공간은 그대로 차지한다. */
+        .box3{
+            opacity: 0;
+        }
+
+        .card{
+            border : 1px solid black;
+            width : 200px;
+            opacity: 0.3;
+            transition : opacity 0.5s;
+        }
+
+        /* 카드에 마우스를 올렸을 때 투명도를 1로 하기
+        투명도가 0.3s동안 자연스럽게 변하도록 애니메이션 주기 */
+        .card:hover{
+            opacity: 1;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box box1">1</div>
+    <div class="box box2">0.5</div>
+    <div class="box box3">0</div>
+    <div class="box"></div>
+    <hr>
+    <!-- 자식 요소까지 같이 투명해진다. -->
+    <div class="card">
+        <h2>제목</h2>
+        <p>내용</p>
+    </div>
+
+
+</body>
+</html>

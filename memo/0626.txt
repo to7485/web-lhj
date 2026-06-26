@@ -1,0 +1,163 @@
+그림자
+박스 그림자
+box-shadow : x-offset y-offset blur spread color inset;
+
+텍스트 그림자
+text-shadow : x-offset y-offset blur spread color inset;
+
+x-offset : x축 (양수면 오른쪽, 음수면 왼쪽으로 생긴다) 필수
+y-offset : y축 (양수면 아래, 음수면 위쪽으로 생긴다) 필수
+blur : 테두리 경계 흐림 정도 선택
+spread : 그림자의 퍼짐 정도 선택
+color : 색상 rgba(r,g,b,opacitiy) r,g,b값 : 0 ~ 255 opacitiy : 0 ~ 1 선택
+inset : 안쪽그림자로 변경 선택
+
+transform
+HTML 요소의 모양과 위치를 변경하는 CSS 속성
+이동시커나, 회전시키거나, 크기를 키우거나, 기울이는 기능
+
+transform : 함수(값);
+
+함수의 종류
+translate(x,y) : x,y축으로 요소를 이동시킨다.
+translateX(x값) : x축으로만 이동
+trnaslateY(y값) : y축으로만 이동
+rotate(deg) : 각도만큼 요소를 회전 (45deg, 90deg)
+scale(배수) : 요소의 크기를 변경
+scaleX()
+scaleY()
+
+- 여러개 동시 사용이 가능하다.
+transform:
+	translateX(150px)
+	rotate(45deg)
+	scale(1.3);
+
+- 의사선택자와 함께 많이 사용되는 편이다.
+:hover
+:active
+:focus
+- 레이아웃은 변경되지 않는다.
+.box{
+	width : 100px;
+}
+
+.box : hover{
+	width : 200px;
+}
+-> 다른 요소가 밀림
+
+.box : hover{
+	transform:scale(2);
+}
+-> 크기만 커져보이고 다른 요소들이 밀리지 않음
+
+
+애니메이션
+CSS 속성값이 바뀔 때, 그 변화를 부드럽게 보여주는 속성
+
+기본 문법
+transition : 속성 시간;
+
+.box{
+	background-color : blue;
+	transition : background-color 0.5s; -> 기본 상태쪽에 작성
+}
+
+.box:hover{
+	background-color : orange;
+}
+
+트랜지션을 구성하는 속성
+transition-property : 어떤 속성을 변화시킬지
+transition-duration : 몇 초 동안 변화할지 -> ms단위로 설정 500ms -> 0.5s
+transition-timing-function : 변화 속도 방식
+ㄴ ease : 천천히 시작 -> 빨라짐 -> 천천히 끝
+ㄴ linear : 처음부터 끝까지 같은 속도
+ㄴ ease-in : 천천히 시작
+ㄴ ease-out : 천천히 끝남
+ㄴ ease-in-out : 천천히 시작하고 천천히 끝남
+transition-delay : 몇 초 뒤 시작할지 -> ms단위로 설정 500ms -> 0.5s
+
+트랜지션이 잘 적용되는 속성
+- 대부분 숫자로 중간값을 계산할 수 있는 속성
+색상, 크기, 여백, 위치, 투명도, 변형, 그림자
+
+트랜지션이 잘 안되는 속성
+- 중간 값을 계산하기 어려운 속성
+display -> opacity를 사용
+
+opacity
+요소의 투명도를 조절하는 속성
+값 : 0 ~ 1 사이
+
+@keyframes
+CSS 애니메이션의 움직임 순서를 정의하는 문법
+
+transition은 상태가 바뀔 때만 동작
+@keyframes은 상태 변화 없이도 자동으로 실행할 수 있다.
+
+기본 구조
+
+@keyframes 애니메이션이름{
+	시작지점{
+		바뀔 스타일
+	}
+
+	끝 지점{
+		바뀔 스타일
+	}
+}
+
+만든 keyframes를 요소에 적용하기
+
+@keyframes move{
+	from {
+		transform : translateX(0);
+	}
+	
+	to{
+		transform : translateX(200px);
+	}
+
+}
+
+.box{
+	animation : move 2s;
+}
+
+시작과 끝을 정하는 방식
+- from / to
+from : 시작
+to : 끝
+
+- 퍼센트 방식
+0%
+50%
+100%
+
+animation 속성
+- 실행방법을 정한다.
+
+animation : 이름 시간 속도방식 지연시간 반복횟수 방향;
+
+이름 : 애니메이션이름을 적는다.
+시간 : 몇 초 동안 실행될지
+속도방식 : 움직임의 속도를 정한다.
+지연시간 : 시작 전 대기 시간
+반복횟수 : 애니메이션 반복횟수 (infinite 무한 반복)
+방향 : 애니메이션의 진행 방향을 설정
+ㄴ normal 0 -> 100%
+ㄴ reverse 100% -> 0%
+ㄴ alternate 0% -> 100%, 다음은 100% -> 0%
+ㄴ alternate-reverse 100% -> 0%, 다음은 0% -> 100%
+
+
+
+
+
+
+
+
+
+
