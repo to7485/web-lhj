@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- head에 작성하는 script 태그
+     HTML 문서가 파싱되는 동안에 로드되며, 페이지의 렌더링을 차단할 수 있다.
+     스크립트가 로드되기 전까지는 다른 리소스들이 로딩되지 않는다.
+     자원의 초기설정과 관련된 스크립트를 넣는다. -->
+
+    <!-- 외부에 있는 js파일 불러오기 -->
+    <script src="index.js"></script>
+</head>
+<body>
+    <!-- 자바스크립트를 사용하기 위해서는 <script> ~ </script> 태그가 필요하다.
+     head에 위치해도 되고, body에 위치해도 된다. -->
+    <script>
+        //자바스크립트 주석
+        //document객체 : JS가 제공하는 웹 페이지 자체를 의미하는 객체
+        document.write('안녕하세요');
+        document.body.appendChild(document.createElement('input')); //input태그를 만든다.
+    </script>
+    <!-- 페이지의 렌더링이 진행되는 중에 로드되기 때문에, 페이지의 다른 내용들은
+     먼저 로드되고 렌더링이 된다.
+     동적으로 생성되는 컨텐츠아 이벤트 처리와 관련된 스크립트를 위치시킨다. -->
+</body>
+</html>

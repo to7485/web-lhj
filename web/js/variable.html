@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 변수(variable) : 값을 담아둘 수 있는 공간
+     java에서 변수 선언할 때
+     자료형 변수명; -> 해당 자료형 값만 집어넣을 수 있다.
+     int x; 
+     x = 10; 
+     
+     js에서는 변수 앞에 자료형을 쓰지 않는다.
+     키워드 변수명; -> 변수의 선언
+     키워드 변수명 = 값; -> 선언과 동시에 초기화
+     
+     키워드
+     - 자바스크립트에서 변수를 선언할 때는 var, let, const 중 하나를 사용한다.
+     -->
+
+     <script>
+     // var 같은 이름의 변수를 또 선언해도 에러가 나지 않는다.
+     var x = 5;
+
+     document.write(x+'<br>');
+
+     var x = 10;
+
+     document.write(x + '<br>');
+
+     x = 20;
+
+     document.write(x + '<br>');
+
+     //let : 같은 이름의 변수가 재선언될 때 오류가 발생한다.
+     let age = 20;
+     document.write('let age = 20 -> ' + age +'<br>');
+
+     age = 20; //대입 가능
+
+     //let age = 22;
+
+     //const : 상수 , 재선언 불가능 , 재대입도 불가능하다.
+     const b = 5;
+     document.write(b);
+
+     //const b = 10;
+     b = 10;
+     </script>
+</head>
+<body>
+    
+</body>
+</html>

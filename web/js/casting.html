@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 자료형 변환
+        //- 데이터의 타입을 변경하는 것
+
+        //명시적 형변환
+        //- 함수나 연산자를 써서 직접 데이터의 타입을 바꾸는 것
+
+        //Number()함수
+        //정수로 변환
+        let num1 = Number('42');
+        let num2 = parseInt('3.14');
+        let num3 = parseFloat('3.14');
+
+        document.write(typeof num1+'<br>');
+        document.write(typeof num2+'<br>');
+        document.write(typeof num3+'<br>');
+
+        //String()함수
+        //문자열로 변환
+        let str1 = String(123);
+        let str2 = (456).toString();
+        document.write(typeof str1+'<br>');
+        document.write(typeof str2+'<br>');
+
+        //Boolean()함수
+        //값을 논리형으로 변환
+        let bool1 = Boolean(0); //false
+        let bool2 = Boolean('0'); //true
+        let bool3 = Boolean(''); //false
+        let bool4 = Boolean([]); //true
+
+        // java에서는 배열 int[] arr = {1,2,3}
+        // js에서는 배열에 []를 사용한다 let arr = [1,2,3];
+
+        document.write(bool1+'<br>');
+        document.write(bool2+'<br>');
+        document.write(bool3+'<br>');
+        document.write(bool4+'<br>');
+
+        //false로 처리되는 값들을 falsy값이라고 한다.
+        //0, '', null, undefined, NaN
+
+        document.write('<hr>');
+        document.write('<h2>암묵적 형변환</h2>');
+        //암묵적 형변환
+        //- 연산자가 값을 처리하려고 자동으로 타입을 바꾸는 것
+
+        //문자열 결합
+        let implicit1 = '5' + 2;
+        document.write(implicit1+'<br>');
+        let implicit2 = 'Hello' + true;
+        document.write(implicit2+'<br>');
+
+        //숫자연산
+        let implicit3 = '5' - 2; //문자열 -> 숫자
+        document.write(implicit3+'<br>');
+        let implicit4 = true -1;
+        document.write(implicit4+'<br>');
+
+        document.write('<hr>');
+        document.write('<h2>비교 연산자</h2>');
+        //비교 연산자
+        let eq1 = '5' == 5; //문자열 -> 숫자
+        document.write(eq1+'<br>');
+        let eq2 = 0 == false;
+        document.write(eq2+'<br>');
+        let eq3 = '' == 0;
+        document.write(eq3+'<br>');
+        let eq4 = null == undefined;
+        document.write(eq4+'<br>');
+
+        document.write('<hr>');
+        document.write('<h2>엄격 비교</h2>');
+        let strict1 = 0 === false;
+        document.write(strict1+'<br>');
+        let strict2 = '5' === 5;
+        document.write(strict2+'<br>');
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
