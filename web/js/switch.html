@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input{border : none;}
+        td{text-align : center;}
+        button{
+            margin : 10px;
+        }
+    </style>
+    <script>
+        const day = 3;
+
+        switch(day){
+            case 1:
+                document.write('월요일');
+                break;
+            case 2:
+                document.write('화요일');
+                break;
+            case 3:
+                document.write('수요일');
+                break;
+            default:
+                document.write('1~3이 아니다.');
+        }
+
+        document.write('<hr>');
+
+        function showPrice(){
+            //선택한 과일 정보를 가져오기
+            let fruit = document.getElementById('fruit').value;
+            //사과 : 3000원
+            //바나나 : 2500원
+            //포도 : 5000원
+            // 오렌지 : 4000원
+
+            let price = 0;
+
+            switch(fruit){
+                case "apple":
+                    price = 3000;
+                    break;
+                case "banana":
+                    price = 2500;
+                    break;
+                case "grape":
+                    price = 5000;
+                    break;
+                case "orange":
+                    price = 4000;
+                    break;
+            }
+
+            //화면에 가격 띄우기
+            document.getElementById("result").innerHTML = price;
+
+        }
+
+        function checkClassroom(){
+            let grade = Number(document.getElementById("grade").value);
+            let result = "";
+
+            switch(grade){
+                case 1:
+                    result = "1학년<br>강의실 : A동 101호<br>HTML/CSS 기초 수업입니다.";
+                    break;
+                case 2:
+                    result = "2학년<br>강의실 : B동 202호<br>B동 202호 중급 JavaScript 수업";
+                    break;
+                case 3:
+                    result = "3학년<br>강의실 : C동 303호<br>C동 303호 프로젝트 실습 수업";
+                    break;
+                case 4:
+                    result = "4학년<br>강의실 : D동 404호<br>404호 포트폴리오 제작 수업";
+                    break;
+            }
+
+            document.getElementById("result2").innerHTML = result;
+        }
+
+        function checkRole(){
+            let selectRole = document.querySelector("input[name='role']:checked");
+            let result = "";
+
+            let role = selectRole.value;
+
+            switch(role){
+                case "admin":
+                    result ="관리자 권한";
+                    break;
+                case "member":
+                    result ="회원 권한";
+                    break;
+                case "guest":
+                    result ="손님 권한";
+                    break;
+            }
+
+            document.getElementById("result3").innerText = result;
+        }
+
+        function cal(op){
+            let su1 = Number(document.getElementById("su1").value);
+            let su2 = Number(document.getElementById("su2").value);
+            let su3 = document.getElementById("result4");
+
+            switch(op){
+                case "+":
+                    su3.value = su1+su2;
+                    break;
+                case "-":
+                    su3.value = su1-su2;
+                    break;
+                case "*":
+                    su3.value = su1*su2;
+                    break;
+                case "/":
+                    su3.value = su1/su2;
+                    break;
+            }
+        }
+    </script>
+</head>
+<body>
+    <select id="fruit">
+        <option value="apple">사과</option>
+        <option value="banana">바나나</option>
+        <option value="grape">포도</option>
+        <option value="orange">오렌지</option>
+    </select>
+
+    <button onclick="showPrice()">가격 확인</button>
+    <h3 id="result"></h3>
+
+    <hr>
+    <h3>학년별 강의실 안내</h3>
+    <!-- 사용자가 학년을 입력하면 해당 학년의 강의실과 안내 문구를 출력하세요
+     1학년 : A동 101호 HTML/CSS 기초 수업
+     2학년 : B동 202호 중급 JavaScript 수업
+     3학년 : C동 303호 프로젝트 실습 수업
+     4학년 : D동 404호 포트폴리오 제작 수업
+
+     출력예시
+     2학년
+     강의실 :B동 202호
+     중급 JavaScript 수업입니다. -->
+    <label>
+        학년 입력:
+        <input type="number" id="grade">
+    </label>
+    <br><br>
+    <button onclick="checkClassroom()">확인</button>
+
+    <div id="result2"></div>
+
+    <hr>
+    <h3>라디오 버튼으로 회원 권한 확인</h3>
+    <!-- 사용자가 회원 권한을 선택하면 해당 권한으로 이용가능한 기능 출력하기
+     관리자 : 관리자 권한
+     회원 : 회원 권한
+     손님 : 손님 권한 -->
+
+    <!-- 관리자,회원,손님 라디오버튼 만들기 -->
+    <label>
+        <input type="radio" name="role" value="admin">
+        관리자
+    </label>
+    <label>
+        <input type="radio" name="role" value="member">
+        회원
+    </label>
+    <label>
+        <input type="radio" name="role" value="guest">
+        손님
+    </label>
+    <!-- 권한 확인 버튼 만들기 -->
+    <br><br>
+    <button onclick="checkRole()">권한 확인</button>
+    <!-- 결과 출력하기 -->
+    <div id="result3"></div>
+    <hr>
+    <h3> 연산자 버튼 계산기</h3>
+    <!-- 두 개의 숫자를 입력하고 연산자 버튼을 클릭하면 계산 결과를 출력하세요-->
+    <table border="1">
+        <tr>
+            <th class="su">수1</th>
+            <td><input id="su1" placeholder="정수만 입력하세요"></td>
+        </tr>
+        <tr>
+            <th class="su">수2</th>
+            <td><input id="su2" placeholder="정수만 입력하세요"></td>
+        </tr>
+        <tr>
+            <td colspan="2"> 
+                <button onclick="cal('+')"> + </button>
+                <button onclick="cal('-')"> - </button>
+                <button onclick="cal('*')"> * </button>
+                <button onclick="cal('/')"> / </button>
+            </td>
+        </tr>
+        <tr>
+            <th>결과</th>
+            <td><input id="result4"></td>
+        </tr>
+    </table>
+
+
+</body>
+</html>

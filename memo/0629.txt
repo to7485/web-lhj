@@ -3,4 +3,4 @@
 파일명 : index.html
 압축하여 첨부하기!!!!
 
-https://picsum.photos/300/180?random=1
+https://picsum.photos/300/200?random=1
