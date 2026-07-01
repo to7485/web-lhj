@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 배열이란?
+        // 여러개의 데이터를 효율적으로 관리하기 위한 자료구조
+
+        //배열을 생성하는 방법
+        //1. [] 리터럴 사용하기
+        let arr = []; //비어있는 배열을 생성
+        document.write('배열의 길이 : ',arr.length);
+
+        //2. 생성자를 통한 생성
+        let arr2 = Array(3);
+        let arr3 = new Array(3);
+
+        document.write("<br>");
+        document.write("arr2배열의 길이 : ",arr2.length);
+        
+        //empty
+        //배열에 빈 칸을 표시할 때 사용하는 단어
+        //배열의 크기만 먼저 만들고 나중에 값을 넣기 위해 사용
+
+        //배열에 요소 넣기
+        //배열명[index]
+        arr[0] = 10;
+        arr[1] = 20;
+        arr[2] = 30;
+        document.write("<br>");
+        document.write(arr); //toString()을 한 효과가 있다.
+        document.write("<br>");
+        document.write(arr[0]);
+        document.write("<br>");
+        //반복문으로 출력하기
+        for(let i = 0; i < arr.length; i++){
+            document.write(arr[i],"<br>");
+        }
+
+        //배열에 포함된 메서드
+        //인덱스만으로는 불편하기 때문이다.
+        arr = [10,20,30];
+        //배열의 길이를 모른다면? arr.length
+        //중간에 추가하거나 삭제를 하는것은 좀 어려움이 있다.
+
+        //push(값) : 맨 뒤에 값을 추가한다.
+        arr.push(40);
+        document.write("<br>");
+        document.write(arr);
+
+        //pop() : 맨 뒤에 있는 요소를 삭제
+        document.write("<br>");
+        document.write(arr.pop());
+
+        //unshift() : 맨앞에 추가
+        arr.unshift(0);
+        document.write("<br>");
+        document.write(arr);
+
+        //shift() : 맨 앞에 있는 요소 삭제
+        document.write("<br>");
+        document.write(arr.shift(),"<br>");
+
+        //slice() : 배열 자르기
+        //원본은 그대로 두고 일부만 복사
+        arr = [10,20,30,40,50];
+        let result = arr.slice(1,4);
+        document.write("<br>");
+        document.write(result);
+        document.write("<br>");
+        document.write(arr);
+
+        //splice() : 원본을 수정한다.
+        arr = [10,20,30,40];
+        arr.splice(1,2); //index 1부터 2개를 삭제
+        document.write("<br>");
+        document.write(arr);
+
+        //splice를 이용한 추가
+        arr.splice(1,0,100); //인덱스 1 위치에 0개를 삭제하고 100을 추가하겠다.
+        document.write("<br>");
+        document.write(arr);
+
+        //탐색과 포함여부 확인하는 메서드
+        document.write("<h3>탐색</h3>")
+        let names = ['kim','lee','park'];
+
+        //indexof : 요소의 위치 찾기
+        document.write(names.indexOf('lee'));
+        //includes : 요소를 포함하고 있으면 true, 아니면 false
+        document.write("<br>");
+        document.write(names.includes('choi'));
+        //find(조건) : 조건에 맞는 첫번째 값을 반환;
+        document.write("<br>");
+        document.write([5,10,12,15,8].find(n => n > 10));
+
+        //findIndex() : 위치 찾기
+        document.write("<br>");
+        document.write([5,10,12,15,8].findIndex(n => n > 10));
+
+        //some() : 배열중에서 조건을 하나라도 만족하면 true
+        document.write("<br>");
+        document.write([5,10,12,15,8].some(n => n > 10));
+
+        //every() : 요소가 조건을 모두 만족하면 true;
+        document.write("<br>");
+        document.write([5,10,12,15,8].every(n => n > 10));
+
+        //정렬과 뒤집기
+        document.write("<br>");
+        document.write("<h3>정렬과 뒤집기</h3>")
+        //조건함수를 넣어주지 않으면 문자열로 비교
+        //조건함수를 넣어줘야 숫자로 비교
+        document.write([10,7,9,2,6,3,1,4,5].sort((a,b) => a-b));
+
+        //reverse() : 순서를 뒤집는다.
+        document.write("<br>");
+        document.write([1,2,3,4,5].reverse());
+
+        //스프레드 연산자
+        // ...
+        // 배열이나 객체의 값을 "펼쳐서" 복사하거나 전달할 때
+        //사용하는 문법
+
+        document.write("<h3>스프레드 연산자</h3>");
+        arr = [10,20,30];
+
+        document.write(arr); //배열의 요소를 하나의 문자열로 출력
+        document.write("<br>");
+        document.write(...arr); //배열 안의 값을 하나씩 펼쳐서 출력
+
+        //스프레드 연산자는 배열을 복사할 때 많이 사용을 한다.
+        let original = [1,2,3];
+        let copy = [...original];
+        document.write("<br>");
+        document.write(copy);
+
+        //배열 합치기 할 때 사용한다.
+        let front = [1,2];
+        let back = [3,4];
+
+        result = front.concat(back);
+        document.write("<br>");
+        document.write(result);
+
+        result = [...front, ...back];
+        document.write("<br>");
+        document.write(result);
+
+        //배열 중간에 값 넣기
+        let numbers = [2,3,4];
+
+        result = [1,...numbers,5];
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

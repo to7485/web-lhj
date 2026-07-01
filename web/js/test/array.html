@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 버튼을 클릭하면 배열에서 메뉴 하나를 랜덤으로 선택하여
+        // 결과 영역에 출력하기
+        //난수 뽑기 : Math.floor(Math.random() * 배열의 길이); 0 ~ 1 사이값
+        let menus = ["김치찌개","돈까스","비빔밥","햄버거","초밥","짜장면"];
+        let fruits = ["사과","바나나","포도"];
+        function recommendMenu(){
+            let randomIndex = Math.floor(Math.random() * menus.length);
+            let menu = menus[randomIndex];
+
+            document.getElementById("result").innerText = "오늘의 추천 메뉴 : " + menu;
+        }
+
+        function addFruit(){
+            // 1. 추가버튼을 누르면 입력한 과일을 배열의 맨 뒤에 추가한다.
+            let input = document.getElementById("fruitInput");
+            let fruit = input.value.trim();
+            
+            if(fruit === ""){
+                alert("과일 이름을 입력하세요");
+                return;
+            }
+
+            // 2. 입력한 과일이 이미 배열에 존재한다면 "이미 등록된 과일입니다" 경고창 띄우기
+            if(fruits.includes(fruit)){
+                alert("이미 등록된 과일입니다.");
+                input.value = "";
+                return;
+            }
+
+            fruits.push(fruit);
+            input.value = "";
+
+            printFruits();
+        }
+
+        function printFruits(){
+            //배열에 들어있는 내용을 ul, li를 이용해서 출력하기
+            let html = "";
+
+            for(let i = 0; i < fruits.length; i++){
+                html += "<li>"+ fruits[i] + "</li>";
+            }
+
+            document.getElementById("fruitList").innerHTML = html;
+
+        }
+
+        function remove(){
+
+            if(fruits.length === 0){
+                alert("삭제할 과일이 없습니다");
+                return;
+            }
+
+            fruits.pop();
+
+            printFruits();
+        }
+    </script>
+</head>
+<body>
+    <h1>점심 메뉴 추천기</h1>
+    <!-- 메뉴 추천 버튼 -->
+    <button onclick="recommendMenu()">추천받기</button>
+    <!-- 결과를 출력 -->
+    <div id="result"></div>
+    <hr>
+    <h1>과일 목록 관리</h1>
+    <!-- 과일 이름을 입력받기 -->
+    <input id="fruitInput" placeholder="과일 이름 입력">
+    <br><br>
+    <!-- 추가 버튼, 삭제버튼 -->
+    <button onclick="addFruit()">추가</button>
+    <button onclick="remove()">삭제</button>
+    <!-- 과일 목록을 출력할 ul -->
+    <h2>과일 목록</h2>
+    <ul id="fruitList"></ul>
+
+
+    <!-- 
+     -->
+    <!-- 삭제버튼을 누르면 배열의 마지막 요소를 삭제하고 ul에 반영하기 -->
+</body>
+</html>

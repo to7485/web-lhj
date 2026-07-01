@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <h1>쇼핑몰 장바구니 관리 기능 만들기</h1>
+    <!-- 배열과 객체를 사용하여 실제 쇼핑몰에서
+     사용하는 장바구니 기능을 만들어보자. -->
+    
+    <!-- 상품 목록 영역
+     상품명     가격    버튼
+     키보드     30000   장바구니 담기 
+     마우스     50000   장바구니 담기
+     모니터     130000   장바구니 담기-->
+     <h2>상품 목록</h2>
+     <div id="productList"></div>
+
+     <!-- 장바구니 영역
+      상품명 / 가격 / 수량/ 합계 / 삭제버튼 -->
+
+    <!-- 총 금액 영역
+     장바구니 전체 금액을 출력 -->
+
+    <!-- 1. 상품 배열 printProducts() -->
+
+    <!-- 2. 장바구니 배열
+     - 처음에는 빈 배열로 시작 -->
+
+     
+     <!-- 장바구니 배열 출력하기
+     제품명 /   가격/   개수    / 금액 / 삭제버튼
+     
+     삭제버튼 누르면 해당 상품을 장바구니에서 삭제
+     삭제 후 장바구니 화면과 총금액을 다시 출력한다 -->
+     <h2>장바구니</h2>
+     <div id="cartList"></div>
+
+     <h2 id="totalPrice">총 금액 : 0원</h2>
+
+     <script>
+        let products = [
+            { name: "키보드", price: 30000 },
+            { name: "마우스", price: 15000 },
+            { name: "모니터", price: 200000 }
+        ];
+
+        let cart = [];
+
+        //목록을 출력하는 함수
+        function printProducts(){
+            let html = "";
+            for(let i = 0; i < products.length; i++){
+                html += products[i].name+" - " + products[i].price+"원 ";
+                html += "<button onclick='addCart("+i+")'>장바구니 담기</button><br>";
+                
+            }
+
+            document.getElementById("productList").innerHTML = html;
+        }
+
+        //장바구니에 상품 추가하기 함수
+        function addCart(index){
+            //장바구니에 제품이 없으면 
+            // {name:"키보드", price : 30000, quantity : 1} 추가
+            //장바구니에 제품이 있으면 개수만 변경
+            let product = products[index];
+            let findIndex = -1;
+
+            for(let i = 0; i < cart.length; i++){
+                if(cart[i].name === product.name){
+                    findIndex = i;
+                }
+            }
+
+            if(findIndex === -1){
+                cart.push({
+                    name : product.name,
+                    price : product.price,
+                    quantity : 1
+                })
+            } else {
+                cart[findIndex].quantity++;
+            }
+
+            printCart();
+
+        }
+
+        function printCart(){
+            //상품명 / 가격 / 수량/ 합계 / 삭제버튼
+
+            //카트가 비어있으면 "장바구니가 비어있습니다."
+            //총 금액 : 0원
+
+            let cartList = document.getElementById("cartList");
+            let total = 0;
+
+            if(cart.length === 0){
+                cartList.innerHTML = "장바구니가 비어있습니다.";
+                document.getElementById("totalPrice").innerText = "총 금액 : 0원";
+                return;
+            }
+
+            let html = "";
+
+            for(let i = 0; i < cart.length; i++){
+                let itemTotal = cart[i].price * cart[i].quantity;
+                total += itemTotal;
+
+                html += cart[i].name+" / ";
+                html += cart[i].price+"원 / ";
+                html += cart[i].quantity+"개 / ";
+                html += itemTotal +"원 ";
+                html += "<button onclick='removeCart("+i+")'>삭제</button><br>";
+            }
+
+            cartList.innerHTML = html;
+            document.getElementById("totalPrice").innerText = "총 금액: "+total+"원";
+        }
+
+        function removeCart(index){
+            cart.splice(index,1);
+            printCart();
+        }
+
+        printProducts();
+        printCart();
+    </script>
+</body>
+</html>
