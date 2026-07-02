@@ -4,11 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
+</head>
+<body>
+    <h1>수강생 명단 관리</h1>
+    <!-- 이름, 과목, 점수 입력칸 -->
+    이름 : <input id="nameInput"><br>
+    과목 : <input id="subjectInput"><br>
+    점수 : <input id="scoreInput"><br>
+    <!-- 학생 추가 버튼 -->
+    <button onclick="addStudent()">수강생 추가</button>
+
+    <!-- 수강생 목록 -->
+    <h2>수강생 목록</h2>
+    <div id="studentList"></div>
+
     <script>
         // 학생 정보를 관리하는 프로그램 만들기
         //학생 1명의 정보는 객체로 관리한다.
         //이름, 과목, 점수 세가지 속성이 존재한다.
         //여러명의 학생은 배열로 관리한다.
+
+        let students = [];
+
+        function addStudent(){
+            let name = document.getElementById("nameInput").value;
+            let subject = document.getElementById("subjectInput").value;
+            let score = document.getElementById("scoreInput").value;
+
+            alert(subject);
+
+            //하나라도 입력이 안되어있으면 추가 X
+            if(name === '' || subject === '' || score === ''){
+                alert("모든 값을 입력하세요");
+                return;
+            }
+
+            //넘어온 값을 객체에 추가
+            let newStudent = {
+                name : name,
+                subject : subject,
+                score : Number(score)
+            }
+
+            //배열에 추가하기
+            students.push(newStudent);
+
+            document.getElementById("nameInput").value = "";
+            document.getElementById("subjectInput").value = "";
+            document.getElementById("scoreInput").value = "";
+
+            printStudents();
+        }
+
+        function printStudents(){
+            //배열에 학생이 없을 때
+            let studentList = document.getElementById("studentList");
+
+            if(students.length === 0){
+                studentList.innerText = "학생이 없습니다.";
+                return;
+            }
+
+            let html = "";
+
+            for(let student of students){
+                let result = "";
+                if(student.score >= 60){
+                    result ="합격";
+                } else {
+                    result = "불합격";
+                }
+
+                html += student.name + " / ";
+                html += student.subject + " / ";
+                html += student.score + " / ";
+                html += result + "<br>";
+            }
+
+            studentList.innerHTML = html;
+        }
 
         //페이지가 처음 열릴 때 students 배열에 들어있는 학생 목록 출력하기
         // 이름 / 과목 / 점수
@@ -20,14 +95,8 @@
         //이름, 과목, 점수가 비어있는 경우 "모든 값을 입력하세요"경고창 출력하기
 
         //점수가 60점 이상이면 합격, 60점 미만이면 불합격을 목록 뒤에 함께 출력하기
+
+        printStudents();
     </script>
-</head>
-<body>
-    <!-- 이름, 과목, 점수 입력칸 -->
-    
-    <!-- 학생 추가 버튼 -->
-
-    <!-- 수강생 목록 -->
-
 </body>
 </html>

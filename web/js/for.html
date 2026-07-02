@@ -45,6 +45,38 @@
 
         }
 
+        //for ... of문
+        //배열의 값을 하나씩 꺼낼 때 사용한다.
+        //for(let 변수 of 배열){
+        //  반복할 코드
+        //}
+        document.write("<hr>");
+        let fruits = ["사과","바나나","포도"];
+
+        // for(String s : fruits){
+        //  System.out.println(s);
+        //}
+
+        for(let fruit of fruits){
+            document.write(fruit,"<br>");
+        }
+
+        //for ... in
+        //객체의 key를 하나씩 꺼낼 때 사용한다.
+        //for(let 변수 in 객체){
+        //  
+        //}
+        document.write("<hr>");
+        let student = {
+            name : '홍길동',
+            age : 20,
+            major : '웹개발'
+        }
+
+        for(let key in student){
+            document.write(student[key],"<br>")
+        }
+
     </script>
 </head>
 <body>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+
+        body{
+            background : white;
+            color : black;
+            padding : 50px;
+            transition : 0.3s;
+        }
+
+        #loginBox{
+            width : 300px;
+            padding : 20px;
+            background : #f5f5f5;
+            border : 1px solid #ccc;
+            transition : 0.3s;
+        }
+
+        input{
+            width : 100%;
+            padding : 10px;
+            margin-bottom : 10px;
+            background : white;
+            color : black;
+            border : 1px solid #aaa;
+        }
+
+        #loginBtn{
+            width : 100%;
+            padding : 10px;
+            background : black;
+            color : white;
+            border : none;
+        }
+
+        /* 다크모드 */
+        body.dark{
+            background : #111;
+            color : white;
+        }
+
+        #lobonBox.dark{
+            background:#222;
+            border : 1px solid #555;
+        }
+
+        input.dark{
+            background : #333;
+            color : white;
+            border : 1px solid #777;
+        }
+
+        #loginBtn.dark{
+            background : royalblue;
+            color : white;
+        }
+    </style>
+</head>
+<body>
+    <!-- 로그인 화면을 만들고, 버튼을 클릭하면 로그인 박스와
+     입력창의 스타일을 다크모드 또는 라이트모드로 변경되도록 작성하기 
+     html 요구사항
+     div id="loginBox"
+     h2
+     아이디 입력창 id="userId"
+     비밀번호 입력창 id="userPw"
+     로그인버튼 id="loginBtn"
+     다크모드 버튼
+     라이트모드 버튼-->
+    <div id="loginBox">
+        <h2>로그인</h2>
+        <input id="userId" type="text" placeholder="아이디">
+        <input id="userPw" type="text" placeholder="비밀번호">
+        <button id="loginBtn">로그인</button>
+    </div>
+    <button id="themeBtn" onclick="toggleTheme()"> 다크모드</button>
+    <script>
+        const toggleTheme = () => {
+            document.body.classList.toggle("dark");
+
+            document.getElementById("loginBox")
+            .classList.toggle("dark");
+
+            document.getElementById("userId")
+            .classList.toggle("dark");
+
+            document.getElementById("userPw")
+            .classList.toggle("dark");
+
+            document.getElementById("loginBtn")
+            .classList.toggle("dark");
+        }
+    </script>
+</body>
+</html>

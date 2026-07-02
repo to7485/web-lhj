@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width : 300px;
+            height : 300px;
+            border : 1px solid black;
+            background : coral;
+            transition : 0.7s;
+        }
+    </style>
+</head>
+<body>
+    <!-- html과 js가 완전히 분리된다. -->
+    <button id="btn">클릭하세요</button>
+
+    <div id="box">
+        마우스를 올려보세요
+    </div>
+    <hr>
+    <input id="name" placeholder="이름 입력">
+
+    <p id="result"></p>
+
+    <hr>
+    <select id="fruit">
+        <option>사과</option>
+        <option>바나나</option>
+        <option>포도</option>
+    </select>
+
+    <p id="result2"></p>
+
+    <hr>
+    <input id="user">
+
+    <script>
+        //이벤트리스너 방식으로 이벤트 처리하기
+        // addEventListener("이벤트",실행할 함수) : 이벤트 등록 메서드
+
+        const btn = document.getElementById("btn");
+
+        btn.addEventListener("click", () => alert("안녕하세요!"));
+
+        const box = document.getElementById("box");
+
+        box.addEventListener("mouseover", () => {
+            let background = box.style.background 
+            if(background ==="cornflowerblue"){
+                box.style.background = "coral";
+            } else {
+                box.style.background = "cornflowerblue";
+            }
+        })
+
+        //input : 실시간 입력이 발생할 때 p태그에 입력한 내용 출력하기
+        const input = document.getElementById("name");
+
+        const result = document.getElementById("result");
+
+        input.addEventListener("input",() => {
+            result.innerText = input.value;
+        })
+
+        //change : 선택을 완료했을 때 발생하는 이벤트
+
+        //focus /blur
+        //input태그에 포커스가 잡히면 테두리를 노란색으로
+        //빠져나오면 테두리를 파란색으로 만들기
+
+    </script>
+</body>
+</html>

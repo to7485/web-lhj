@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <img id="photo" src="cat.jpg" alt="고양이">
+    <a id="link">링크태그</a>
+
+    <input id="user" type="text" value="홍길동" placeholder="이름 입력">
+
+    <p id="p_id">자바스크립트로 CSS 바꾸기 연습</p>
+    <script>
+        // dom요소의 속성을 조정
+        // src, width, href, alt, id, class...
+        //js에서는 속성을 읽거나 수정하거나 삭제하거나 추가할 수 있다
+
+        //hasAttribute()
+        //요소가 지정한 속성을 가지고 있는지 검사
+        //있으면 true, 없으면 false
+        let photo = document.getElementById("photo");
+
+        console.log(photo.hasAttribute("src"));
+
+        //getAttribute()
+        //속성에 값을 가져온다.
+        console.log(photo.getAttribute("src"));
+
+        //setAttribute(속성명,값)
+        //속성을 새로 추가하거나
+        //기존의 속성의 값을 변경한다.
+        let link = document.getElementById("link");
+        link.setAttribute("href","https://www.naver.com");
+        photo.setAttribute("alt","강아지");
+
+        //removeAttribute()
+        //속성을 삭제한다.
+        photo.removeAttribute("alt");
+
+        //attributes
+        //요소가 가지고 있는 모든 속성을 모아서 반환
+        //배열은 아니고 NamedNodeMap 객체를 반환한다.
+        //하지만 배열처럼 인덱스로 접근할 수 있다.
+        let input = document.getElementById("user");
+        console.log(input.attributes[0]);
+        console.log(input.attributes[0].name);
+        console.log(input.attributes[0].value);
+
+        //dom 요소의 스타일 변경할 수 있다.
+        //style객체를 이용한다.
+        //요소.style.속성="값";
+        let element = document.getElementById("p_id");
+        element.style.backgroundColor = 'lightblue';
+        //글씨색을 red
+        element.style.color='red';
+        //폰트크기를 30px
+        element.style.fontSize='30px';
+        //테두리 2px solid black;
+        element.style.border='2px solid black';
+
+        //classList
+        //클래스를 추가하거나 제거할 수 있다.
+        element.classList.add("active");
+        element.classList.remove("active");
+
+        //클래스 존재 여부 확인
+        //있으면 true, 없으면 false
+        element.classList.contains("active");
+
+        //클래스 토글
+        //없으면 추가, 있으면 제거
+        element.classList.toggle("active");
+
+
+
+
+    </script>
+</body>
+</html>
