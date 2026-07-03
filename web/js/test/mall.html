@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+
+        body{
+            margin : 0;
+            background : #f3f4f6;
+        }
+
+        header{
+            background : #000;
+            color : white;
+            padding : 28px 40px;
+            display : flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1{
+            margin : 0;
+        }
+
+        .cart{
+            background : #2563eb;
+            padding : 10px 16px;
+            border-radius : 20px;
+            font-weight: bold;
+        }
+
+        .container{
+            max-width : 1200px;
+            margin : 0 auto;
+            padding : 30px 20px;
+        }
+
+        .filter-area{
+            background : white;
+            padding : 20px;
+            border-radius : 14px;
+            margin-bottom : 24px;
+            display : grid;
+            grid-template-columns: 1fr 220px;
+            gap : 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        input,
+        select{
+            padding : 12px;
+            border : 1px solid #d1d5db;
+            border-radius : 8px;
+            font-size: 15px;
+        }
+
+        .product-list{
+            display : grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap : 18px;
+        }
+
+        .product-card{
+            background : white;
+            border-radius : 14px;
+            overflow : hidden;
+            box-shadow : 0 4px 12px rgba(0,0,0,0.07);
+            transition: 0.3s;
+        }
+
+        .product-card:hover{
+            transform : translateY(-5px);
+        }
+
+        .product-card img{
+            width : 100%;
+            height : 180px;
+            object-fit : cover;
+            background : #e5e7eb;
+        }
+
+        .product-info{
+            padding : 18px;
+        }
+
+        .product-info h3{
+            margin : 0 0 8px;
+            font-size : 18px;
+        }
+
+        .brand{
+            color : #6b7280;
+            font-size : 14px;
+        }
+
+        .price{
+            font-size : 22px;
+            font-weight: bold;
+            color : #2563eb;
+        }
+
+        .badge{
+            display : inline-block;
+            background : #dc2626;
+            color : white;
+            padding : 5px 10px;
+            border-radius : 999px;
+            font-size : 13px;
+            margin-bottom : 8px;
+        }
+
+        button{
+            width: 100%;
+            border: none;
+            background : #111827;
+            color : white;
+            padding : 11px;
+            border-radius : 8px;
+            cursor : pointer;
+            font-weight : bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>shop dashboard</h1>
+        <div class="cart">장바구니 : <span id="cartCount">0</span>개</div>
+    </header>
+
+    <div class="container">
+        <div class="filter-area">
+            <input id="searchInput" placeholder="상품명 검색">
+
+            <select id="categoryFilter">
+                <option value="전체">전체카테고리</option>
+            </select>
+        </div>
+
+        <div id="productList" class="product-list"></div>
+    </div>
+
+    <script>
+        let products = [];
+        let cartCount = 0;
+
+        const productList = document.getElementById("productList"); //상품 목록
+        const searchInput = document.getElementById("searchInput"); //검색창
+        const categoryFilter = document.getElementById("categoryFilter"); //카테고리
+        const cartCountSpan = document.getElementById("cartCount"); //장바구니 개수
+
+        function loadProducts(){
+            productList.innerHTML = '<div class="message">상품 정보를 불러오는 중입니다...</div>';
+
+            fetch("https://dummyjson.com/products")
+            .then(res => res.json())
+            .then(data => {
+                products = data.products;
+                renderCategoryOptions();
+                renderProducts();
+            })
+        }
+
+        function renderProducts(){
+            productList.innerHTML = "";
+
+            const keyword = searchInput.value;
+            const selectedCategory = categoryFilter.value;
+
+            //조건에 맞는 제품만 배열로 담음
+            const filteredProducts = products.filter(product => {
+                const titleMatch = product.title.includes(keyword);
+                const categoryMatch = selectedCategory === '전체' || product.ctegory === selectedCategory;
+
+                return titleMatch && categoryMatch;
+            })
+
+            if(filteredProducts.length === 0){
+                productList.innerHTML = '<div class="message">표시할 상품이 없습니다.</div>';
+                return;
+            }
+
+            filteredProducts.forEach(product => {
+                const card = document.createElement("div");
+                card.classList.add("product-card");
+
+                let badgeHTML = "";
+
+                if(product.price >= 100){
+                    badgeHTML = '<span class="badge">고가 상품</span>'
+                }
+
+                card.innerHTML = `
+                    <img src="${product.thumbnail}" alt="${product.title}">
+                    <div class="product-info">
+                        ${badgeHTML}
+                        <h3>${product.title}</h3>
+                        <p class="brand">${product.brand || "브랜드 정보 없음"}</p>
+                        <p class="price">${product.price}</p>
+                        <p> 할인률 : ${product.discountPercentage}%</p>
+                        <p>평점 : ${product.rating}</p>
+                        <button onclick="addCart()">장바구니 담기</button>
+                    </div>
+                `;
+
+                productList.appendChild(card);
+            })
+        }
+
+        function renderCategoryOptions(){
+            const categories = [];
+
+            products.forEach(product => {
+                if(!categories.includes(product.category)){
+                    categories.push(product.category)
+                }
+            });
+
+            categories.forEach(category => {
+                const option = document.createElement("option");
+                option.value = category;
+                option.innerText = category;
+                categoryFilter.appendChild(option);
+            })
+        }
+
+        loadProducts();
+    </script>
+</body>
+</html>

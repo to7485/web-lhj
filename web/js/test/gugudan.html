@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        단:
+        <input id="dan">
+        <input id="calBtn" type="button" value="계산시작">
+        <input type="button" id="bt_show" value="숨기기">
+    </p>
+    <hr>
+    <div id="disp">
+        여기에 구구단
+    </div>
+
+    <script>
+        let dan = document.getElementById("dan");
+        let calBtn = document.getElementById("calBtn");
+        let display = document.getElementById("disp");
+        let show_btn = document.getElementById("bt_show");
+        calBtn.addEventListener("click",() => {
+            if(dan.value === ''){
+                alert('값을 입력해주세요');
+                return;
+            }
+
+            if(dan.value <2 || dan.value >9){
+                alert("2~9사이의 숫자만 입력하세요")
+                return;
+            }
+
+            let str = "";
+
+            for(let i = 1; i < 10; i++){
+                str += dan.value + ' X ' + i + ' = ' + (dan.value * i) + "<br>";
+            }
+
+            display.innerHTML = str;
+        })
+
+        let b_show = true;
+        show_btn.addEventListener("click",() => {
+            b_show = !b_show;
+            show_btn.value = b_show ? '숨기기' : '보이기';
+            display.style.display = b_show ? 'block' : 'none';
+        })
+    </script>
+</body>
+</html>

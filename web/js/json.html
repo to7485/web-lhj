@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // JSON
+        //자바스크립트 객체처럼 생긴 데이터 표현 방식
+        //키에도 ""를 붙여야 한다.
+        //값에 들어가는 문자열도 반드시 ""를 붙여야 한다.
+        //함수를 저장하는게 불가능하다
+        //마지막 속성에 ,를 붙이지 않는다.
+        //내부에 주석을 붙이면 안된다.
+
+        //값으로 들어갈 수 있는 타입
+        //문자열, 숫자, 논리형, 배열, 객체, null
+
+        //JS에서는 JSON을 문자열로 다룬다.
+        let jsonData = '{"id":"user01", "name":"홍길동","age":20}'
+
+        //JSON문자열을 객체로 바꾸기
+        let member = JSON.parse(jsonData);
+
+        console.log(member.name);
+        console.log(member.age);
+
+        //객체를 JSON 문자열로 바꾸기
+        member = {
+            id:"user01",
+            name:"홍길동",
+            age : 20
+        }
+
+        jsonData = JSON.stringify(member);
+        console.log(jsonData);
+    </script>
+</body>
+</html>

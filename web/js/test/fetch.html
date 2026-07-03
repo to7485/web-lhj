@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 랜덤 강아지 사진 가져오기 -->
+    <h2> 랜덤 강아지 사진 가져오기</h2>
+    <button id="btn">사진 가져오기</button>
+    <br><br>
+    <img id="photo" width ="300px">
+
+    <hr>
+    <h2>음악 검색 하기</h2>
+    <!-- 검색어를 입력하고 검색버튼을 누르면 리스트로 5개를 표시 -->
+    <input id="search"placeholder="검색어">
+    <button id="btn2">검색</button>
+    <ul id="result3"></ul>
+
+    <script>
+        document.getElementById("btn2").addEventListener("click", () => {
+            const keyword = document.getElementById("search").value;
+
+            if(!keyword){
+                alert("검색어를 입력하세요");
+                return;
+            }
+
+            fetch(`https://itunes.apple.com/search?term=${keyword}&entity=song&limit=5`)
+            .then(res => res.json())
+            .then(data => {
+                const html = data.results.length ?
+                    data.results.map(item => `<li>${item.trackName} - ${item.artistName}</li>`).join("") : "<li>검색 결과 없음</li>";
+
+                document.getElementById("result3").innerHTML = html;
+            })
+        })
+
+
+
+
+
+
+
+
+
+        document.getElementById("btn").addEventListener("click",async ()=>{
+            fetch("https://picsum.photos/v2/list?page=2&limit=100")
+            .then(res => {
+                if(!res.ok){
+                    console.log("데이터 불러오기 실패");
+                }
+                return res.json();
+            })
+            .then(data => {
+                //0 ~ data.length-1 사이의 랜덤 번호 생성
+                const random = Math.floor(Math.random() * data.length);
+
+                //랜덤 이미지 출력하기
+                document.getElementById("photo").src = data[random].download_url;
+            });
+        })
+    </script>
+</body>
+</html>

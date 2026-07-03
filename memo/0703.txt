@@ -1,0 +1,121 @@
+함수
+자주 사용하는 코드들의 묶음
+
+function 함수명(매개변수){ ... };
+
+함수명();
+
+함수 표현식
+const 함수명 = function (매개변수) { ... } ;
+
+함수명();
+
+화살표 함수
+
+(매개변수) => { ...} ;
+
+매개변수가 없으면 소괄호 생략 불가능
+1개일 때 생략 가능
+2개일 때는 생략 불가능
+
+명령이 한줄 일 때는 중괄호 생략 가능
+return이 있으면 키워드와 함께 중괄호 생략이 가능하다.
+
+객체 안에 들어가는 메서드는 화살표함수를 쓰지 않는다!!
+
+let user = {
+	name: '홍길동',
+	sayHello(){
+		console.log(this.name);
+	}
+
+	sayHello : () => {console.log(this.name)};
+
+}
+
+
+user.sayHello();
+
+일반함수의 this
+- 누가 호출했는지를 보고 this를 결정한다.
+
+화살표 함수의 this
+- 자기만의 this가 없다
+- 대신 바깥(this)을 그대로 가져온다.
+
+dom 요소의 선택
+1. getElementById("아이디값") : 아이디를 이용한 선택
+2. querySelecotr("CSS 선택자") : CSS선택자를 이용한 선택
+ㄴ 중복되는 클래스값이 있으면 첫번째만 선택
+3. querySelectorAll("CSS 선택자") : 전부다 선택 배열처럼 index를 활용하여 각 요소를 선택할 수 있다.
+
+선택한 dom 요소를 조작하기
+1. attribute 조작하기
+- hasAttribute() : 속성을 가지고 있는지 검사
+- getAttribute() : 속성값을 반환
+- setAttribute() : 속성을 세팅
+- attributes : 태그가 가지고 있는 모든 속성을 가져온다.
+- removeAttribute()
+
+DOM 객체의 스타일 변경하기
+- 선택한 요소객체의 style 프로퍼티를 이용하여 변경하기
+let element = document.getElementById("myElement");
+
+element.style.스타일속성 = "값";
+
+스타일속성은 카멜표현식으로 작성
+
+classList 프로퍼티
+- html요소의 class속성을 자바스크립트로 추가, 삭제 변경, 확인할 때 사용하는 프로퍼티이다.
+
+element.classList -> 요소의 class 목록을 가져온다.
+
+element.classList.add("클래스명1","클래스명2") : 클래스를 추가
+
+element.classList.remove("클래스명") : 요소에서 클래스값을 삭제
+element.classList.contains("클래스명") : 요소가 해당 클래스값을 가지고 있는지 검사
+
+element.classList.toggle("클래스값") : 있으면 삭제, 없으면 주차
+
+element.classList.replace("기존값","바꾸려는값") : 클래스를 교체할 수 있다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
