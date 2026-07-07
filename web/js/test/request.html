@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/request.css" rel="stylesheet">
+    <script src="js/request.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>고객센터 문의 등록</h1>
+        <label>문의 유형</label>
+        <select id="type">
+            <option value="">문의 유형 선택</option>
+            <option value="결제">결제</option>
+            <option value="배송">배송</option>
+            <option value="교환/환불">교환/환불</option>
+            <option value="기타">기타</option>
+        </select>
+        <p id="typeMsg" class="error"></p>
+
+        <label>제목</label>
+        <input type="text" id="title" placeholder="5자 이상 30자 이하">
+        <p id="titleMsg" class="error"></p>
+
+        <label>이메일</label>
+        <input type="text" id="email" placeholder="email@test.com">
+        <p id="emailMsg" class="error"></p>
+
+        <label>문의 내용</label>
+        <textarea id="content" placeholder="20자 이상 300자 이하"></textarea>
+        <p id="contentMsg" class="error"></p>
+
+        <div class="agree-box">
+            <input type="checkbox" id="agree">
+            개인정보 수집에 동의합니다.
+        </div>
+        <p id="agreeMsg" class="error"></p>
+
+        <button id="submitBtn" disabled>문의 등록</button>
+
+        <h2>문의 목록</h2>
+        <div id="list"></div>
+    </div>
+</body>
+</html>

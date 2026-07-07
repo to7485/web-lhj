@@ -1,0 +1,80 @@
+body{
+    margin : 0;
+    font-family :Arial, sans-serif;
+    background-color: #f2f4f8;
+    display : flex;
+    justify-content: center;
+    padding : 40px;
+}
+
+.container{
+    width : 600px;
+    background :white;
+    padding : 30px;
+    border-radius : 16px;
+    box-shadow : 0 4px 12px rgba(0,0,0,0.15);
+}
+
+h1{
+    text-align : center;
+}
+
+label{
+    display : block;
+    margin-top : 15px;
+    font-weight: bold;
+}
+
+input[type="text"], select,textarea{
+    width : 100%;
+    padding : 10px;
+    margin-top : 6px;
+    box-sizing: border-box;
+    border : 1px solid #ccc;
+    border-radius : 8px;
+}
+
+textarea{
+    height : 120px;
+}
+
+.error{
+    color : red;
+    font-size : 13px;
+    margin-top : 4px;
+}
+
+.success{
+    color : green;
+    font-size : 13px;
+    margin-top : 4px;
+}
+
+button{
+    width : 100%;
+    padding :12px;
+    margin-top : 20px;
+    border : none;
+    background: #2563eb;
+    color : white;
+    border-radius : 8px;
+    cursor : pointer;
+    font-size : 16px;
+}
+
+button:disabled{
+    background : #aaa;
+    cursor : not-allowed;
+}
+
+.card{
+    border : 1px solid #ddd;
+    padding : 15px;
+    margin-top : 15px;
+    border-radius : 10px;
+    background: #fafafa;
+}
+
+.card strong{
+    color : #2563eb;
+}
