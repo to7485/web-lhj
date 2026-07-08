@@ -1,0 +1,95 @@
+body{
+    margin : 0;
+    font-family : Arial, sans-serif;
+    background : #0f172a;
+    padding : 40px;
+}
+
+.container{
+    max-width : 700px;
+    margin : auto;
+    background : white;
+    padding : 30px;
+    border-radius : 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+h1{
+    text-align: center;
+}
+
+.search-box{
+    display : flex;
+    gap : 10px;
+}
+
+input{
+    flex : 1;
+    padding : 12px;
+    border : 1px solid #ccc;
+    border-radius : 8px;
+    font-size : 16px;
+}
+
+button{
+    padding : 12px 20px;
+    border : none;
+    border-radius : 8px;
+    background : #111827;
+    color : white;
+    cursor : pointer;
+}
+
+button:disabled{
+    background : #999;
+    cursor : not-allowed;
+}
+
+#message{
+    color : red;
+    min-height : 22px;
+}
+
+#profileBox{
+    margin-top : 20px;
+}
+
+.profile-card{
+    display : flex;
+    gap : 20px;
+    border : 1px solid #ddd;
+    border-radius : 12px;
+    padding : 20px;
+    background : #f9fafb;
+}
+
+.profile-card img{
+    width : 140px;
+    height : 140px;
+    border-radius : 50%;
+}
+
+.profile-info h2{
+    margin-top : 0;
+}
+
+.status{
+    display : flex;
+    gap : 10px;
+    margin-top : 10px;
+}
+
+.stat{
+    background : #e5e7eb;
+    padding : 8px 10px;
+    border-radius : 8px;
+    font-size : 14px;
+}
+
+a{
+    display : inline-block;
+    margin-top : 12px;
+    color : #2563eb;
+    font-weight : bold;
+    text-decoration : none;
+}
