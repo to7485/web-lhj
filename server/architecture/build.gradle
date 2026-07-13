@@ -1,0 +1,33 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '4.1.0'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.korea'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	// Source: https://mvnrepository.com/artifact/com.google.guava/guava
+	implementation 'com.google.guava:guava:31.1-jre'
+	// Source: https://mvnrepository.com/artifact/org.projectlombok/lombok
+	implementation 'org.projectlombok:lombok:1.18.44'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

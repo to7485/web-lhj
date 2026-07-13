@@ -22,11 +22,4 @@ public class ComputerTest {
 		log.info(laptop.getScreenWidth()+"");
 	}
 	
-	
-	
-	
-	
-	
-	
-	
 }

@@ -1,0 +1,108 @@
+여행 예약 시스템
+CustomerService 클래스
+
+고객 정보를 확인하는 클래스입니다.
+
+메서드
+public void checkCustomer() : "고객 정보를 확인합니다.
+다른 객체를 주입받지 않습니다.
+--------------------------------------------
+TravelProductService 클래스
+public void checkTravelProduct() : "제주도 3박 4일 여행 상품을 확인합니다."
+다른 객체를 주입받지 않습니다.
+--------------------------------------------
+ReservationService 클래스
+
+고객과 여행 상품을 확인한 후 예약을 처리하는 클래스입니다.
+
+다음 두 개의 의존 객체를 필드로 선언합니다.
+private final CustomerService customerService;
+private final TravelProductService travelProductService;
+
+두 객체를 하나의 생성자에서 모두 주입받습니다.
+
+다음 메서드를 작성합니다.
+- public void reserve()
+reserve() 메서드는 다음 순서로 동작해야 합니다.
+1. "여행 예약을 시작합니다." 출력
+2. CustomerService의 checkCustomer() 호출
+3. TravelProductService의 checkTravelProduct() 호출
+4. "여행 예약이 완료되었습니다." 출력
+
+---------------------------------------------
+ReservationServiceTest 클래스를 작성합니다.
+
+@SpringBootTest를 사용합니다.
+테스트 메서드에는 @Test를 사용합니다.
+테스트 메서드 이름은 reservationTest()로 작성합니다.
+테스트 메서드에서 다음 코드를 실행합니다.
+reservationService.reserve();
+
+알림 전송 시스템
+회원에게 알림을 전송하는 시스템을 구현합니다.
+
+이메일 알림
+문자 메시지 알림
+
+두 클래스는 동일한 NotificationService 인터페이스를 구현합니다.
+동일한 인터페이스를 구현하는 Bean이 두 개이므로, 스프링은 어떤 객체를 주입해야 하는지 자동으로 결정할 수 없습니다.
+
+MemberService에는 @Qualifier를 사용하여 문자 메시지 구현체를 주입합니다.
+
+2. 의존 관계
+
+최종적으로 주입되어야 하는 구현체는 다음과 같습니다.
+
+MemberService → SmsNotificationService
+
+NotificationService 인터페이스
+알림 전송 기능을 정의하는 인터페이스입니다
+void send(String message);
+인터페이스에는 @Component를 사용하지 않습니다.
+인터페이스 안에서 메서드 내용을 구현하지 않습니다.
+
+EmailNotificationService 클래스
+이메일 알림을 전송하는 구현체입니다.
+NotificationService 인터페이스를 구현합니다.
+send() 메서드를 재정의합니다.
+다음 형식으로 출력합니다.
+이메일 알림 전송: 회원가입을 축하합니다.
+메서드의 message 매개변수 값을 출력에 사용합니다.
+
+SmsNotificationService 클래스
+문자 메시지 알림을 전송하는 구현체입니다.
+NotificationService 인터페이스를 구현합니다.
+send() 메서드를 재정의합니다.
+다음 형식으로 출력합니다.
+문자 메시지 알림 전송: 회원가입을 축하합니다.
+메서드의 message 매개변수 값을 출력에 사용합니다.
+
+MemberService 클래스
+회원가입을 처리하고 문자 메시지 알림을 전송하는 클래스입니다.
+필드는 구현 클래스가 아닌 인터페이스 타입으로 선언합니다.
+private final NotificationService notificationService;
+생성자 주입을 사용합니다.
+생성자의 매개변수에 @Qualifier를 적용합니다.
+smsNotification Bean이 주입되도록 작성합니다.
+
+다음 메서드를 작성합니다.
+public void joinMember(String memberName)
+joinMember() 메서드는 다음 순서로 동작해야 합니다.
+1. "김민수 회원을 등록합니다." 출력
+2. NotificationService의 send() 메서드 호출
+3. send()에 "회원가입을 축하합니다." 전달
+4. "회원 등록이 완료되었습니다." 출력
+
+memberName 매개변수의 값을 출력에 사용합니다.
+
+MemberServiceTest 클래스를 작성합니다.
+@SpringBootTest를 사용합니다.
+MemberService 객체를 필드주입받는다.
+테스트 메서드에는 @Test를 사용합니다.
+테스트 메서드 이름은 memberJoinTest()로 작성합니다.
+테스트 메서드에서 다음 코드를 실행합니다.
+memberService.joinMember("김민수");
+
+
+
+
