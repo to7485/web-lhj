@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h1> 수강생 등록 프로그램</h1>
+        <div class="form-group">
+            <label for="name">이름</label>
+            <input type="text" id="name" placeholder="수강생 이름을 입력하세요">
+        </div>
+        <div class="form-group">
+            <label for="course">과정명</label>
+            <select id="course">
+                <option vlaue="">과정 선택</option>
+                <option value="자바 웹 개발">자바 웹 개발</option>
+                <option value="스프링부트 개발">스프링부트 개발</option>
+                <option value="클라우드 개발">클라우드 개발</option>
+                <option value="프론트엔드 개발">프론트엔드 개발</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="email">이메일</label>
+            <input type="email" id="email" placeholder="이메일을 입력하세요">
+        </div>
+        <div class="button-group">
+            <button id="addBtn">수강생 등록</button>
+            <button id="loadBtn">목록 조회</button>
+        </div>
+
+        <p id="message"></p>
+
+        <h2>수강생 목록</h2>
+        <span class="count" id="count">총 0명</span>
+        <table>
+            <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>이름</th>
+                    <th>과정명</th>
+                    <th>이메일</th>
+                </tr>
+            </thead>
+            <tbody id="studentList">
+                <tr>
+                    <td colspan="4" class="empty">
+                        목록 조회버튼을 눌러주세요
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="student.js"></script>
+</body>
+</html>

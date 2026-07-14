@@ -206,4 +206,18 @@ GET /users/{userId}/posts
 POST /users/{userId}/posts
 GET /users/{userId}/posts/{postId}
 
+응답 형식의 일관성
+- 모든 API의 응답 형식도 일관되게 설계해야 한다.
+- 예를 들어, 성공 시 HTTP 상태코드와 JSON 형식의 응답을 동일하게 유지하는 것이 좋다.
+
+
+
+
+
+
+
+
+
+
+
 
