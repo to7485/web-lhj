@@ -1,0 +1,58 @@
+1. 객체를 우리가 직접 만들지 않는다.
+2. 필드에 우리가 직접 넣어주지 않는다.
+
+의존성 주입
+- 필드 주입
+- setter 주입
+- 생성자 주입(주로 많이 사용한다)
+
+실제 프로젝트는 레이어드 아키텍처를 사용을 한다.
+
+표현 계층 : 사용자의 요청을 받고, 서비스 계층으로 보내고, 응답을 내보내는 계층
+ㄴ Controller
+@RestController (@ResponseBody)
+@Controller
+
+http://localhost:10000/api/users/1 
+http://localhost:10000/api/users?id=1
+요청이 들어왔을 때 클래스나 메서드를 매핑(연결)해주는 역할
+@ReqestMapping("api")
+@GetMapping("users")
+@PostMapping
+
+@PathVariable() : 주소경로의 일부를 변수로 받는것
+@RequestParam() : 쿼리스트링의 값을 받아오는것
+
+컨트롤러는 서비스에 의존성을 가진다.
+
+
+서비스 계층 : 비즈니스로직을 실행하는 계층
+ㄴ Service
+
+@Service
+
+메서드
+
+
+
+영속 계층 : 데이터베이스와 맞닿아있는 계층
+
+데이터베이스
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
