@@ -1,0 +1,189 @@
+Todo CRUD
+표현계층 : 요청을 받고, 응답을 내보내는것
+ㄴ @GetMapping, @PostMapping, @PutMapping, @DeleteMapping
+
+요청하는쪽
+fetch("주소",{옵션 get,post,put,delete});
+
+비즈니스계층 : 실제 로직을 처리
+ㄴ 유효성 검사
+ㄴ 실제 기능 처리
+ㄴ CRUD
+
+영속계층 : 데이터베이스에 CRUD
+ㄴ ORM : 객체와 테이블을 1대1로 매핑하는 프레임워크
+Spring data JPA : 메서드로 쿼리문을 처리할 수 있다.
+기본적으로 CRUD 메서드를 제공한다
+findAll() : 전체조회
+findById() : 아이디를 통한 조회 where id = ?
+save() : 추가, 수정을 같이 쓴다.
+delete() : 삭제(엔티티를 통한 삭제)
+
+동작 By 필드명 조건
+
+동작
+find : 조회
+count : 개수
+exists : 존재하는지 확인
+delete : 삭제
+
+조건
+문자열 조건
+Containing : 포함하는지
+StartingWith : 특정 문자열로 시작
+EndingWith : 특정 문자열로 끝나는
+
+findByTitleContaining(String title)
+
+비교조건(숫자, 날짜)
+GreaterThan : 초과
+GreaterThenEqual : 이상
+LessThan : 미만
+LessThanEqual : 이하
+Between : 범위
+
+가격이 30000원보다 큰 책을 찾는 쿼리메서드
+findByPriceGreaterThan(int price)
+
+부정조건
+- 특정 값이 아닌 데이터를 검색
+Not
+NotContaining
+
+특정 카테고리를 포함하지 않는 데이터를 조회
+findByCategoryNot(String category)
+
+Null조건
+IsNull : Null인지 확인
+IsNotNull : Null이 아닌지 확인
+
+저자가 Null아닌 데이터만 조회
+findByAuthorIsNotNull()
+
+여러 값 중 하나
+In : 목록에 포함
+NotIn : 목록에 포함되지 않음
+
+특정 카테고리를 포함하는 데이터만 조회
+findByCategory(List<String> categories)
+
+Boolean 조건
+True : true값이 들어있는 데이터를 찾음
+False : False값이 들어있는 데이터를 찾는다.
+
+여러 조건의 연결
+And : 그리고
+Or : 또는
+
+특정 카테고리와 특정 가격보다 높은 책 찾기
+findByCategoryAndPriceGreaterThan(String category, int price)
+
+정렬조건
+OrderBy필드 : 정렬시작
+Asc : 오름차순
+Desc : 내림차순
+
+특정카테고리를 가지는 데이터를 가격을 기준으로 오름차순하여 조회
+findByCategoryOrderByPriceAsc(String category);
+
+중복제거
+Distinct
+
+findByAuthorDistinct(String Author)
+
+회원 기능 만들기
+인증
+- 사용자가 누구인지 확인하는 과정
+인가
+- 인증 후 사용자가 무엇을 할 수 있는지 결정하는 과정
+
+아이디와 비밀번호를 사용한 Basic 인증
+
+HTTP의 특성
+무상태(stateless) : 이전 통신을 기억하지 않는다.
+- 매 요청마다 인증정보를 함게 전달해야한다.
+- 개인정보가 유출될 수 있다.
+회원가입
+로그인
+
+토큰 기반 인증
+- 사용자가 인증에 성공한 후 토큰을 발급받아, 서버와의 통신에서 인증을 처리하는 방식
+- 토큰은 클라이언트의 브라우저에 저장이 된다.(자동로그인, 아이디 기억)
+
+JWT(JSON Web Token)
+- JSON 형식으로 사용자 정보를 저장하고 서명을 통해 토큰의 무결성을 검증하는 방식
+
+구조
+헤더 : 해싱 알고리즘, 토큰의 타입
+페이로드 : 사용자 또는 시스템 과련 정보
+서명 : 헤더와 페이로드를 Base64로 인코딩 한 뒤, 비밀키로 암호화한 문자열
+
+JWT 토큰 생성 및 반환 구현
+- 유저 정보를 바탕으로 헤더와 페이로드를 작성하고 서명을 한 뒤 토큰을 반환하자
+
+JJWT라이브러리
+- JWT 토큰을 생성하고, 서명하고, 파싱하고, 검증해주는 기능을 가지고 있다.
+JJWT-API : 개발자가 사용하는 JWT API 제공
+JJWT-impl : JWT 기능의 실제 내부 구현체
+JJWT-GSON : JWT의 JSON 직렬화/역직렬화를 Gson으로 처리
+
+토큰을 발급해주는 시점
+- 로그인할 때 같이 발급
+
+스프링 시큐리티 프레임워크
+- 스프링기반의 어플리케이션에서 인증과 인가를 처리하기 위한 강력한 보안 프레임워크
+
+필터 기반 아키텍처
+- 요청이 컨트롤러에 도착하기 전에 여러 보안 검색대를 통과하도록 만든 구조
+- Todo에 대한 CRUD작업을 할 때 검사를 진행한다
+- 로그인을 한 사람인가?
+- JWT를 가지고 있는가?
+- 토큰이 유효한가?
+- 만료되지는 않았는가?
+이런 검사를 컨트롤러 앞에서 처리하는 역할을 Filter가 담당할 수 있다.
+스프링 시큐리티는 여러개의 필터를 순서대로 연결하여 사용할 수 있다.
+연결된 필터를 필터체인이라고 부른다.
+
+OncePerRequestFilter : HTTP 요청 1번당 필터 로직이 한 번만 실행되도록 도와주는 Spring 필터 기반 클래스
+
+doFilterInternal() : HTTP 요청이 들어오면 이 필터가 실행이 되고, 커스텀 필터를 만들 때 필터 처리 로직을 작성하는 메서드
+
+HttpServletRequest request : 클라이언트가 보낸 HTTP 요청 정보
+HttpServletResponse response :클라이언트에게 보낼 HTTP 응답 정보
+FilterChain filterChain : 다음 필터로 요청을 전달하는 객체
+
+클라이언트 쪽에서 fetch()로 요청을 보낼 때 header에 토큰을 실어서 보낸다.
+fetch("요청주소",{
+	method : "GET",
+	headers : {
+		"Content-Type":"application/json",
+		"Authorization":"Bearer " + 토큰
+	}
+});
+
+StringUtils.hasText(bearerToken) : 문자열 유효성 검증 메서드
+- null값인지 확인
+- ""빈 문자열인지 확인
+- 공백만 있는지 확인
+- 실제 문자열이 있는지 확인
+
+1. 아이디와 비밀번호를 입력하고 로그인
+2. 토큰을 발급받는다.
+3. 할일에 대한 추가/수정/조회/삭제 기능 요청(요청과 함께 토큰을 같이 보낸다.)
+4. 필터에서 검증(아이디 뽑아온다)
+5. 컨트롤러의 매개변수에 넣는다.
+6. 디비에 전달해서 비교해서 응답을 만든다.
+
+hello2@world.com 아이디 만들기
+
+hello@world.com을 이용해 할일 추가하기
+hello2@world.com을 이용해 할일 추가하기
+조회 했을 때 각자 추가한 할일만 보이는지 확인하기
+
+
+
+
+
+
+
+

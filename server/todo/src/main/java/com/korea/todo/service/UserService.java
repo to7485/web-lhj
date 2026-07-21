@@ -31,8 +31,12 @@ public class UserService {
 		
 		return repository.save(user);
 	}
+
+	public UserEntity getByCredentials(String username, String password) {
+		return repository.findByUsernameAndPassword(username, password);
+	}
 	
-	
+	//로그인
 	
 	
 	

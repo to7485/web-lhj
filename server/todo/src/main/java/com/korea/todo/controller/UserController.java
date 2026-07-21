@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.korea.todo.dto.ResponseDTO;
 import com.korea.todo.dto.UserDTO;
 import com.korea.todo.entity.UserEntity;
+import com.korea.todo.security.TokenProvider;
 import com.korea.todo.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,8 @@ import lombok.RequiredArgsConstructor;
 public class UserController {
 
 	private final UserService userService;
+	private final TokenProvider tokenProvider;
+	
 	
 	//회원가입
 	//경로 : /signup
@@ -28,6 +31,7 @@ public class UserController {
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@RequestBody UserDTO dto){
 		try {
+			//dto -> entity
 			UserEntity user = UserEntity.builder()
 									.username(dto.getUsername())
 									.password(dto.getPassword())
@@ -48,12 +52,48 @@ public class UserController {
 		}
 	}
 	
+	//@RequestBody
+	//HTTP 요청의 Body에 담아 보낸 데이터를 Java 객체로 변환하여 
+	//컨트롤러의 매개변수로 받기 위한 어노테이션
+	//POST, PUT 요청으로 JSON 데이터를 받을 때 많이 사용한다.
+	
 	
 	//로그인하기
 	//경로 POST /signin
 	//메서드명 authenticate
 	//입력받은 아이디와 비밀번호를 받아서 검증하고 조회된 유저를 반환
-	
+	@PostMapping("/signin")
+	public ResponseEntity<?> authenticate(@RequestBody UserDTO userDTO){
+		UserEntity user = userService.getByCredentials(
+				userDTO.getUsername(), 
+				userDTO.getPassword());
+		
+		
+		//유저가 존재한다면
+		if(user != null) {
+			////////////////////////////////////////////////
+			final String token = tokenProvider.create(user);
+			//////////////////////////////////////////////
+			
+			final UserDTO responseUserDTO = UserDTO.builder()
+								.id(user.getId())
+								.username(user.getUsername())
+								
+								///////////
+								.token(token)
+								///////////
+								
+								.build();
+			return ResponseEntity.ok().body(responseUserDTO);
+		} else {
+			//유저가 존재하지 않거나 인증실패 시 에러 메시지를 포함한 ResponseDTO를 반환
+			ResponseDTO responseDTO = ResponseDTO.builder()
+					.error("Login failed")
+					.build();
+			
+			return ResponseEntity.badRequest().body(responseDTO);
+		}
+	}
 	
 	
 	
