@@ -180,7 +180,8 @@ hello@world.com을 이용해 할일 추가하기
 hello2@world.com을 이용해 할일 추가하기
 조회 했을 때 각자 추가한 할일만 보이는지 확인하기
 
-
+maven, mybatis -> 요걸 봐야됨(학습모듈)
+gradle, jpa -> 요즘 많이 씀
 
 
 

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace : 현재 Mapper XML이 어떤 Java 인터페이스와 연결되는지 지정 -->
+<mapper namespace="com.korea.ex_0722.dao.UserDAO">
+
+	<!-- id : DAO 인터페이스의 메서드 이름과 연결
+	resultType : SQL 실행해서 조회된 결과를 어떤 JAVA 객체에 담을 것인지 지정 -->
+	<select id="findAll" resultType="UserVO">
+		SELECT id,name,email FROM users
+	</select>
+
+	<!-- 조건을 통한 조회 -->
+	<select id="findById" resultType="UserVO">
+		SELECT id,name,email FROM users WHERE id=#{id}
+	</select>
+	
+	<!-- 추가하기 -->
+	<insert id="insert">
+		INSERT INTO users(name,email) VALUES(#{name},#{email})
+	</insert>
+	
+	<update id="update">
+		update users 
+		set
+			name = #{name},
+			email = #{email}
+		where id=#{id}
+	</update>
+	
+	<delete id="delete">
+		delete from users
+		where id = #{id}
+	</delete>
+
+</mapper>
