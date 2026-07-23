@@ -1,0 +1,274 @@
+공통모듈구현
+자주사용하는 기능을 클래스나 메서드 단위로 만드는것
+- 함수 단위
+- 컴포넌트
+- 어플리케이션 단위
+
+응집도
+- 모듈 내부에서 구성 요소 간 밀접한 관계를 맺고 있는 정도
+- 응집도가 높을 수록 품질이 높다고 평가한다.
+
+기능적 응집도
+- 모듈 내부의 모든 기능이 단일한 목적을 위해 수행되는 경우
+순차적 응집도
+- 모듈 내에서 한 활동으로부터 나온 출력값을 다른 활동의 입력값으로 사용하는 경우
+통신적 응집도
+- 동일한 입력과 출력을 사용하여 다른 기능을 수행하는 활동들이 모여 있을 경우
+절차적 응집도
+- 모듈이 다수의 관련 기능을 가질 때 무듈 안의 구성 요소들이 그 기능을 순차적으로 수행할 경우
+시간적 응집도
+- 특정시간에 처리되어야 하는 활동들을 하나의 모듈에서 처리하는 경우
+논리적 응집도
+- 유사한 성격을 갖거나 특정 형태로 분류되는 처리 요소들이 한 모듈내에서 처리되는 경우
+우연적 응집도
+- 모듈 내부의 각 구성요소들이 연관이 아예 없을 경우
+
+결합도
+- 모듈과 모듈간의 관련성 정도를 나타내며, 관련이 적을수록 모듈의 독립성이 높아져 모듈 간 영향이 적어지게 된다.
+
+자료 결합도
+- 모듈 간의 인터페이스로 전달되는 파라미터를 통해서만 모듈 간의 상호작용이 일어나는 경우이다.
+스탬프 결합도
+- 모듈 간의 인터페이스로 배열, 객체, 구조 등이 전달되는 경우
+제어 결합도
+- 단순 처리할 대상인 값만 전달되는 게 아니라 어떻게 처리를 해야 한다는 제어 요소가 전달되는 경우
+외부 결합도
+- 다수의 모듈이 모듈 밖에서 도입된 데이터, 프로토콜, 인터페이스 등을 공유할 때 발생하는 경우
+공통 결합도
+- 파라미터가 아닌 모듈 밖에 선언되어 있는 전역 변수를 참조하고 전역 변수를 갱신하는 식으로 상호작용하는 경우
+내용 결합도
+- 다른 모듈 내부에 있는 변수나 기능을 다른 모듈에서 사용하는 경우
+
+공통모듈을 구현하는 방법
+1. 문서나 설계도를 통해서 만들어야할 공통 모듈을 확인한다.
+- 공통 모듈 관리 대장을 확인한다.(설계 단계에서 작성된 구현해야 할 전체 시스템의 공통 모듈 산출물)
+
+2. 산출물을 기반으로 공통 모듈을 구현한다.
+- 공통 모듈을 구현하기 위한 I/O 오브젝트(VO/DTO)를 정의한다.
+DTO(DataTransfer Object)
+VO(Value Object)
+- 공통 모듈을 구현하기 위한 SQL을 작성한다
+MyBatis : Java 객체와 SQL을 연결해주는 SQL Mapper 프레임워크
+Mapper : Java코드와 SQL을 연결해주는 역할
+XML(eXtensible Markup Language) : 확장 가능한 마크업 언어
+ㄴ 태그를 직접 만들 수 있다.
+ㄴ 데이터의 표현이 목적이다.
+
+Mapper Interface
+- Java에서 호출할 메서드를 정의
+
+Mapper XML
+- 실제 SQL을 작성한다
+
+3. 데이터 접근 객체(DAO : Data Access Object)를 구현한다.
+- DAO에서는 SQL문을 구현한 XML 파일에서의 ID값을 호출하여 데이터를 조작한다.
+
+4. 서비스 클래스를 구현한다
+- 동일한 시스템 내에서 사용되는 결합도가 낮은 공통 모듈을 구현하기 위해 스탬프 결합도 수준의 서비스를 구현한다.
+
+5. 컨트롤러 클래스를 구현한다.
+- 시스템 내부 및 외부에서 사용할 수 있도록 REST API를 통한 공통 모듈을 구현한다.
+
+mapper-xml 작성시 규칙
+
+<mapper namespace="dao랑 연결"> </mapper> 안에 SQL을 작성해야 한다.
+
+<select id="findAll" resultType="UserVO"> select * from users</select>
+<insert id="save"> insert into users ...</insert>
+<update id="update"> update users set ...</update>
+<delete id="delete"> delete from users ...</delete>
+
+id : XML의 SQL과 Java 메서드를 연결
+resultType : SQL 조회 결과를 Java객체로 변환
+
+#{} : Java에서 전달한 값을 SQL에서 사용하기 위한 형식문자
+UserVO findById(@param("abc") Long id) ->  select * from users where id = #{abc}
+
+객체를 파라미터로 전달
+int insert(UserVO vo) -> insert into users values( #{name}, #{email}, #{age})
+vo.getName()
+vo.getEmail() 처럼 동작을한다.
+
+각 CRUD를 작성할 때 DAO 메서드의 반환값
+SELECT : VO, LIST<VO>
+INSERT : int
+UPDATE : int
+DELETE : int
+
+전체 도서 개수 조회
+count
+
+<if>
+- 조건이 참일 때만 SQL문장을 추가하는 문법
+
+<if test="name != null">
+	AND name=#{name}
+</if>
+
+저자를 가지고 책을 조회
+
+<where>
+- 조건이 존재할 때 자동으로 where을 붙여주는 태그
+
+<choose></choose> : 여러 조건 중 하나를 선택하는 전체 영역
+
+<when></when> : 조건을 검사
+
+<otherwise></otherwise> : 모든 <when>조건이 거짓일 때 실행
+
+
+반려동물 병원 진료 예약 관리 시스템
+
+문제 1. Spring Boot 프로젝트 생성
+
+https://start.spring.io에 접속하여 다음 조건으로 프로젝트를 생성하세요.
+
+프로젝트 설정 조건
+Project : Maven
+Language : Java
+Spring Boot : 사용 가능한 안정 버전
+Group : com.korea
+Artifact : petclinic
+Name : petclini
+Package name : com.korea.petclinic
+Packaging : Jar
+
+Java : 17 이상
+필요한 Dependencies
+
+다음 의존성을 추가하세요.
+
+Spring Web
+MyBatis Framework
+MySQL Driver
+Lombok
+Spring Boot DevTools
+
+프로젝트를 생성한 후 압축을 해제하고 Eclipse 또는 STS에서 Existing Maven Projects 방식으로 프로젝트를 Import하세요.
+
+4. 데이터베이스 생성
+
+MySQL에 다음 데이터베이스를 생성하세요.
+
+CREATE DATABASE petclinic;
+
+USE petclinic;
+
+5. 테이블 생성
+
+반려동물 진료 예약 정보를 저장하기 위한 reservation 테이블을 생성하세요.
+
+다음 조건을 만족하도록 테이블을 작성합니다.
+
+컬럼   자료형   설명
+id   BIGINT   예약 번호, Primary Key, 자동 증가
+pet_name   VARCHAR(50)   반려동물 이름
+owner_name   VARCHAR(50)   보호자 이름
+animal_type   VARCHAR(30)   동물 종류
+doctor_name   VARCHAR(50)   담당 수의사
+reservation_date   DATE   예약 날짜
+status   VARCHAR(20)   예약 상태
+price   INT   예상 진료비
+
+테이블 생성 예시는 다음과 같습니다.
+
+CREATE TABLE reservation (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    pet_name VARCHAR(50) NOT NULL,
+    owner_name VARCHAR(50) NOT NULL,
+    animal_type VARCHAR(30) NOT NULL,
+    doctor_name VARCHAR(50) NOT NULL,
+    reservation_date DATE NOT NULL,
+    status VARCHAR(20) NOT NULL,
+    price INT NOT NULL
+);
+
+6. 테스트 데이터 입력
+
+다음과 같은 테스트 데이터를 최소 5개 이상 입력하세요.
+
+INSERT INTO reservation
+(pet_name, owner_name, animal_type, doctor_name, reservation_date, status, price)
+VALUES
+('초코', '김민수', '강아지', '이준호', '2026-07-25', '예약', 30000);
+
+INSERT INTO reservation
+(pet_name, owner_name, animal_type, doctor_name, reservation_date, status, price)
+VALUES
+('나비', '박지영', '고양이', '최유진', '2026-07-25', '진료완료', 50000);
+
+INSERT INTO reservation
+(pet_name, owner_name, animal_type, doctor_name, reservation_date, status, price)
+VALUES
+('콩이', '이수현', '강아지', '이준호', '2026-07-26', '예약', 40000);
+
+INSERT INTO reservation
+(pet_name, owner_name, animal_type, doctor_name, reservation_date, status, price)
+VALUES
+('호두', '정민호', '햄스터', '최유진', '2026-07-27', '예약취소', 20000);
+
+INSERT INTO reservation
+(pet_name, owner_name, animal_type, doctor_name, reservation_date, status, price)
+VALUES
+('보리', '강지수', '강아지', '이준호', '2026-07-28', '진료완료', 60000);
+
+
+
+문제 2. VO 클래스 작성
+
+데이터베이스의 reservation 테이블과 데이터를 주고받기 위한 ReservationVO 클래스를 작성하세요.
+
+패키지는 다음과 같습니다.
+
+com.korea.petclinic.vo
+
+다음 필드를 선언합니다.
+
+Long id;
+String petName;
+String ownerName;
+String animalType;
+String doctorName;
+LocalDate reservationDate;
+String status;
+int price;
+
+Lombok을 이용하여 Getter와 Setter를 자동으로 생성하세요.
+
+문제 3. 모든 예약 정보 조회
+
+데이터베이스에 저장된 모든 진료 예약 정보를 조회하는 기능을 구현하세요.
+요청 방식은 다음과 같습니다.
+GET /reservations
+
+DAO 조건
+ReservationDAO에 다음 메서드를 작성하세요.
+List<ReservationVO> findAll()
+
+Service 조건
+
+DAO의 findAll() 메서드를 호출하여 결과를 Controller에게 반환합니다.
+
+Controller 조건
+
+다음 주소로 요청을 받습니다.
+
+GET /reservations
+
+조회 결과를 JSON으로 반환합니다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

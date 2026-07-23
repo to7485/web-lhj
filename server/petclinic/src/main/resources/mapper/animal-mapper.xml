@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.korea.petclinic.dao.ReservationDAO">
+	<select id="findAll" resultType="ReservationVO">
+		select * from reservation
+	</select>
+	
+	<insert id="insert">
+		insert into reservation values(
+			#{petName},
+			#{ownerName},
+			#{animalType},
+			#{doctorName},
+			#{reservationDate},
+			#{status},
+			#{price}
+		)
+	</insert>
+</mapper>
+
+
+
+
+
+
+

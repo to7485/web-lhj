@@ -1,4 +1,4 @@
-package com.korea.test.config;
+package com.korea.petclinic.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
