@@ -1,0 +1,103 @@
+서버 프로그램 구현 능력평가 : 7월 27일
+범위 : maven, mybatis, vo, dao, mapper, service ,controller, postman,xml
+자주하는 실수 : 서버 안켜놓고 테스트하기
+에러났을 때 디버깅을 잘하자!!
+
+400(badRequest) : 요청이 잘못된것 -> 같이 전달하는 데이터에서 잘못된게 없는지 or 의도와 다르게 Java코드가 작성된 경우
+
+404(notFound) : 경로를 찾지 못함 -> 요청주소를 확인
+
+500 : 서버쪽에서 발생한 에러 -> 구조를 점검(controller -> mapper)
+
+프로젝트 생성(의존성 필요한거 다 주입)
+springweb
+lombok
+mybatis
+mysqlconnector
+devtools
+
+데이터베이스 생성
+
+테이블 생성
+
+프로젝트 import 
+
+구조(vo,dao,sercie,controller,mapper)
+
+기능 구현하기(추가,수정,삭제,조회,조건부조회...)
+
+상품관리 및 주문 서비스 만들기
+
+구현할 주요 기능
+1. 상품 등록
+2. 전체 상품 조회
+3. 상품 번호로 상세 조회
+4. 상품 주문
+5. 주문시 상품 재고 감소
+6. 전체 주문내역 조회
+7. 주문 내역 조회 시 상품 정보와 총 결제 금액을 함께 조회
+
+프로젝트 생성
+group-id : com.korea
+artifact : product
+빌드 툴 : maven
+의존성 : spring web, mybatis,mysql,lombok,devtools
+
+데이터베이스 생성
+데이터베이스명 : productdb
+
+상품 테이블 생성(product)
+product_id (pk) 자동증가
+product_name not null
+product_stock not null
+product_price not null
+register_date datetime 디폴트값(현재시간)
+update_date datetime 디폴트값(현재시간)
+
+주문테이블 생성(orders)
+order_id
+product_id (fk)
+product_count
+order_date datetime 기본값(현재시간)
+
+controller, service, dao, vo, mapper 만들기
+
+application.yml 설정하기
+
+1. 모든 상품 조회하기
+GET /product findAll()
+
+2. 상품 등록
+POST /product createProduct()
+
+3. 상품 상세 조회
+GET /product/{productId} findById()
+
+OrderVO
+- 주문번호
+- 상품 번호
+- 상품 이름
+- 주문 개수
+- 상품 가격
+- 총 결제 금액
+- 주문날짜
+
+OrderDAO, OrderService, OrderController 만들기
+
+4. 주문 등록 기능 만들기
+- 사용자가 상품 번호와 주문 개수를 전달하면 주문 정보를 저장한다.
+POST /orders
+
+주문 처리 순서
+- 상품 번호를 이용하여 상품 정보를 조회한다(상품이 없으면 주문할 수 없다.)
+- 현재 재고를 확인한다(재고보다 많은 개수를 주문하면 주문불가)
+- 주문정보를 orders테이블에 저장한다.
+- 주문한 수량만큼 product테이블의 상품의 재고를 감소
+
+
+
+
+
+
+
+

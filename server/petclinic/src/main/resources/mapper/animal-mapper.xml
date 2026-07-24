@@ -9,7 +9,7 @@
 	</select>
 	
 	<insert id="insert">
-		insert into reservation values(
+		insert into reservation(pet_name,owner_name,animal_type,doctor_name,reservation_date,status,price) values(
 			#{petName},
 			#{ownerName},
 			#{animalType},
@@ -19,6 +19,74 @@
 			#{price}
 		)
 	</insert>
+	
+	<select id="findById" resultType="ReservationVO">
+		select * from reservation where id=#{id}
+	</select>
+	
+	<update id="update">
+		update reservation
+		set
+			pet_name=#{petName},
+			owner_name=#{ownerName},
+			animal_type=#{animalType},
+			doctor_name=#{doctorName},
+			reservation_date=#{reservationDate},
+			status=#{status},
+			price=#{price}
+		where id=#{id}
+	</update>
+	
+	<delete id="delete">
+		delete from reservation
+		where id=#{id}
+	</delete>
+	
+	<select id="searchDetail">
+		select * from reservation
+		<where>
+			<choose>
+				<when test="searchType== 'pet'">
+					pet_name LIKE CONCAT('%',#{keyword},'%')
+				</when>
+				<when test="searchType== 'owner'">
+					owner_name LIKE CONCAT('%',#{keyword},'%')
+				</when>
+				<when test="searchType== 'doctor'">
+					doctor_name LIKE CONCAT('%',#{keyword},'%')
+				</when>
+				<otherwise>
+					pet_name LIKE CONCAT('%',#{keyword},'%')
+				</otherwise>
+			</choose>
+		</where>
+	</select>
+	
+	<select id="findAllSort" resultType="ReservationVO">
+		select * from reservation
+		ORDER BY
+		<choose>
+			<when test="sort=='asc'">
+				price ASC
+			</when>
+			<when test="sort=='desc'">
+				price DESC
+			</when>
+			<otherwise>
+				id ASC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="getTotalPrice" resultType="Integer">
+		select sum(price) from reservation 
+	</select>
+	
+	<select id="getStatusCount" resultType="StatusCountVO">
+		select status,count(*) as count
+		from reservation
+		group by status
+	</select>
 </mapper>
 
 

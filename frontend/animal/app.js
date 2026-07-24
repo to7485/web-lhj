@@ -82,9 +82,9 @@ saveBtn.addEventListener("click", () => {
         return;
     }
 
-    if(ainmalType.value === ""){
+    if(animalType.value === ""){
         alert("동물 종류를 선택하세요");
-        ainmalType.focus;
+        animalType.focus;
         return;
     }
 
@@ -108,14 +108,33 @@ saveBtn.addEventListener("click", () => {
 
     //서버로 전송할 객체
     const reservation = {
-
+        petName : petName.value.trim(),
+        ownerName : ownerName.value.trim(),
+        animalType : animalType.value,
+        doctorName : doctorName.value.trim(),
+        reservationDate:reservationDate.value,
+        status : status.value,
+        price: Number(price.value)
     }
+
+    insertReservation(reservation);
 
 
 })
 
 const insertReservation = (reservation) => {
-    
+    fetch(API_URL,{
+        method:"POST",
+        headers: {
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify(reservation)
+    })
+    .then(res => res.text())
+    .then(result => {
+        alert("예약이 등록되었습니다");
+        loadReservations();
+    })
 }
 
 loadReservations();

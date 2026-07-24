@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.korea.product.dao.ProductDAO">
+
+	<select id="findAll" resultType="ProductVO">
+		select * from product
+	</select>
+	
+	<insert id="insert">
+		insert into product(product_name,product_stock,product_price) values(
+			#{productName},
+			#{productStock},
+			#{productPrice}
+		)
+	</insert>
+
+	<select id="findById" resultType="ProductVO">
+		select * from product
+		where product_id=#{productId}
+	</select>
+	
+	<update id="update">
+		update product set
+			product_name = #{productName},
+			product_stock = #{productStock},
+			product_price = #{productPrice}
+		where product_id = #{productId}
+		
+	</update>
+	
+	<update id="decreaseStock">
+		update prodcut set
+			product_stock = #{productStock}
+		where product_id = #{productId}
+	</update>
+</mapper>
+
+
+
+
+
+
+

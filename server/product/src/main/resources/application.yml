@@ -1,0 +1,16 @@
+server:
+  port: 10000
+  
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/productdb
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 11111111
+
+mybatis:
+  #SQL이 작성된 파일의 위치 classpath -> src/main/resources
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.korea.product.vo
+  configuration: 
+    map-underscore-to-camel-case: true
