@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.korea.movie_reservation.dao.MovieDAO">
+
+	<select id="findAll" resultType="MovieVO">
+		select * from movies
+	</select>
+
+	<insert id="insert">
+		insert into movies(movie_title,movie_genre,running_time,ticket_price) values(
+			#{movieTitle},
+			#{movieGenre},
+			#{runningTime},
+			#{ticketPrice}
+		)
+	</insert>
+	
+	<select id="findMovieById" resultType="MovieVO">
+		select * from movies
+		where movie_id=#{MovieId}
+	</select>
+</mapper>
+
+

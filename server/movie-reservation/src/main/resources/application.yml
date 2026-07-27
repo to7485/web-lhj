@@ -1,0 +1,19 @@
+server:
+ port: 10000
+
+spring:
+ application:
+   name: movie-reservation
+
+ datasource:
+   driver-class-name: com.mysql.cj.jdbc.Driver
+   url: jdbc:mysql://localhost:3306/movie_reservation_db
+   username: root
+   password: admin1234
+
+mybatis:
+ mapper-locations: classpath:mapper/**/*.xml
+ type-aliases-package: com.korea.movie_reservation.vo
+
+ configuration:
+   map-underscore-to-camel-case: true
