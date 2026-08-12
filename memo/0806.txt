@@ -1,0 +1,14 @@
+통합 구현 능력 평가
+시간 : 10시 30분 ~ 12시 30분
+커트라인: 60점
+문항수 20개 서술형
+
+MC/DC(Modified Condition/Decision Coverage) 변경 조건 결정 커버리지
+
+
+
+
+
+
+
+
